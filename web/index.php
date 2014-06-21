@@ -8,11 +8,11 @@ print_errors();
     <?php style_head(); ?>
 </head>
 <body>
-<div id=content>
+<div id="content">
 
     <h1>Login</h1>
-    <!-- Convertir a Form -->
-    <div id=login_container>
+
+    <form id="login_container" method=POST action="/login.php">
         <h2 class="login">Ingreso</h2>
         
         <div class=campo>
@@ -25,8 +25,8 @@ print_errors();
             <input type=password name=pass />
         </div>
 
-        <input type=button value=Ingresar>        
-    </div>
+        <input type=submit value=Ingresar>        
+    </form>
 
 </div>
 </body>
