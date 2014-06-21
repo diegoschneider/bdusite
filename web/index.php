@@ -28,10 +28,6 @@ print_errors();
         <input type=button value=Ingresar>        
     </div>
 
-    <?php
-        echo "Hello World... FROM GITHUB! :O";
-    ?>
-
 </div>
 </body>
 </html>
