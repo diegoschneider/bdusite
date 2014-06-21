@@ -8,8 +8,12 @@ print_errors();
 	<?php style_head(); ?>
 </head>
 <body>
+<div id="content">
+	
 	<h1>Login - En Proceso</h1>
 	<a href="/">Volver</a>
+
+</div>
 </body>
 
 </html>
