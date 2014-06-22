@@ -6,21 +6,6 @@ define("USER_NOTLOGGEDIN",1001);
 define("USER_INEXISTENT",1002);
 define("USER_EXISTENT",1003);
 define("USER_WRONGPASS",1004);
-
-$link = db_connect();
-if(mysqli_num_rows($link->query("SHOW TABLES LIKE 'errorlog'"))==0) {
-    $query = "CREATE TABLE errorlog (
-        id INT NOT NULL AUTO_INCREMENT,
-        errno INT NOT NULL,
-        errstr VARCHAR(255),
-        errfile VARCHAR(128),
-        errline INT,
-        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
-    );";
-    $link->query($query);
-}
-$link->close();
     
 if(isset($_POST['errors'])) {
     $errors = $_POST['errors'];
