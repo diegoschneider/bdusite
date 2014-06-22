@@ -14,7 +14,10 @@ print_errors();
 	<a href="/">Volver</a>
 	<br>
 	<?php 
-		echo "Hashed pass: ". hash_pwd_bcrypt($_GET['pass'],$_GET['salt']);
+		$hash = password_hash($_GET['pass'], PASSWORD_BCRYPT, array('cost' => 11) );
+
+		echo "Hashed pass: ".$hash;
+		echo "<br>Verifyed: ".password_verify($_GET['pass'],$hash);
 	?>
 </div>
 </body>
