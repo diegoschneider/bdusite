@@ -24,8 +24,8 @@ if(!$_SESSION['user']->loggedin && !in_array($_SERVER['PHP_SELF'], $publicpages)
 function hash_pwd_bcrypt($password, $salt) {
     $cost = 15; // must be in range 04 – 31
  
-    // The salt can only contain the characters “./0-9A-Za-z” and the length must be > 2, so the input gets md5ed
-    return crypt($password, ‘$2a$’ . sprintf(‘%02d’, $cost) . ‘$’. md5($salt) . ‘$’);
+    // The salt can only contain the characters "./0-9A-Za-z" and the length must be > 2, so the input gets md5ed
+    return crypt($password, "$2a$" . sprintf("%02d", $cost) . "$". md5($salt) . "$");
 }
 
  /*****************************
