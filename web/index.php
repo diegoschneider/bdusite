@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
+require("./src/script/functions.php");
 print_errors();
 ?>
 
@@ -10,6 +10,7 @@ print_errors();
 <body>
 <div id="content">
 
+    <?php if(!$_SESSION['user']->loggedin) { ?>
     <h1>Login</h1>
 
     <form id="login_container" method=POST action="/login.php">
@@ -27,6 +28,15 @@ print_errors();
 
         <input type=submit value=Ingresar>        
     </form>
+    <?php } else { ?>
+    <h1>Bienvenido</h1>
+
+    <div id="login_container">
+        <h2 class="login">Panel de usuario</h2>
+
+        <a href="/logout.php"><input type=button value="Logout"></a>
+    </div>
+    <?php } ?>
 
 </div>
 </body>

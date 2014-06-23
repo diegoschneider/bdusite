@@ -1,6 +1,8 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
-print_errors();
+require("./src/script/functions.php");
+//print_errors();
+
+$login = $_SESSION['user']->login($_POST['user'],$_POST['pass']);
 ?>
 
 <html>
@@ -10,14 +12,14 @@ print_errors();
 <body>
 <div id="content">
 	
-	<h1>Login - En Proceso</h1>
+	<h1>Login</h1>
 	<a href="/">Volver</a>
-	<br>
-	<?php 
-		$hash = password_hash($_GET['pass'], PASSWORD_BCRYPT, array('cost' => 11) );
-
-		echo "Hashed pass: ".$hash;
-		echo "<br>Verifyed: ".password_verify($_GET['pass'],$hash);
+	<?php
+		if($login == 1) {
+			echo "<br>Has iniciado sesión";
+		} else {
+			echo "Error #". $login;
+		}
 	?>
 </div>
 </body>

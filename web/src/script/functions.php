@@ -4,9 +4,9 @@
  ***********************************/
 
 session_start();
-require($_SERVER['DOCUMENT_ROOT']."/src/script/errhan.php");
+require("errhan.php");
 
-if(!isset($_SESSION['user'])) {
+if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
     $_SESSION['user'] = new User;
 }
 
@@ -29,7 +29,7 @@ if(!$_SESSION['user']->loggedin && !in_array($_SERVER['PHP_SELF'], $publicpages)
  * $db = A que base de datos conectarse
  */
 function db_connect($db = "BDU") {
-    $link = new mysqli('localhost');
+    $link = new mysqli('127.0.0.1');
     if($link->connect_errno) { return 0; }
     if($link->select_db($db)) {
         return $link;
@@ -44,9 +44,11 @@ function db_connect($db = "BDU") {
 
 class User {
     var $loggedin;
+    var $logout;
     var $id;
     var $name;
     var $perm;
+
 
     /**
     * Login de un usuario
@@ -54,16 +56,19 @@ class User {
     * Argumentos:
     * $user = Usuario
     * $pwd = Contraseña
+    * 
+    * Returns:
+    * 1 al login | ErrorNum si hay error
     */
     function login($user, $pwd) {
         $success = 0;
         if($this->loggedin) {return USER_ALREADYLOGGEDIN;}
-        $link = db_connect();
+        $link = db_connect("BDU");
         if(!$link) { return MYSQL_CONNECTERROR;}
         
         //Preparamos la consulta
-        $query = $link->prepare("SELECT * FROM users WHERE username=':user'");
-        $query->bindParam(":user",$user);
+        $query = $link->prepare("SELECT * FROM users WHERE username=?");
+        $query->bind_param("s",$user);
         $query->execute();
         
         //Tomamos los resultados
@@ -92,6 +97,9 @@ class User {
 
     /**
      * Refrescar información del usuario
+     *
+     * TO-DO
+     * Arreglar esto con mysqli->prepare
      */
 
     function refresh() {
@@ -114,35 +122,12 @@ class User {
         return $success;
     }
 
-    function signup($user, $pwd) {
-        $success = 0;
-        if($this->loggedin) { return USER_ALREADYLOGGEDIN; }
-        
-        $link = db_connect();
-        if(!$link) { return MYSQL_CONNECTERROR; }
-        
-        $query = "SELECT username FROM users WHERE username ={$user}";
-        $link->real_query($query);
-        if($result = $link->store_result()) {
-            if($result->num_rows) {
-                $link->close();
-                return USER_EXISTENT;
-            }
-        }
-        $query = $link->prepare("INSERT INTO users(username,password,perm) VALUES(:user,:pwd,0)");
-        $query->bindParam(":user",$user);
-        $query->bindParam(":pwd",$pwd);
-        $query->execute();
-        if(!$link->errno) { $success = 1; }
-        $query->close();
-        return $success;
-    }
-
     function __construct() {
         $this->loggedin = false;
         $this->name = "";
         $this->id = 0;
         $this->perm = 0;
+        $this->logout = false;
         return $this;
     }
 

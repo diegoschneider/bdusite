@@ -19,6 +19,7 @@ function print_errors() {
 function custom_error_print($errno, $errstr, $errfile, $errline) {
     echo "<br>PHP - Error $errno: \"$errstr\"";
     echo " en el archivo $errfile - linea $errline<br>";
+    return 0;
 }
 
 /**
@@ -35,8 +36,18 @@ function custom_error($errno, $errstr, $errfile, $errline) {
     
 }
 
-set_error_handler('custom_error');
+//set_error_handler('custom_error');
+/*
+class Error {
+    var $errno = 0;
+    var $errstr = 0;
+    
+    function __construct($errorno, $errorstr = "") {
+        $this->errno = $errorno;
+        $this->errstr = $errorstr;
+        return $this;
+    }
 
-
-
+}
+*/
 ?>
