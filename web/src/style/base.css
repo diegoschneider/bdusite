@@ -8,12 +8,6 @@ body {
 html {
   background-color: #000; }
 
-.fleft {
-  float: left; }
-
-.fright {
-  float: right; }
-
 #content {
   padding: 5px 0 0 5px; }
 
