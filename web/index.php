@@ -11,7 +11,8 @@ require("./src/script/functions.php");
 
     <?php if(!$_SESSION['user']->loggedin) { ?>
 
-        <h1>Login</h1>
+        <h1>Login - Proyecto BDU</h1>
+        <h2>Base de Datos Unificada</h2>
 
         <form id="login_container" onsubmit="return login();">
             <h2>Ingreso</h2>
