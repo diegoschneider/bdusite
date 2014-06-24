@@ -8,6 +8,34 @@ body {
 html {
   background-color: #000; }
 
+#header {
+  box-shadow: 0px 0px 10px; }
+  #header img {
+    float: left; }
+  #header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; }
+  #header li {
+    float: left;
+    border: #3494ff solid;
+    border-width: 0 2px 0 0; }
+    #header li a:link, #header li a:visited {
+      display: block;
+      color: black;
+      font-weight: bold;
+      background-color: #ff8902;
+      text-align: center;
+      padding: 4px 10px;
+      text-decoration: none;
+      text-transform: uppercase; }
+    #header li a:hover, #header li a:active {
+      background-color: #ef7902; }
+  #header .logout {
+    float: right;
+    border-width: 0 0 0 2px; }
+
 #content {
   padding: 5px 0 0 5px; }
 

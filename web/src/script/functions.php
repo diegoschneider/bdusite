@@ -144,16 +144,31 @@ if($_SESSION['user']->loggedin) {
   * Funciones de estilo *
   **********************/
   
-    function style_head() {
-        $ret =
-        "<title>BDU</title>
-        <meta charset=UTF-8>
-        <link rel=stylesheet href=/src/style/base.css>
-        <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>";
-        if(!$_SESSION['user']->loggedin) {
-            $ret.=
-            "<script src=/src/script/login.js></script>";
-        }
-        echo $ret;
+function style_head() {
+    $ret =
+    "<title>BDU</title>
+    <meta charset=UTF-8>
+    <link rel=stylesheet href=/src/style/base.css>
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>";
+    if(!$_SESSION['user']->loggedin) {
+        $ret.=
+        "<script src=/src/script/login.js></script>";
     }
+    echo $ret;
+}
+
+function style_header() {
+    $ret =
+    "<div id=\"header\">
+        <img src=\"/src/img/logo.jpg\" width=28>
+        <ul>
+            <li><a href=\"/\">Home</a></li>";
+            if($_SESSION['user']->loggedin) {
+                $ret .= "<li><a href=\"/manage.php\">administrar</a></li>
+                <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>";
+            }
+        $ret .= "</ul>
+    </div>";
+    echo $ret;
+}
 ?>

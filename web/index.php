@@ -7,6 +7,9 @@ require("./src/script/functions.php");
     <?php style_head(); ?>
 </head>
 <body>
+
+<?php style_header(); ?>
+
 <div id="content">
 
     <?php if(!$_SESSION['user']->loggedin) { ?>
@@ -34,7 +37,8 @@ require("./src/script/functions.php");
 
     <?php } else { ?>
 
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido - Proyecto BDU</h1>
+        <h2>Base de Datos Unificada</h2>
 
         <div id="userpanel_container">
             <h2>Panel de usuario</h2>

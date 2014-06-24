@@ -2,6 +2,8 @@ $font-stack: Arial, Helvetica, sans-serif;
 $background-color: #FF8902;
 $azultecnica: #3494FF;
 
+$naranja-foco: #ef7902;
+
 
 body {
     background-color: $background-color;
@@ -14,6 +16,48 @@ body {
 
 html {
     background-color: #000;
+}
+
+#header {
+    box-shadow: 0px 0px 10px;
+
+    img {
+        float: left;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+        border: $azultecnica solid;
+        border-width: 0 2px 0 0;
+
+        a:link, a:visited {
+            display: block;
+            color: black;
+            font-weight: bold;
+            background-color: $background-color;
+            text-align: center;
+            padding: 4px 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        a:hover, a:active {
+            background-color: $naranja-foco;
+        }
+    }
+
+    .logout {
+        float: right;
+        border-width: 0 0 0 2px;
+    }
+
 }
 
 #content {
