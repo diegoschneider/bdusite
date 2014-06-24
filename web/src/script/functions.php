@@ -11,12 +11,14 @@ if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
 }
 
 // Páginas a las que se puede entrar sin haber ingresado
-$publicpages = array("/index.php", "/login.php");
+$publicpages = array("/index.php", "/login.php", "/logout.php");
 
 if(!$_SESSION['user']->loggedin && !in_array($_SERVER['PHP_SELF'], $publicpages) ) {
     // TO-DO
     // Respuesta de debug, cambiar
-    echo $_SERVER['PHP_SELF'];
+    //echo $_SERVER['PHP_SELF'];
+
+    header("location: /");
 }
 
  /*****************************
@@ -142,12 +144,16 @@ if($_SESSION['user']->loggedin) {
   * Funciones de estilo *
   **********************/
   
-  function style_head() {
-      echo 
-      "<title>BDU</title>
-      <meta charset=UTF-8>
-      <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
-      <link rel=stylesheet href=/src/style/base.css>";
-  }
-  
+    function style_head() {
+        $ret =
+        "<title>BDU</title>
+        <meta charset=UTF-8>
+        <link rel=stylesheet href=/src/style/base.css>
+        <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>";
+        if(!$_SESSION['user']->loggedin) {
+            $ret.=
+            "<script src=/src/script/login.js></script>";
+        }
+        echo $ret;
+    }
 ?>

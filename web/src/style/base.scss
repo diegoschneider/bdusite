@@ -16,6 +16,14 @@ html {
     background-color: #000;
 }
 
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
 #content {
     padding: 5px 0 0 5px;
 }
@@ -31,31 +39,74 @@ h1 {
     padding: 8;
     border-color: $azultecnica;
     margin: 30px auto 0 auto;
+
+    h2 {
+        margin: 0 0 -30 0;
+        position: relative;
+        top: -35;
+        left: 10;
+        z-index: 1;
+        background-color: $background-color;
+        width: 90;
+        padding: 5;
+        border: solid 4px;
+        border-color: $azultecnica;
+        border-radius: 20px;
+    }
+
+    .campo {
+        overflow: auto;
+
+        span {
+            float: left;
+        }
+
+        input {
+            float: right;
+        }
+    }
+
+    .error {
+        overflow: auto;
+        span {
+            overflow: hidden;
+            float: right;
+        }
+    }
 }
 
-h2.login {
-    margin: 0 0 -30 0;
-    position: relative;
-    top: -35;
-    left: 10;
-    z-index: 1;
-    background-color: $background-color;
-    width: 90;
-    padding: 5;
+#userpanel_container {
+    width: 328px;
+    height: 44;
     border: solid 4px;
+    border-radius: 10px;
+    padding: 8;
     border-color: $azultecnica;
-    border-radius: 20px;
-}
+    margin: 30px auto 0 auto;
 
-.campo {
-    overflow: auto;
-
-    span {
-        float: left;
+    h2 {
+       margin: 0 0 -30 0;
+        position: relative;
+        top: -35;
+        left: 10;
+        z-index: 1;
+        background-color: $background-color;
+        width: 193;
+        padding: 5;
+        border: solid 4px;
+        border-color: $azultecnica;
+        border-radius: 20px;
     }
 
-    input {
-        float: right;
-    }
+    .campo {
+        overflow: auto;
 
+        span {
+            float: left;
+        }
+
+        a {
+            float: right;
+        }
+    }
 }

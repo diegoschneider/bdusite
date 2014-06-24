@@ -1,6 +1,5 @@
 <?php
 require("./src/script/functions.php");
-print_errors();
 ?>
 
 <html>
@@ -11,31 +10,40 @@ print_errors();
 <div id="content">
 
     <?php if(!$_SESSION['user']->loggedin) { ?>
-    <h1>Login</h1>
 
-    <form id="login_container" method=POST action="/login.php">
-        <h2 class="login">Ingreso</h2>
+        <h1>Login</h1>
+
+        <form id="login_container" onsubmit="return login();">
+            <h2>Ingreso</h2>
         
-        <div class=campo>
-            <span>Nombre de usuario: </span>
-            <input type=text name=user />
-        </div>
+            <div class=campo>
+                <span>Nombre de usuario: </span>
+                <input type=text id="user" />
+            </div>
             
-        <div class=campo>
-            <span>Contraseña: </span>
-            <input type=password name=pass />
+            <div class=campo>
+                <span>Contraseña: </span>
+                <input type=password id="pass" />
+            </div>
+
+            <input type=submit value=Ingresar>
+            <br>
+            <div class=error><span id="errors" onclick="writeerror(this);"></span></div>
+        </form>
+
+    <?php } else { ?>
+
+        <h1>Bienvenido</h1>
+
+        <div id="userpanel_container">
+            <h2>Panel de usuario</h2>
+
+            <div class=campo>
+                <span>Has iniciado sesión como <?php echo $_SESSION['user']->name; ?></span>
+                <a href="/logout.php"><input type=button value="Logout"></a>
+            </div>
         </div>
 
-        <input type=submit value=Ingresar>        
-    </form>
-    <?php } else { ?>
-    <h1>Bienvenido</h1>
-
-    <div id="login_container">
-        <h2 class="login">Panel de usuario</h2>
-
-        <a href="/logout.php"><input type=button value="Logout"></a>
-    </div>
     <?php } ?>
 
 </div>

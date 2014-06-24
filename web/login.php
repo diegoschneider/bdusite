@@ -1,27 +1,14 @@
 <?php
 require("./src/script/functions.php");
-//print_errors();
+
+if(!isset($_POST['user']) || !isset($_POST['pass']) || $_POST['user'] == "" || $_POST['pass'] == "") {
+	echo '{"errno":'.INVALID_REQUEST.',"errstr":'.$errordefs[INVALID_REQUEST]."}";
+	die();
+}
 
 $login = $_SESSION['user']->login($_POST['user'],$_POST['pass']);
+
+echo '{"errno":'.$login.',"errstr":"'.$errordefs[$login].'"}';
+die();
+
 ?>
-
-<html>
-<head>
-	<?php style_head(); ?>
-</head>
-<body>
-<div id="content">
-	
-	<h1>Login</h1>
-	<a href="/">Volver</a>
-	<?php
-		if($login == 1) {
-			echo "<br>Has iniciado sesión";
-		} else {
-			echo "Error #". $login;
-		}
-	?>
-</div>
-</body>
-
-</html>

@@ -8,6 +8,12 @@ body {
 html {
   background-color: #000; }
 
+.fleft {
+  float: left; }
+
+.fright {
+  float: right; }
+
 #content {
   padding: 5px 0 0 5px; }
 
@@ -21,23 +27,53 @@ h1 {
   padding: 8;
   border-color: #3494ff;
   margin: 30px auto 0 auto; }
+  #login_container h2 {
+    margin: 0 0 -30 0;
+    position: relative;
+    top: -35;
+    left: 10;
+    z-index: 1;
+    background-color: #ff8902;
+    width: 90;
+    padding: 5;
+    border: solid 4px;
+    border-color: #3494ff;
+    border-radius: 20px; }
+  #login_container .campo {
+    overflow: auto; }
+    #login_container .campo span {
+      float: left; }
+    #login_container .campo input {
+      float: right; }
+  #login_container .error {
+    overflow: auto; }
+    #login_container .error span {
+      overflow: hidden;
+      float: right; }
 
-h2.login {
-  margin: 0 0 -30 0;
-  position: relative;
-  top: -35;
-  left: 10;
-  z-index: 1;
-  background-color: #ff8902;
-  width: 90;
-  padding: 5;
+#userpanel_container {
+  width: 328px;
+  height: 44;
   border: solid 4px;
+  border-radius: 10px;
+  padding: 8;
   border-color: #3494ff;
-  border-radius: 20px; }
-
-.campo {
-  overflow: auto; }
-  .campo span {
-    float: left; }
-  .campo input {
-    float: right; }
+  margin: 30px auto 0 auto; }
+  #userpanel_container h2 {
+    margin: 0 0 -30 0;
+    position: relative;
+    top: -35;
+    left: 10;
+    z-index: 1;
+    background-color: #ff8902;
+    width: 193;
+    padding: 5;
+    border: solid 4px;
+    border-color: #3494ff;
+    border-radius: 20px; }
+  #userpanel_container .campo {
+    overflow: auto; }
+    #userpanel_container .campo span {
+      float: left; }
+    #userpanel_container .campo a {
+      float: right; }

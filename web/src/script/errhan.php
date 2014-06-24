@@ -6,7 +6,17 @@ define("USER_NOTLOGGEDIN",1001);
 define("USER_INEXISTENT",1002);
 define("USER_EXISTENT",1003);
 define("USER_WRONGPASS",1004);
-    
+
+// $errordefs[errno] = "errstr";
+$errordefs = array();
+
+$errordefs[INVALID_REQUEST] = "Petición inválida";
+$errordefs[MYSQL_CONNECTERROR] = "Error al conectar a la base de datos";
+$errordefs[USER_ALREADYLOGGEDIN] = "Ya has iniciado sesión";
+$errordefs[USER_NOTLOGGEDIN] = "No has iniciado sesión";
+$errordefs[USER_INEXISTENT] = "Usuario inexistente";
+$errordefs[USER_WRONGPASS] = "Contraseña incorrecta";
+
 if(isset($_POST['errors'])) {
     $errors = $_POST['errors'];
 }
@@ -37,7 +47,7 @@ function custom_error($errno, $errstr, $errfile, $errline) {
 }
 
 //set_error_handler('custom_error');
-/*
+
 class Error {
     var $errno = 0;
     var $errstr = 0;
@@ -49,5 +59,5 @@ class Error {
     }
 
 }
-*/
+
 ?>
