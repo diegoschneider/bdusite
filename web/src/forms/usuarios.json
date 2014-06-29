@@ -1,0 +1,7 @@
+{
+	"sql" : "",
+	"queryes" : {
+		":qusers:" : "SELECT id,username,perm FROM users;"
+	},
+	"formqueryes": {}
+}

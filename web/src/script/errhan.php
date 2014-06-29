@@ -1,21 +1,27 @@
 <?php
-define("INVALID_REQUEST", 5000);
-define("MYSQL_CONNECTERROR", 5001);
 define("USER_ALREADYLOGGEDIN", 1000);
 define("USER_NOTLOGGEDIN",1001);
 define("USER_INEXISTENT",1002);
-define("USER_EXISTENT",1003);
-define("USER_WRONGPASS",1004);
+define("USER_WRONGPASS",1003);
 
+define("INVALID_REQUEST", 2000);
+define("MYSQL_CONNECTERROR", 2001);
+
+define("TABLE_INEXISTENT", 3000);
+define("DATA_INVALID", 3001);
 // $errordefs[errno] = "errstr";
 $errordefs = array();
 
-$errordefs[INVALID_REQUEST] = "Petición inválida";
-$errordefs[MYSQL_CONNECTERROR] = "Error al conectar a la base de datos";
 $errordefs[USER_ALREADYLOGGEDIN] = "Ya has iniciado sesión";
 $errordefs[USER_NOTLOGGEDIN] = "No has iniciado sesión";
 $errordefs[USER_INEXISTENT] = "Usuario inexistente";
 $errordefs[USER_WRONGPASS] = "Contraseña incorrecta";
+
+$errordefs[INVALID_REQUEST] = "Petición inválida";
+$errordefs[MYSQL_CONNECTERROR] = "Error al conectar a la base de datos";
+
+$errordefs[TABLE_INEXISTENT] = "Tabla inexistente";
+$errordefs[DATA_INVALID] = "Los datos son erróneos";
 
 if(isset($_POST['errors'])) {
     $errors = $_POST['errors'];
@@ -47,17 +53,5 @@ function custom_error($errno, $errstr, $errfile, $errline) {
 }
 
 //set_error_handler('custom_error');
-
-class Error {
-    var $errno = 0;
-    var $errstr = 0;
-    
-    function __construct($errorno, $errorstr = "") {
-        $this->errno = $errorno;
-        $this->errstr = $errorstr;
-        return $this;
-    }
-
-}
 
 ?>

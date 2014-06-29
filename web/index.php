@@ -17,7 +17,7 @@ require("./src/script/functions.php");
         <h1>Login - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
 
-        <form id="login_container" onsubmit="return login();">
+        <form id="login_container" class="container" onsubmit="return login();">
             <h2>Ingreso</h2>
         
             <div class=campo>
@@ -40,7 +40,7 @@ require("./src/script/functions.php");
         <h1>Bienvenido - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
 
-        <div id="userpanel_container">
+        <div id="userpanel_container" class="container">
             <h2>Panel de usuario</h2>
 
             <div class=campo>
@@ -50,7 +50,6 @@ require("./src/script/functions.php");
         </div>
 
     <?php } ?>
-
 </div>
 </body>
 </html>

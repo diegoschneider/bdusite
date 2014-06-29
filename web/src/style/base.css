@@ -1,37 +1,37 @@
 body {
   background-color: #ff8902;
-  height: 100%;
+  /* height: 100%; */
   width: 1024px;
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif; }
 
-html {
-  background-color: #000; }
+.horizontalnav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+.horizontalnav li {
+  float: left;
+  border: #3494ff solid;
+  border-width: 2px; }
+  .horizontalnav li a:link, .horizontalnav li a:visited {
+    display: block;
+    color: black;
+    font-weight: bold;
+    background-color: #ff8902;
+    text-align: center;
+    padding: 4px 10px;
+    text-decoration: none;
+    text-transform: uppercase; }
+  .horizontalnav li a:hover, .horizontalnav li a:active {
+    background-color: #ef7902; }
 
 #header {
   box-shadow: 0px 0px 10px; }
   #header img {
     float: left; }
-  #header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; }
   #header li {
-    float: left;
-    border: #3494ff solid;
     border-width: 0 2px 0 0; }
-    #header li a:link, #header li a:visited {
-      display: block;
-      color: black;
-      font-weight: bold;
-      background-color: #ff8902;
-      text-align: center;
-      padding: 4px 10px;
-      text-decoration: none;
-      text-transform: uppercase; }
-    #header li a:hover, #header li a:active {
-      background-color: #ef7902; }
   #header .logout {
     float: right;
     border-width: 0 0 0 2px; }
@@ -42,60 +42,39 @@ html {
 h1 {
   margin-top: 0; }
 
-#login_container {
+.container {
   width: 328px;
   border: solid 4px;
   border-radius: 10px;
   padding: 8;
   border-color: #3494ff;
   margin: 30px auto 0 auto; }
-  #login_container h2 {
+  .container h2 {
     margin: 0 0 -30 0;
     position: relative;
     top: -35;
     left: 10;
     z-index: 1;
     background-color: #ff8902;
-    width: 90;
     padding: 5;
     border: solid 4px;
     border-color: #3494ff;
     border-radius: 20px; }
-  #login_container .campo {
-    overflow: auto; }
-    #login_container .campo span {
-      float: left; }
-    #login_container .campo input {
-      float: right; }
-  #login_container .error {
-    overflow: auto; }
-    #login_container .error span {
-      overflow: hidden;
-      float: right; }
 
-#userpanel_container {
-  width: 328px;
-  height: 44;
-  border: solid 4px;
-  border-radius: 10px;
-  padding: 8;
-  border-color: #3494ff;
-  margin: 30px auto 0 auto; }
-  #userpanel_container h2 {
-    margin: 0 0 -30 0;
-    position: relative;
-    top: -35;
-    left: 10;
-    z-index: 1;
-    background-color: #ff8902;
-    width: 193;
-    padding: 5;
-    border: solid 4px;
-    border-color: #3494ff;
-    border-radius: 20px; }
-  #userpanel_container .campo {
-    overflow: auto; }
-    #userpanel_container .campo span {
-      float: left; }
-    #userpanel_container .campo a {
-      float: right; }
+#userpanel_container h2 {
+  width: 193; }
+
+#login_container h2 {
+  width: 90; }
+#login_container .error {
+  overflow: auto; }
+  #login_container .error span {
+    overflow: hidden;
+    float: right; }
+
+.campo {
+  overflow: auto; }
+  .campo span {
+    float: left; }
+  .campo input {
+    float: right; }

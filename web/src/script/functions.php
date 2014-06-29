@@ -40,6 +40,7 @@ function db_connect($db = "BDU") {
     }
 }
 
+
  /*************************
   * Funciones de usuarios *
   ************************/
@@ -159,7 +160,7 @@ function style_head() {
 
 function style_header() {
     $ret =
-    "<div id=\"header\">
+    "<div id=\"header\" class=horizontalnav>
         <img src=\"/src/img/logo.jpg\" width=28>
         <ul>
             <li><a href=\"/\">Home</a></li>";
@@ -171,4 +172,114 @@ function style_header() {
     </div>";
     echo $ret;
 }
+
+ /**************
+ * Formularios *
+ **************/
+
+/*
+
+Formato del JSON:
+
+{
+    "html" : 
+    "<form>
+        <select name=tabla></select>
+        <etc></etc>
+    </form>",
+    "sql" : "INSERT INTO etc."
+}
+
+*/
+
+$tables_dir = scandir($_SERVER['DOCUMENT_ROOT']."/src/forms/");
+$tables = array();
+foreach ($tables_dir as $value) {
+    if($value[0] != ".") {
+        $tables[] = stristr($value, ".json",true);
+    }
+}
+
+unset($tables_dir);
+
+class Form {
+    var $formhtml;
+    var $queryhtml;
+    var $sql;
+    var $queryes;
+    var $error;
+
+    function __construct($table) {
+        $data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/".$table.".json");
+        if(!$data) {
+            $this->error = TABLE_INEXISTENT;
+            return $this;
+        }
+
+        $obj = json_decode($data);
+        $this->formhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".form.html");
+        $this->queryhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".query.html");
+        $this->sql = $obj->sql;
+        $this->queryes = $obj->queryes;
+        $this->formqueryes = $obj->formqueryes;
+
+        return $this;
+    }
+
+    function print_query() {
+        $link = db_connect();
+        if(!$link) { return MYSQL_CONNECTERROR; }
+
+        $ret = "";
+
+        foreach ($this->queryes as $key => $value) {
+            $result = $link->query($value);
+
+            while($row = $result->fetch_row()) {
+                $ret .= "<tr>";
+                foreach($row as $value) {
+                    $ret .= "<td>$value</td>";
+                }
+                $ret .= "</tr>";
+            }
+
+            $this->queryhtml = str_replace($key, $ret, $this->queryhtml);
+        }
+
+        echo $this->queryhtml;
+
+    }
+
+    function print_form() {
+        $this->get_select_data();
+        echo $this->formhtml;
+    }
+
+    function get_select_data() {
+        if($this->queryes) {
+
+            $link = db_connect();
+            if(!$link) { return MYSQL_CONNECTERROR; }
+
+            $ret = "";
+
+            foreach ($this->queryes as $key => $value) {
+                
+                $result = $link->query($value);
+
+                while($row = $result->fetch_row()) {
+                    $ret .= "<option value=".$row[0].">".$row[1]."</option>";
+                }
+                $this->formhtml = str_replace($key, $ret, $this->formhtml);
+            }
+        }
+    }
+
+    function submit($data) {
+        
+    }
+
+
+}
+
 ?>
