@@ -1,5 +1,7 @@
 {
-	"sql" : "",
+	"insertsql" : "INSERT INTO users(username,password,perm) VALUES(:username:,:password:,:perm:)",
+	"updatesql" : "",
+	"deletesql" : "",
 	"queryes" : {
 		":qusers:" : "SELECT id,username,perm FROM users;"
 	},

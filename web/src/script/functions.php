@@ -205,7 +205,9 @@ unset($tables_dir);
 class Form {
     var $formhtml;
     var $queryhtml;
-    var $sql;
+    var $insertsql;
+    var $deletesql;
+    var $updatesql;
     var $queryes;
     var $error;
 
@@ -219,7 +221,9 @@ class Form {
         $obj = json_decode($data);
         $this->formhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".form.html");
         $this->queryhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".query.html");
-        $this->sql = $obj->sql;
+        $this->insertsql = $obj->insertsql;
+        $this->updatesql = $obj->updatesql;
+        $this->deletesql = $obj->deletesql;
         $this->queryes = $obj->queryes;
         $this->formqueryes = $obj->formqueryes;
 
@@ -251,19 +255,14 @@ class Form {
     }
 
     function print_form() {
-        $this->get_select_data();
-        echo $this->formhtml;
-    }
-
-    function get_select_data() {
-        if($this->queryes) {
+        if($this->formqueryes) {
 
             $link = db_connect();
             if(!$link) { return MYSQL_CONNECTERROR; }
 
             $ret = "";
 
-            foreach ($this->queryes as $key => $value) {
+            foreach ($this->formqueryes as $key => $value) {
                 
                 $result = $link->query($value);
 
@@ -273,10 +272,19 @@ class Form {
                 $this->formhtml = str_replace($key, $ret, $this->formhtml);
             }
         }
+
+        echo $this->formhtml;
     }
 
     function submit($data) {
-        
+        if(!is_array($data)) {
+            return INVALID_REQUEST;
+        }
+
+        foreach($data as $key => $value) {
+            $this->insertsql = str_replace(":".$key.":", $data[$key], $this->insertsql);
+        }
+        return $this->insertsql;
     }
 
 
