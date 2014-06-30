@@ -281,10 +281,36 @@ class Form {
             return INVALID_REQUEST;
         }
 
-        foreach($data as $key => $value) {
-            $this->insertsql = str_replace(":".$key.":", $data[$key], $this->insertsql);
+        foreach($this->insertsql->fields as $key => $value) {
+            
+            if(!isset($data[$key])) {
+                return INVALID_REQUEST;
+                break;
+            }
+
+            /* switch ($this->insertsql->fields->$key) {
+                case 's':
+                    if(!is_string($data[$key])) {
+                        return INVALID_REQUEST."$key is not string";
+                    }
+                    break;
+                    
+                case 'i':
+                    if(intval($data[$key])) {
+                        return INVALID_REQUEST."$key is not int";
+                    }
+                    break;
+                    // Agregar los que falten :v
+
+                default:
+                    # code...
+                    break;
+            } */
+
+            $this->insertsql->sql = str_replace(":".$key.":", $data[$key], $this->insertsql->sql);
         }
-        return $this->insertsql;
+
+        return $this->insertsql->sql;
     }
 
 
