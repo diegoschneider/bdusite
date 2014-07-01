@@ -1,4 +1,4 @@
-<?php
+    <?php
  /***********************************
  * Funciones básicas del sistema :3 *
  ***********************************/
@@ -165,7 +165,7 @@ function style_header() {
         <ul>
             <li><a href=\"/\">Home</a></li>";
             if($_SESSION['user']->loggedin) {
-                $ret .= "<li><a href=\"/manage.php\">administrar</a></li>
+                $ret .= "<li><a href=\"/manage\">administrar</a></li>
                 <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>";
             }
         $ret .= "</ul>
@@ -173,147 +173,15 @@ function style_header() {
     echo $ret;
 }
 
- /**************
- * Formularios *
- **************/
+function style_manage_nav($table, $nav) {
+        
+    $ret = "<div class=horizontalnav><ul>";
 
-/*
+    foreach($nav as $key => $value) {
+        $ret .= "<li><a href=\"/manage/$table.php?action=$key\">$value</a></li>";
+    }
 
-Formato del JSON:
-
-{
-    "html" : 
-    "<form>
-        <select name=tabla></select>
-        <etc></etc>
-    </form>",
-    "sql" : "INSERT INTO etc."
+    $ret .= "</ul></div>";
+    echo $ret;
 }
-
-*/
-
-$tables_dir = scandir($_SERVER['DOCUMENT_ROOT']."/src/forms/");
-$tables = array();
-foreach ($tables_dir as $value) {
-    if($value[0] != ".") {
-        $tables[] = stristr($value, ".json",true);
-    }
-}
-
-unset($tables_dir);
-
-class Form {
-    var $formhtml;
-    var $queryhtml;
-    var $insertsql;
-    var $deletesql;
-    var $updatesql;
-    var $queryes;
-    var $error;
-
-    function __construct($table) {
-        $data = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/".$table.".json");
-        if(!$data) {
-            $this->error = TABLE_INEXISTENT;
-            return $this;
-        }
-
-        $obj = json_decode($data);
-        $this->formhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".form.html");
-        $this->queryhtml = file_get_contents($_SERVER['DOCUMENT_ROOT']."/src/forms/.".$table.".query.html");
-        $this->insertsql = $obj->insertsql;
-        $this->updatesql = $obj->updatesql;
-        $this->deletesql = $obj->deletesql;
-        $this->queryes = $obj->queryes;
-        $this->formqueryes = $obj->formqueryes;
-
-        return $this;
-    }
-
-    function print_query() {
-        $link = db_connect();
-        if(!$link) { return MYSQL_CONNECTERROR; }
-
-        $ret = "";
-
-        foreach ($this->queryes as $key => $value) {
-            $result = $link->query($value);
-
-            while($row = $result->fetch_row()) {
-                $ret .= "<tr>";
-                foreach($row as $value) {
-                    $ret .= "<td>$value</td>";
-                }
-                $ret .= "</tr>";
-            }
-
-            $this->queryhtml = str_replace($key, $ret, $this->queryhtml);
-        }
-
-        echo $this->queryhtml;
-
-    }
-
-    function print_form() {
-        if($this->formqueryes) {
-
-            $link = db_connect();
-            if(!$link) { return MYSQL_CONNECTERROR; }
-
-            $ret = "";
-
-            foreach ($this->formqueryes as $key => $value) {
-                
-                $result = $link->query($value);
-
-                while($row = $result->fetch_row()) {
-                    $ret .= "<option value=".$row[0].">".$row[1]."</option>";
-                }
-                $this->formhtml = str_replace($key, $ret, $this->formhtml);
-            }
-        }
-
-        echo $this->formhtml;
-    }
-
-    function submit($data) {
-        if(!is_array($data)) {
-            return INVALID_REQUEST;
-        }
-
-        foreach($this->insertsql->fields as $key => $value) {
-            
-            if(!isset($data[$key])) {
-                return INVALID_REQUEST;
-                break;
-            }
-
-            /* switch ($this->insertsql->fields->$key) {
-                case 's':
-                    if(!is_string($data[$key])) {
-                        return INVALID_REQUEST."$key is not string";
-                    }
-                    break;
-                    
-                case 'i':
-                    if(intval($data[$key])) {
-                        return INVALID_REQUEST."$key is not int";
-                    }
-                    break;
-                    // Agregar los que falten :v
-
-                default:
-                    # code...
-                    break;
-            } */
-
-            $this->insertsql->sql = str_replace(":".$key.":", $data[$key], $this->insertsql->sql);
-        }
-
-        return $this->insertsql->sql;
-    }
-
-
-}
-
 ?>
