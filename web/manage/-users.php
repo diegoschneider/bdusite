@@ -12,7 +12,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 	<?php 
 		$nav = array();
 		$nav[1] = "Agregar usuario";
-		style_manage_nav("users", $nav);
+		style_manage_nav($nav);
 
 		if(isset($_GET['action'])) {
 			if($_GET['action'] == 1) {

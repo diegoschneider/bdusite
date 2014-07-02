@@ -1,7 +1,10 @@
+.unfinished {
+  background-color: red; }
+
 body {
   background-color: #ff8902;
   /* height: 100%; */
-  width: 1024px;
+  /* width: 1024px; */
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif; }
 
@@ -18,7 +21,7 @@ body {
     display: block;
     color: black;
     font-weight: bold;
-    background-color: #ff8902;
+    /* background-color: $background-color; */
     text-align: center;
     padding: 4px 10px;
     text-decoration: none;
@@ -60,6 +63,15 @@ h1 {
     border: solid 4px;
     border-color: #3494ff;
     border-radius: 20px; }
+
+.form {
+  border: solid 4px;
+  border-radius: 10px;
+  padding: 8px;
+  border-color: #3494ff;
+  margin: 30px 5 0 0; }
+  .form .campo {
+    border-bottom: solid 1px; }
 
 #userpanel_container h2 {
   width: 193; }

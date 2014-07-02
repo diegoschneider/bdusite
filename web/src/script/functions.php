@@ -1,4 +1,4 @@
-    <?php
+<?php
  /***********************************
  * Funciones básicas del sistema :3 *
  ***********************************/
@@ -173,12 +173,12 @@ function style_header() {
     echo $ret;
 }
 
-function style_manage_nav($table, $nav) {
+function style_manage_nav($nav) {
         
     $ret = "<div class=horizontalnav><ul>";
 
     foreach($nav as $key => $value) {
-        $ret .= "<li><a href=\"/manage/$table.php?action=$key\">$value</a></li>";
+        $ret .= "<li><a href=\"?action=$key\">$value</a></li>";
     }
 
     $ret .= "</ul></div>";

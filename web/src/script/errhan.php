@@ -52,6 +52,10 @@ function custom_error($errno, $errstr, $errfile, $errline) {
     
 }
 
+function echo_error($errno) {
+    echo "Error #$errno: ".$errordefs[$errno];
+}
+
 //set_error_handler('custom_error');
 
 ?>

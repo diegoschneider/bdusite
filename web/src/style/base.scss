@@ -4,14 +4,14 @@ $azultecnica: #3494FF;
 
 $naranja-foco: #ef7902;
 
-@mixin horizontalnav {
-
+.unfinished {
+    background-color: red;    
 }
 
 body {
     background-color: $background-color;
     /* height: 100%; */
-    width: 1024px;
+    /* width: 1024px; */
     margin: 0 auto;
     
     font-family: $font-stack;
@@ -36,7 +36,7 @@ body {
             display: block;
             color: black;
             font-weight: bold;
-            background-color: $background-color;
+            /* background-color: $background-color; */
             text-align: center;
             padding: 4px 10px;
             text-decoration: none;
@@ -96,6 +96,17 @@ h1 {
     }
 }
 
+.form {
+    border: solid 4px;
+    border-radius: 10px;
+    padding: 8px;
+    border-color: $azultecnica;
+    margin: 30px 5 0 0;
+    .campo {
+        border-bottom: solid 1px;
+    }
+}
+
 #userpanel_container {
     h2 {
         width: 193;
@@ -124,3 +135,5 @@ h1 {
         float: right;
     }
 }
+
+
