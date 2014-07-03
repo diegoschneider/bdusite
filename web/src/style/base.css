@@ -2,7 +2,7 @@
   background-color: red; }
 
 body {
-  background-color: #ff8902;
+  background-color: #cccccc;
   /* height: 100%; */
   /* width: 1024px; */
   margin: 0 auto;
@@ -15,19 +15,18 @@ body {
   overflow: hidden; }
 .horizontalnav li {
   float: left;
-  border: #3494ff solid;
+  border: #ffaa00 solid;
   border-width: 2px; }
   .horizontalnav li a:link, .horizontalnav li a:visited {
     display: block;
     color: black;
     font-weight: bold;
-    /* background-color: $background-color; */
     text-align: center;
     padding: 4px 10px;
     text-decoration: none;
     text-transform: uppercase; }
   .horizontalnav li a:hover, .horizontalnav li a:active {
-    background-color: #ef7902; }
+    background-color: #aaaaaa; }
 
 #header {
   box-shadow: 0px 0px 10px; }
@@ -50,7 +49,7 @@ h1 {
   border: solid 4px;
   border-radius: 10px;
   padding: 8;
-  border-color: #3494ff;
+  border-color: #ffaa00;
   margin: 30px auto 0 auto; }
   .container h2 {
     margin: 0 0 -30 0;
@@ -58,17 +57,17 @@ h1 {
     top: -35;
     left: 10;
     z-index: 1;
-    background-color: #ff8902;
+    background-color: #cccccc;
     padding: 5;
     border: solid 4px;
-    border-color: #3494ff;
+    border-color: #ffaa00;
     border-radius: 20px; }
 
 .form {
   border: solid 4px;
   border-radius: 10px;
   padding: 8px;
-  border-color: #3494ff;
+  border-color: #ffaa00;
   margin: 30px 5 0 0; }
   .form .campo {
     border-bottom: solid 1px; }

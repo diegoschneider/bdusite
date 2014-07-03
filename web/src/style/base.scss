@@ -1,8 +1,8 @@
 $font-stack: Arial, Helvetica, sans-serif;
-$background-color: #FF8902;
-$azultecnica: #3494FF;
+$background-color: #ccc;
+$bordes: #fa0;
 
-$naranja-foco: #ef7902;
+$hover: #aaa;
 
 .unfinished {
     background-color: red;    
@@ -28,7 +28,7 @@ body {
 
     li {
         float: left;
-        border: $azultecnica solid;
+        border: $bordes solid;
         border-width: 2px;
 
         a:link, a:visited {
@@ -36,7 +36,6 @@ body {
             display: block;
             color: black;
             font-weight: bold;
-            /* background-color: $background-color; */
             text-align: center;
             padding: 4px 10px;
             text-decoration: none;
@@ -44,7 +43,7 @@ body {
         }
 
         a:hover, a:active {
-            background-color: $naranja-foco;
+            background-color: $hover;
         }
     }
 
@@ -79,7 +78,7 @@ h1 {
     border: solid 4px;
     border-radius: 10px;
     padding: 8;
-    border-color: $azultecnica;
+    border-color: $bordes;
     margin: 30px auto 0 auto;
 
     h2 {
@@ -91,7 +90,7 @@ h1 {
         background-color: $background-color;
         padding: 5;
         border: solid 4px;
-        border-color: $azultecnica;
+        border-color: $bordes;
         border-radius: 20px;
     }
 }
@@ -100,7 +99,7 @@ h1 {
     border: solid 4px;
     border-radius: 10px;
     padding: 8px;
-    border-color: $azultecnica;
+    border-color: $bordes;
     margin: 30px 5 0 0;
     .campo {
         border-bottom: solid 1px;

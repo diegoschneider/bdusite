@@ -1,5 +1,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
+$link = db_connect();
+if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 ?>
 
 <html>
@@ -17,11 +19,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 	style_manage_nav($nav);
 
 	if(isset($_POST['tabla'])) {
-
-		$link = db_connect();
-		if(!$link) { echo_error(MYSQL_CONNECTERROR); }
 		echo "<span>Work in progress</span>";
-
 	}
 	
 	if(isset($_GET['action'])) {
@@ -30,23 +28,37 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 
 	<form class=form method=POST>
 		<input type=hidden name="tabla" value="alumnos">
+		<?php
+			form_datalist($link, "SELECT cod,nombre FROM barrios", "barrios");
+			form_datalist($link, "SELECT cod,nivel FROM nivelescolar", "nivelescolar");
+			form_datalist($link, "SELECT cod,concat(año,' ',division) FROM cursos", "cursos");
+			form_datalist($link, "SELECT cod,nombre FROM turnos", "turnos");
+			form_datalist($link, "SELECT cod,tipo FROM tipodocumento", "tipodocumento");
+			form_datalist($link, "SELECT cod,nombre FROM estadodocumento", "estadodocumento");
+			form_datalist($link, "SELECT cod,sexo FROM sexo", "sexo");
+			form_datalist($link, "SELECT cp,nombre FROM localidades", "localidades");
+			form_datalist($link, "SELECT cod,nombre FROM provincias", "provincias");
+			form_datalist($link, "SELECT cod,nombre FROM calles", "calles");
+			form_datalist($link, "SELECT cod,nombre FROM escuelas", "escuelas");
+
+		?>
 		<h3>Nivel</h3>
 		<div class=campo>
 			<span>Nivel Escolar</span>
-			<input required type=text name="nivelescolar">
+			<input required type=text list="nivelescolar" name="nivelescolar">
 		</div>
 		<div class=campo>
 			<span>Curso</span>	
-			<input required type=text name="curso">
+			<input required type=text list="cursos" name="curso">
 		</div>
 	    <div class=campo>
     		<span>Turno</span>
-    		<input required type=text name="turno"> 
+    		<input required type=text list="turnos" name="turno"> 
 		</div>
 		<h3>Datos Personales:</h3>
 		<div class=campo>
 			<span>Tipo de documento</span>
-			<input required type=text name="tipodoc">
+			<input required type=text list="tipodocumento" name="tipodoc">
 		</div>
 		<div class=campo>
 			<span>N° de Documento</span>
@@ -54,7 +66,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		</div>			
 		<div class=campo> 
 			<span>Estado de Documento</span>
-			<input required type=text name="estadodoc">
+			<input required type=text list="estadodocumento" name="estadodoc">
 		</div>
 		<div class=campo>
 			<span>Apellidos</span>
@@ -66,7 +78,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		</div>
 		<div class=campo>
 			<span>Sexo</span>
-			<input required type=text name="sexo">
+			<input required type=text list="sexo" name="sexo">
 		</div>
 		<div class=campo>
 			<span>Fecha De Nacimiento</span>
@@ -74,15 +86,15 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		</div>
 		<div class=campo>
 			<span>Nacionalidad</span>
-			<input required type=text name="nacionalidad">
+			<input required type=text list="paises" name="nacionalidad">
 		</div>
 		<div class=campo>
 			<span>Lugar de Nacimiento</span>
-			<input required type=text name="lugarnac">
+			<input required type=text list="localidades" name="lugarnac">
 		</div>
 		<div class=campo>
 			<span>Provincia de Nacimiento</span>
-			<input required type=text name="provnac">
+			<input required type=text list="provincias" name="provnac">
 		</div>
 		<div class=campo>
 			<span>Cuil del alumno</span>
@@ -95,7 +107,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		<h3>Domicilio:</h3>
 		<div class=campo>
 			<span>Calle</span>
-			<input required type=text name="calle">
+			<input required type=text list="calles" name="calle">
 		</div>
 		<div class=campo>
 			<span>Numero</span>
@@ -111,11 +123,11 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		</div>
  		<div class=campo>
 			<span>Barrio</span>
-			<input required type=text name="barrio">
+			<input required type=text list="barrios" name="barrio">
 		</div>
 		<div class=campo>
 			<span>Localidad</span>
-			<input required type=text name="localidad">
+			<input required type=text list="localidades" name="localidad">
 		</div>
 		<div class=campo>
 			<span>Codigo Postal</span>
@@ -144,7 +156,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		<h3>Servicio Educativo de Procedencia:</h3>
 		<div class=campo>
 			<span>Escuela de Procedencia</span>
-			<input required type=text name="escpro">
+			<input required type=text list="escuelas" name="escpro">
 		</div>
 		<div class=campo>
 			<span>Condicion del Alumno</span>
@@ -203,7 +215,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 		</div>
  		<div class=campo>
 			<span>Foto del alumno</span>
-			<input required type=text name="foto">
+			<input type="file" name="foto">
 		</div>
 
     	<input type=submit value="Enviar">
