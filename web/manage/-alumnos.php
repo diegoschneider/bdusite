@@ -37,9 +37,11 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 			form_datalist($link, "SELECT cod,nombre FROM estadodocumento", "estadodocumento");
 			form_datalist($link, "SELECT cod,sexo FROM sexo", "sexo");
 			form_datalist($link, "SELECT cp,nombre FROM localidades", "localidades");
-			form_datalist($link, "SELECT cod,nombre FROM provincias", "provincias");
+			form_datalist($link, "SELECT cod,nombre FROM provincia", "provincia");
 			form_datalist($link, "SELECT cod,nombre FROM calles", "calles");
 			form_datalist($link, "SELECT cod,nombre FROM escuelas", "escuelas");
+			form_datalist($link, "SELECT cod,condicion FROM condinscripcion", "condinscripcion");
+
 
 		?>
 		<h3>Nivel</h3>
@@ -94,7 +96,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Provincia de Nacimiento</span>
-			<input required type=text list="provincias" name="provnac">
+			<input required type=text list="provincia" name="provnac">
 		</div>
 		<div class=campo>
 			<span>Cuil del alumno</span>
@@ -160,7 +162,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Condicion del Alumno</span>
-			<input required type=text name="condinscrip">
+			<input required type=text list="condinscripcion" name="condinscrip">
 		</div>
 		<h3>Otros datos:</h3>
 		<div class=campo>
@@ -211,7 +213,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Firma del padre, madre o tutor</span>
-			<input required type=text name="firma">
+			<input type="file" name="firma">
 		</div>
  		<div class=campo>
 			<span>Foto del alumno</span>
