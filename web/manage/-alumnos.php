@@ -19,48 +19,60 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 	style_manage_nav($nav);
 
 	if(isset($_POST['tabla'])) {
-		echo "<span>Work in progress</span>";
+		echo "<pre>";
+		var_dump($_POST);
+		echo "</pre>";
 	}
 	
 	if(isset($_GET['action'])) {
 		if($_GET['action'] == 1) {
 	?>
 
-	<form class=form method=POST>
+	<form class=form id="form" method=POST>
 		<input type=hidden name="tabla" value="alumnos">
 		<?php
-			form_datalist($link, "SELECT cod,nombre FROM barrios", "barrios");
-			form_datalist($link, "SELECT cod,nivel FROM nivelescolar", "nivelescolar");
-			form_datalist($link, "SELECT cod,concat(año,' ',division) FROM cursos", "cursos");
-			form_datalist($link, "SELECT cod,nombre FROM turnos", "turnos");
-			form_datalist($link, "SELECT cod,tipo FROM tipodocumento", "tipodocumento");
-			form_datalist($link, "SELECT cod,nombre FROM estadodocumento", "estadodocumento");
-			form_datalist($link, "SELECT cod,sexo FROM sexo", "sexo");
-			form_datalist($link, "SELECT cp,nombre FROM localidades", "localidades");
-			form_datalist($link, "SELECT cod,nombre FROM provincia", "provincia");
-			form_datalist($link, "SELECT cod,nombre FROM calles", "calles");
-			form_datalist($link, "SELECT cod,nombre FROM escuelas", "escuelas");
-			form_datalist($link, "SELECT cod,condicion FROM condinscripcion", "condinscripcion");
+			$options[] = array();
+			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios");
+			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar");
+			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos");
+			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
+			$options['tipodocumento'] = form_select($link, "SELECT cod,tipo FROM tipodocumento");
+			$options['estadodocumento'] = form_select($link, "SELECT cod,nombre FROM estadodocumento");
+			$options['sexo'] = form_select($link, "SELECT cod,sexo FROM sexo");
+			$options['localidades'] = form_select($link, "SELECT cp,nombre FROM localidades");
+			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia");
+			$options['paises'] = form_select($link, "SELECT cod,nombre FROM paises");
+			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles");
+			$options['escuelas'] = form_select($link, "SELECT cod,nombre FROM escuelas");
+			$options['condinscripcion'] = form_select($link, "SELECT cod,condicion FROM condinscripcion");
 
 
 		?>
 		<h3>Nivel</h3>
 		<div class=campo>
 			<span>Nivel Escolar</span>
-			<input required type=text list="nivelescolar" name="nivelescolar">
+			<select name="nivelescolar" required>
+				<?php echo $options['nivelescolar']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Curso</span>	
-			<input required type=text list="cursos" name="curso">
+			<select name="curso">
+				<?php echo $options['cursos']; ?>
+			</select>
 		</div>
 	    <div class=campo>
-    		<span>Turno</span>
-    		<input required type=text list="turnos" name="turno"> 
+    		<span>Turno</span> 
+   			<select name="turno" required>
+    			<?php echo $options['turnos']; ?>
+    		</select>
 		</div>
 		<h3>Datos Personales:</h3>
 		<div class=campo>
 			<span>Tipo de documento</span>
-			<input required type=text list="tipodocumento" name="tipodoc">
+			<select name="tipodoc" required>
+				<?php echo $options['tipodocumento']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>N° de Documento</span>
@@ -68,7 +80,9 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>			
 		<div class=campo> 
 			<span>Estado de Documento</span>
-			<input required type=text list="estadodocumento" name="estadodoc">
+			<select name="estadodoc" required>
+				<?php echo $options['estadodocumento']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Apellidos</span>
@@ -80,23 +94,31 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Sexo</span>
-			<input required type=text list="sexo" name="sexo">
+			<select name="sexo" required>
+				<?php echo $options['sexo']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Fecha De Nacimiento</span>
-			<input required type=text name="fecnac">
+			<input required type=date name="fecnac">
 		</div>
 		<div class=campo>
 			<span>Nacionalidad</span>
-			<input required type=text list="paises" name="nacionalidad">
+			<select name="nacionalidad" required>
+				<?php echo $options['paises']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Lugar de Nacimiento</span>
-			<input required type=text list="localidades" name="lugarnac">
+			<select name="lugarnac">
+				<?php echo $options['localidades']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Provincia de Nacimiento</span>
-			<input required type=text list="provincia" name="provnac">
+			<select name="provnac">
+				<?php echo $options['provincia']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Cuil del alumno</span>
@@ -104,12 +126,14 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>email del alumno</span>
-			<input required type=text name="email">
+			<input type=email name="email">
 		</div>
 		<h3>Domicilio:</h3>
 		<div class=campo>
 			<span>Calle</span>
-			<input required type=text list="calles" name="calle">
+			<select name="calle" required>
+				<?php echo $options['calles']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Numero</span>
@@ -117,19 +141,23 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Piso</span>
-			<input required type=text name="piso">
+			<input type=text name="piso">
 		</div>
 		<div class=campo>
 			<span>Dpto</span>
-			<input required type=text name="dpto">
+			<input type=text name="dpto">
 		</div>
  		<div class=campo>
 			<span>Barrio</span>
-			<input required type=text list="barrios" name="barrio">
+			<select name="barrio" required>
+				<?php echo $options['barrios']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Localidad</span>
-			<input required type=text list="localidades" name="localidad">
+			<select name="localidad" required>
+				<?php echo $options['localidades']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Codigo Postal</span>
@@ -141,7 +169,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		</div>
 		<div class=campo>
 			<span>Celular</span>
-			<input required type=text name="celular">
+			<input type=text name="celular">
 		</div>
 		<div class=campo>
 			<span>N° de Legajo</span>
@@ -158,58 +186,62 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		<h3>Servicio Educativo de Procedencia:</h3>
 		<div class=campo>
 			<span>Escuela de Procedencia</span>
-			<input required type=text list="escuelas" name="escpro">
+			<select name="escpro">
+				<?php echo $options['escuelas']; ?>
+			</select>
 		</div>
 		<div class=campo>
 			<span>Condicion del Alumno</span>
-			<input required type=text list="condinscripcion" name="condinscrip">
+			<select name="condinscrip" required>
+				<?php echo $options['condinscripcion']; ?>
+			</select>
 		</div>
 		<h3>Otros datos:</h3>
 		<div class=campo>
 			<span>¿Cuantos Hermanos Tiene?</span>
-			<input required type=text name="hermanos">
+			<input type=text name="hermanos">
 		</div>
 		<div class=campo>
 			<span>¿Cuantos en este Establecimiento?</span>
-			<input required type=text name="hermest">
+			<input type=text name="hermest">
 		</div>
 		<div class=campo>
 			<span>Distancia del Domicilio a la Escuela</span>
-			<input required type=text name="kmhogar">
+			<input type=text name="kmhogar">
 		</div>
  		<div class=campo>
 			<span>Cantidad de habitantes en el hogar</span>
-			<input required type=text name="habitantes">
+			<input type=text name="habitantes">
 		</div>
  		<div class=campo>
 			<span>Cantidad de habitaciones en el hogar(exceptuando cocina y baño)</span>
-			<input required type=text name="habitaciones">
+			<input type=text name="habitaciones">
 		</div>
 		<div class=campo>
 			<span>Cantidad de libros en el hogar</span>
-			<input required type=text name="librohogar">
+			<input type=text name="librohogar">
 		</div>
 
 		<h3>Familiares/tutores</h3>
 		<div class=campo>
 			<span>Nombre del padre del alumno</span>
-			<input required type=text name="padre">
+			<input type=text name="padre">
 		</div>
 		<div class=campo>
 			<span>Nombre de la madre del alumno</span>
-			<input required type=text name="madre">
+			<input type=text name="madre">
 		</div>
 		<div class=campo>
 			<span>Nombre del tutor del alumno</span>
-			<input required type=text name="tutor">
+			<input type=text name="tutor">
 		</div>
 		<div class=campo>
 			<span>Persona autorizada a retirar al alunmo</span>
-			<input required type=text name="retira1">
+			<input type=text name="retira1">
 		</div>
 		<div class=campo>
 			<span>Otra persona autorizada a retirar al alunmo</span>
-			<input required type=text name="retira2">
+			<input type=text name="retira2">
 		</div>
 		<div class=campo>
 			<span>Firma del padre, madre o tutor</span>
@@ -228,7 +260,26 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 	
 		if($_GET['action']==2) {
 	?>
-		<h3>Work in progress :c</h3>
+		<h3>Lista de alumnos</h3>
+		<table border=1>
+			<tr>
+				<th>DNI</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Curso</th>
+			</tr>
+		<?php 
+			$result = $link->query("SELECT nrodoc,nombres,apellidos,curso FROM alumnos ORDER BY curso,nrodoc");
+			while($row = $result->fetch_array()) {
+				echo "<tr>";
+				echo "<td>{$row['nrodoc']}</td>";
+				echo "<td>{$row['nombres']}</td>";
+				echo "<td>{$row['apellidos']}</td>";
+				echo "<td>{$row['curso']}</td>";
+				echo "</tr>";
+			}
+		?>
+		</table>
 
 	<?php
 		}

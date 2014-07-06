@@ -72,6 +72,10 @@ h1 {
   .form .campo {
     border-bottom: solid 1px; }
 
+.formrequired {
+  font-weight: bold;
+  text-decoration: underline; }
+
 #userpanel_container h2 {
   width: 193; }
 
@@ -87,5 +91,5 @@ h1 {
   overflow: auto; }
   .campo span {
     float: left; }
-  .campo input {
+  .campo input, .campo select {
     float: right; }

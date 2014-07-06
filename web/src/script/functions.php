@@ -150,7 +150,8 @@ function style_head() {
     "<title>BDU</title>
     <meta charset=UTF-8>
     <link rel=stylesheet href=/src/style/base.css>
-    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>";
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script src='/src/script/submit.js'></script>";
     if(!$_SESSION['user']->loggedin) {
         $ret.=
         "<script src=/src/script/login.js></script>";
@@ -192,6 +193,15 @@ function form_datalist($link, $sql, $id) {
         echo "<option value=\"{$row[1]}\">";
     }
     echo "</datalist>";
+}
+
+function form_select($link, $sql) {
+    $result = $link->query($sql);
+    $ret = "<option value=-1>Seleccione...</option>";
+    while($row = $result->fetch_row()) {
+        $ret .= "<option value={$row[0]}>{$row[1]}</option>";
+    }
+    return $ret;
 }
 
 ?>

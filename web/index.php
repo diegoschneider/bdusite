@@ -17,7 +17,7 @@ require("./src/script/functions.php");
         <h1>Login - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
 
-        <form id="login_container" class="container" onsubmit="return login();">
+        <form id="login_container" class="container">
             <h2>Ingreso</h2>
         
             <div class=campo>
