@@ -8,7 +8,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#form').submit(function(event) {
+	/*$('#form').submit(function(event) {
 
 		var selects = $(".campo select");
 		for(var i = 0; i < selects.length; i++) {
@@ -26,6 +26,6 @@ $(document).ready(function() {
 		alert("fine!");
 		event.preventDefault();
 		return;
-	});
+	});*/
 
 });

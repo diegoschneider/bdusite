@@ -40,7 +40,6 @@ function db_connect($db = "BDU") {
     }
 }
 
-
  /*************************
   * Funciones de usuarios *
   ************************/
