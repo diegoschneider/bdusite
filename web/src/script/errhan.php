@@ -6,11 +6,11 @@ define("USER_WRONGPASS",1003);
 
 define("INVALID_REQUEST", 2000);
 define("MYSQL_CONNECTERROR", 2001);
+define("MYSQL_CHANGEDBERROR",2002);
 
 define("TABLE_INEXISTENT", 3000);
 define("DATA_INVALID", 3001);
 // $errordefs[errno] = "errstr";
-$errordefs = array();
 
 $errordefs[USER_ALREADYLOGGEDIN] = "Ya has iniciado sesión";
 $errordefs[USER_NOTLOGGEDIN] = "No has iniciado sesión";
@@ -19,9 +19,12 @@ $errordefs[USER_WRONGPASS] = "Contraseña incorrecta";
 
 $errordefs[INVALID_REQUEST] = "Petición inválida";
 $errordefs[MYSQL_CONNECTERROR] = "Error al conectar a la base de datos";
+$errordefs[MYSQL_CHANGEDBERROR] = "Error al seleccionar la base de datos";
 
 $errordefs[TABLE_INEXISTENT] = "Tabla inexistente";
 $errordefs[DATA_INVALID] = "Los datos son erróneos";
+
+error_reporting(0);
 
 if(isset($_POST['errors'])) {
     $errors = $_POST['errors'];
@@ -53,7 +56,9 @@ function custom_error($errno, $errstr, $errfile, $errline) {
 }
 
 function echo_error($errno) {
-    echo "Error #$errno: ".$errordefs[$errno];
+    $errno = USER_ALREADYLOGGEDIN;
+    echo $errordefs[USER_ALREADYLOGGEDIN];
+    //echo "Error #".$errno.": as ".$errordefs[$errno]." asd";
 }
 
 //set_error_handler('custom_error');

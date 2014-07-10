@@ -31,7 +31,9 @@ if(!$_SESSION['user']->loggedin && !in_array($_SERVER['PHP_SELF'], $publicpages)
  * $db = A que base de datos conectarse
  */
 function db_connect($db = "BDU") {
-    $link = new mysqli('127.0.0.1');
+    $link = mysqli_init();
+    $link->options(MYSQLI_OPT_CONNECT_TIMEOUT, 1);
+    $link->real_connect("127.0.0.1");
     if($link->connect_errno) { return 0; }
     if($link->select_db($db)) {
         return $link;
