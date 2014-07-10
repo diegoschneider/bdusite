@@ -36,18 +36,24 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 				$sql = "INSERT INTO alumnos(nivelescolar, curso, turno, tipodoc, nrodoc, estadodoc, apellidos, nombres, sexo, fecnac, nacionalidad, lugarnac, provnac, cuil, email, calle, callenro, torre, piso, dpto, barrio, localidad, cp, telefono, celular, nrolegajo, nrolibmat, nrofolio, escproc, condinscrip, hermanos, hermest, kmhogar, habitantes, habitaciones, librohogar,retira1, retira2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				$stmt = $link->prepare($sql);
 				if(!$stmt) {
-					echo $link->error."<br>";
+					
 				} else {
 					$stmt->bind_param('isiiiissisiiissiisisiisssiiiiiiiiiiiii',$_POST['nivelescolar'],$_POST['curso'],$_POST['turno'],$_POST['tipodoc'],$_POST['nrodoc'],$_POST['estadodoc'],$_POST['apellidos'],$_POST['nombres'],$_POST['sexo'],$_POST['fecnac'],$_POST['nacionalidad'],$_POST['lugarnac'],$_POST['provnac'],$_POST['cuil'],$_POST['email'],$_POST['calle'],$_POST['callenro'],$_POST['torre'],$_POST['piso'],$_POST['dpto'],$_POST['barrio'],$_POST['localidad'],$_POST['cp'],$_POST['telefono'],$_POST['celular'],$_POST['nrolegajo'],$_POST['nrolibmat'],$_POST['nrofolio'],$_POST['escproc'],$_POST['condinscrip'],$_POST['hermanos'],$_POST['hermest'],$_POST['kmhogar'],$_POST['habitantes'],$_POST['habitaciones'],$_POST['librohogar'],$_POST['retira1'],$_POST['retira2']);
-					if($_FILES["foto"]["error"] > 0) {
-						echo $_FILES["foto"]["error"]."<br>";
-					}
-					$temp = explode(".", $_FILES["foto"]["name"]);
-					$extension = end($temp);
-					if($_FILES['foto']['name'] != "") {
-						$path = $_SERVER['DOCUMENT_ROOT']."/fotos/".$_POST['nrodoc'].".".$extension;
-						echo "Save!<br>Stored in: " . $path;
-						move_uploaded_file($_FILES['foto']['tmp_name'], $path);
+
+					$stmt->execute();
+					echo $stmt->error;
+					if(!$stmt->affected_rows) {
+						echo "Error al cargar los datos";
+					} else {
+						if(sizeof($_FILES["foto"]["name"]) > 1) {
+							if(!$_FILES["foto"]["error"]) {
+								$temp = explode(".", $_FILES["foto"]["name"]);
+								$extension = end($temp);
+								$path = $_SERVER['DOCUMENT_ROOT']."/fotos/".$_POST['nrodoc'].".".$extension;
+								echo "Save!<br>Stored in: " . $path;
+								move_uploaded_file($_FILES['foto']['tmp_name'], $path);
+							}
+						} 
 					}
 				}
 				//move_uploaded_file($_FILES['firma']['tmp_name'], "firma/".)

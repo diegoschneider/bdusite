@@ -24,11 +24,9 @@ $errordefs[MYSQL_CHANGEDBERROR] = "Error al seleccionar la base de datos";
 $errordefs[TABLE_INEXISTENT] = "Tabla inexistente";
 $errordefs[DATA_INVALID] = "Los datos son erróneos";
 
-error_reporting(0);
 
-if(isset($_POST['errors'])) {
-    $errors = $_POST['errors'];
-}
+
+//error_reporting(0);
 
 function print_errors() {
     set_error_handler('custom_error_print');
@@ -55,10 +53,12 @@ function custom_error($errno, $errstr, $errfile, $errline) {
     
 }
 
-function echo_error($errno) {
-    $errno = USER_ALREADYLOGGEDIN;
-    echo $errordefs[USER_ALREADYLOGGEDIN];
-    //echo "Error #".$errno.": as ".$errordefs[$errno]." asd";
+/**
+ * Print error number and text
+ */
+function echo_error($error) {
+    global $errordefs;
+    echo "Error #".$error.": ".$errordefs[$error];
 }
 
 //set_error_handler('custom_error');

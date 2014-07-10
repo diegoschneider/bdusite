@@ -14,10 +14,6 @@ if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
 $publicpages = array("/index.php", "/login.php", "/logout.php");
 
 if(!$_SESSION['user']->loggedin && !in_array($_SERVER['PHP_SELF'], $publicpages) ) {
-    // TO-DO
-    // Respuesta de debug, cambiar
-    //echo $_SERVER['PHP_SELF'];
-
     header("location: /");
 }
 
