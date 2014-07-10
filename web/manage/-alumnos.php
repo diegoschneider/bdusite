@@ -20,15 +20,10 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 
 		if(isset($_POST['tabla'])) {
 			foreach ($_POST as $key => $value) {
-				if($_POST[$key] == -1) {
+				if($_POST[$key] == -1 || $_POST[$key] == "") {
 					$_POST[$key] = null;
 				}
 			}
-			/*echo "<pre>";
-			var_dump($_POST);
-			echo "</pre><pre>";
-			var_dump($_FILES);
-			echo "</pre>";*/
 
 			$result = $link->query("SELECT nrodoc from alumnos WHERE nrodoc={$_POST['nrodoc']}");
 			if(!$result->num_rows) {
@@ -303,31 +298,64 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 
 			if($_GET['action']==2) {
 				?>
-				<h3>Lista de alumnos</h3>
-				<table border=1>
-					<tr>
-						<th>DNI</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Curso</th>
-					</tr>
-					<?php 
-					$result = $link->query("SELECT nrodoc,nombres,apellidos,curso FROM alumnos ORDER BY curso,nrodoc");
-					while($row = $result->fetch_array()) {
-						echo "<tr>";
-						echo "<td>{$row['nrodoc']}</td>";
-						echo "<td>{$row['nombres']}</td>";
-						echo "<td>{$row['apellidos']}</td>";
-						echo "<td>{$row['curso']}</td>";
-						echo "</tr>";
-					}
-					?>
-				</table>
 
-				<?php
-			}
+				<form class="container form" method=GET>
+					<input type=hidden value="2" name="action">
+					<div class=campo>
+						<span>DNI</span>
+						<input type=text name="dni">
+					</div>
+					<div class=campo>
+						<span>Nombre</span>
+						<input type=text name="nombre">
+					</div>
+					<div class=campo>
+						<span>Apellido</span>
+						<input type=text name="apellido">
+					</div>
+					<input type=submit value="Consultar">
+					<a href="?action=2&queryall="><input type=button value="Ver todo"></a>
+				</form>
+
+				<h3>Lista de alumnos</h3>
+				<table border=1 id="result">
+
+					<?php
+
+					if(isset($_GET['queryall'])) {
+						$result = $link->query("SELECT * FROM alumnos ORDER BY curso,nrodoc");
+						
+						$ret = "";
+						while($row = $result->fetch_row()) {
+							$ret .= "<tr>";
+							foreach ($row as $key => $value) {
+								$ret .= "<td>$value</td>";
+							}
+							$ret .= "</tr>";
+
+						}
+						$temp = "<tr>";
+						$fields = $result->fetch_fields();
+						foreach ($fields as $key => $value) {
+							$temp .= "<th>{$value->name}</th>";
+						}
+						$temp .= "</tr>";
+						$ret = $temp.$ret;
+						echo $ret;
+					}
+
+				/*if(isset($_GET['dni']) || isset($_GET['nombre']) || isset($_GET['apellido'])) {
+					$stmt = $link->prepare("SELECT * FROM ")
+						
+				}*/
+
+				?>
+			</table>
+
+			<?php
 		}
-		?>
-	</div>
+	}
+	?>
+</div>
 </body>
 </html>

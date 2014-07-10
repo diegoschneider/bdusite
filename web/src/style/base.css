@@ -93,3 +93,6 @@ h1 {
     float: left; }
   .campo input, .campo select {
     float: right; }
+
+#result td, #result th {
+  white-space: nowrap; }

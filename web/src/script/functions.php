@@ -183,15 +183,6 @@ function style_manage_nav($nav) {
     echo $ret;
 }
 
-function form_datalist($link, $sql, $id) {
-    $result = $link->query($sql);
-    echo "<datalist id=$id>";
-    while($row = $result->fetch_row()) {
-        echo "<option value=\"{$row[1]}\">";
-    }
-    echo "</datalist>";
-}
-
 function form_select($link, $sql) {
     $result = $link->query($sql);
     $ret = "<option value=-1>Seleccione...</option>";

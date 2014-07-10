@@ -26,7 +26,7 @@ $errordefs[DATA_INVALID] = "Los datos son erróneos";
 
 
 
-//error_reporting(0);
+error_reporting(E_ALL);
 
 function print_errors() {
     set_error_handler('custom_error_print');
