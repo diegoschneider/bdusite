@@ -192,4 +192,50 @@ function form_select($link, $sql) {
     return $ret;
 }
 
+function refValues($arr)
+{ 
+        $refs = array();
+
+        foreach ($arr as $key => $value)
+        {
+            $refs[$key] = &$arr[$key]; 
+        }
+
+        return $refs; 
+}
+
+ /**
+ * [Ordenar]
+ * Crea el mysqli_stmt para un formulario
+ *
+ * $campos -> Array(nombre, tipo, valor)
+ */
+
+ //insert("alumnos", Array("nivelescolar" => Array(tipo => "i", valor => $_POST['nivelescolar'])))
+function insert($link, $tabla, $campos) {
+    $type = "";
+    $temp = array();
+    $sql = "INSERT INTO ".$tabla."(";
+        foreach ($campos as $key => $value) {
+            $sql .= $key.",";
+            $type .= $value['tipo'];
+            $temp[$key] = $value['valor'];
+        }
+        $sql .= ") VALUES (";
+        foreach ($campos as $value) {
+            $sql .= "?,";
+        }
+        $sql .= ")";
+    
+    $sql = str_replace(",)", ")", $sql);
+    $stmt = $link->prepare($sql);
+    $asdasd = array_merge(array($stmt, $type), $temp);
+    echo "<pre>";
+    var_dump($asdasd);
+    echo "</pre>";
+    call_user_func_array('mysqli_stmt_bind_param', array_merge(array($stmt, $type), refValues($temp)));
+    echo $sql."<br>".$type;
+    die();
+}
+
 ?>

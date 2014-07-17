@@ -29,6 +29,15 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 			if(!$result->num_rows) {
 
 				$sql = "INSERT INTO alumnos(nivelescolar, curso, turno, tipodoc, nrodoc, estadodoc, apellidos, nombres, sexo, fecnac, nacionalidad, lugarnac, provnac, cuil, email, calle, callenro, torre, piso, dpto, barrio, localidad, cp, telefono, celular, nrolegajo, nrolibmat, nrofolio, escproc, condinscrip, hermanos, hermest, kmhogar, habitantes, habitaciones, librohogar,retira1, retira2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				/*$campos = array();
+				$campos['nivelescolar'] = Array("tipo" => "i", "valor" => $_POST['nivelescolar']);
+				$campos['curso'] = Array('tipo' => 's', 'valor' => $_POST['curso']);
+				$campos['turno'] = Array('tipo' => 'i', 'valor' => $_POST['turno']);
+				$campos['tipodoc'] = Array('tipo' => 'i', 'valor' => $_POST['tipodoc']);
+				$campos['nrodoc'] = Array('tipo' => 'i', 'valor' => $_POST['nrodoc']);
+				$campos['']
+
+				insert();*/
 				$stmt = $link->prepare($sql);
 				if(!$stmt) {
 					
@@ -299,26 +308,48 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 			if($_GET['action']==2) {
 				?>
 
-				<form class="container form" method=GET>
-					<input type=hidden value="2" name="action">
-					<div class=campo>
-						<span>DNI</span>
-						<input type=text name="dni">
-					</div>
-					<div class=campo>
-						<span>Nombre</span>
-						<input type=text name="nombre">
-					</div>
-					<div class=campo>
-						<span>Apellido</span>
-						<input type=text name="apellido">
-					</div>
-					<input type=submit value="Consultar">
+				<div class="container form">
+					<form method=GET id="form1">
+						<input type=hidden value="2" name="action">
+						<input type=hidden name="query" value="dni">
+						<div class=campo>
+							<span>DNI</span>
+							<input type=text name="dni">
+						</div>
+						<input type=submit value="Consultar">
+					</form>
+					<form method=GET id="form2">
+						<input type=hidden value="2" name="action">
+						<input type=hidden name="query" value="nombre">
+						<div class=campo>
+							<span>Nombre</span>
+							<input type=text name="nombre">
+						</div>
+						<div class=campo>
+							<span>Apellido</span>
+							<input type=text name="apellido">
+						</div>
+						<input type=submit value="Consultar">
+					</form>
+					<form method=GET id="form3">
+						<input type=hidden value="2" name="action">
+						<input type=hidden name="query" value="curso">
+						<div class=campo>
+							<span>Curso</span>
+							<input type=text name="curso">
+						</div>
+						<div class=campo>
+							<span>Division</span>
+							<input type=text name="division">
+						</div>
+						<input type=submit value="Consultar">
+					</form>
+
 					<a href="?action=2&queryall="><input type=button value="Ver todo"></a>
-				</form>
+				</div>
 
 				<h3>Lista de alumnos</h3>
-				<table border=1 id="result">
+				<table border="1" id="result">
 
 					<?php
 
@@ -344,18 +375,51 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 						echo $ret;
 					}
 
-				/*if(isset($_GET['dni']) || isset($_GET['nombre']) || isset($_GET['apellido'])) {
-					$stmt = $link->prepare("SELECT * FROM ")
-						
-				}*/
+					switch ($_GET['query']) {
+						case 'dni':
+						if(isset($_GET['dni'])) {
+							$sql = "SELECT * FROM alumnos WHERE nrodoc=?";
+							$stmt = $link->prepare($sql);
+							if(!$stmt) {
+								echo $link->error;
+							}
+							$stmt->bind_param("i", $_GET['dni']);
+							$stmt->execute();
 
-				?>
-			</table>
+							$result = $stmt->get_result();
+							$ret = "";
+							while($row = $result->fetch_row()) {
+								$ret .= "<tr>";
+								foreach ($row as $key => $value) {
+									$ret .= "<td>$value</td>";
+								}
+								$ret .= "</tr>";
 
-			<?php
+							}
+							$temp = "<tr>";
+							$fields = $result->fetch_fields();
+							foreach ($fields as $key => $value) {
+								$temp .= "<th>{$value->name}</th>";
+							}
+							$temp .= "</tr>";
+							$ret = $temp.$ret;
+							echo $ret;
+
+						}
+						break;
+
+						default:
+						# code...
+						break;
+					}
+
+					?>
+				</table>
+
+				<?php
+			}
 		}
-	}
-	?>
-</div>
+		?>
+	</div>
 </body>
 </html>
