@@ -46,8 +46,6 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 
 			insert($link, 'cursos', $campos);
 
-
-
 		}
 
 		?>

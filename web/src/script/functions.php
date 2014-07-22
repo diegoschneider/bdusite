@@ -3,10 +3,10 @@
  * Funciones básicas del sistema :3 *
  ***********************************/
 
-session_start();
-require("errhan.php");
+ session_start();
+ require("errhan.php");
 
-if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
+ if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
     $_SESSION['user'] = new User;
 }
 
@@ -42,7 +42,7 @@ function db_connect($db = "BDU") {
   * Funciones de usuarios *
   ************************/
 
-class User {
+ class User {
     var $loggedin;
     var $logout;
     var $id;
@@ -141,8 +141,8 @@ if($_SESSION['user']->loggedin) {
  /***********************
   * Funciones de estilo *
   **********************/
-  
-function style_head() {
+
+ function style_head() {
     $ret =
     "<title>BDU</title>
     <meta charset=UTF-8>
@@ -159,20 +159,20 @@ function style_head() {
 function style_header() {
     $ret =
     "<div id=\"header\" class=horizontalnav>
-        <img src=\"/src/img/logo.jpg\" width=28>
-        <ul>
-            <li><a href=\"/\">Home</a></li>";
-            if($_SESSION['user']->loggedin) {
-                $ret .= "<li><a href=\"/manage\">administrar</a></li>
-                <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>";
-            }
-        $ret .= "</ul>
+    <img src=\"/src/img/logo.jpg\" width=28>
+    <ul>
+    <li><a href=\"/\">Home</a></li>";
+    if($_SESSION['user']->loggedin) {
+        $ret .= "<li><a href=\"/manage\">administrar</a></li>
+        <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>";
+    }
+    $ret .= "</ul>
     </div>";
     echo $ret;
 }
 
 function style_manage_nav($nav) {
-        
+
     $ret = "<div class=horizontalnav><ul>";
 
     foreach($nav as $key => $value) {
@@ -192,16 +192,13 @@ function form_select($link, $sql) {
     return $ret;
 }
 
-function refValues($arr)
-{ 
-        $refs = array();
+function refValues($arr) {
+    $refs = array();
 
-        foreach ($arr as $key => $value)
-        {
-            $refs[$key] = &$arr[$key]; 
-        }
-
-        return $refs; 
+    foreach ($arr as $key => $value) {
+        $refs[$key] = &$arr[$key]; 
+    }
+    return $refs;
 }
 
  /**
@@ -212,29 +209,35 @@ function refValues($arr)
  */
 
  //insert("alumnos", Array("nivelescolar" => Array(tipo => "i", valor => $_POST['nivelescolar'])))
-function insert($link, $tabla, $campos) {
+ function insert($link, $tabla, $campos) {
     $type = "";
     $temp = array();
-    $sql = "INSERT INTO ".$tabla."(";
-        foreach ($campos as $key => $value) {
-            $sql .= $key.",";
-            $type .= $value['tipo'];
-            $temp[$key] = $value['valor'];
-        }
-        $sql .= ") VALUES (";
-        foreach ($campos as $value) {
-            $sql .= "?,";
-        }
-        $sql .= ")";
-    
+    $sql = "INSERT INTO $tabla (";
+
+    foreach ($campos as $key => $value) {
+        $sql .= $key.",";
+        $type .= $value['tipo'];
+        $temp[] = $value['valor'];
+    }
+    $sql .= ") VALUES (";
+    foreach ($campos as $value) {
+        $sql .= "?,";
+    }
+    $sql .= ")";
+
     $sql = str_replace(",)", ")", $sql);
     $stmt = $link->prepare($sql);
-    $asdasd = array_merge(array($stmt, $type), $temp);
-    echo "<pre>";
-    var_dump($asdasd);
-    echo "</pre>";
-    call_user_func_array('mysqli_stmt_bind_param', array_merge(array($stmt, $type), refValues($temp)));
+    $refs = refValues($temp);
+    //array_unshift($refs, $type);
+    call_user_func_array(array($stmt, 'bind_param'), refValues(array_merge(array($type), $refs)));
+    $stmt->execute();
+
     echo $sql."<br>".$type;
+    echo "<br><pre>";
+    var_dump(array_merge(array($type), $refs));
+    echo "</pre>";
+    echo "<br>Error: ".$stmt->error;
+
     die();
 }
 
