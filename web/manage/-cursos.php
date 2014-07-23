@@ -26,9 +26,6 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 				}
 			}
 
-			echo "<pre>";
-			var_dump($_POST);
-			echo "</pre>";
 			$codcur = "0".$_POST['esp']."0".$_POST['año'];
 			if($_POST['division'] < 10) {
 				$codcur .= "0".$_POST['division'];

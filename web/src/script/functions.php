@@ -192,7 +192,7 @@ function form_select($link, $sql) {
     return $ret;
 }
 
-function refValues($arr) {
+function refValues(&$arr) {
     $refs = array();
 
     foreach ($arr as $key => $value) {
@@ -200,6 +200,14 @@ function refValues($arr) {
     }
     return $refs;
 }
+
+function validInput($var) {
+    if(isset($var) && !is_null($var) && $var != '') {
+        return true;
+    }
+    return false;
+}
+
 
  /**
  * [Ordenar]
@@ -209,7 +217,7 @@ function refValues($arr) {
  */
 
  //insert("alumnos", Array("nivelescolar" => Array(tipo => "i", valor => $_POST['nivelescolar'])))
- function insert($link, $tabla, $campos) {
+ function insert($link, $tabla, &$campos) {
     $type = "";
     $temp = array();
     $sql = "INSERT INTO $tabla (";
@@ -228,17 +236,14 @@ function refValues($arr) {
     $sql = str_replace(",)", ")", $sql);
     $stmt = $link->prepare($sql);
     $refs = refValues($temp);
-    //array_unshift($refs, $type);
-    call_user_func_array(array($stmt, 'bind_param'), refValues(array_merge(array($type), $refs)));
+    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
     $stmt->execute();
 
-    echo $sql."<br>".$type;
-    echo "<br><pre>";
-    var_dump(array_merge(array($type), $refs));
-    echo "</pre>";
-    echo "<br>Error: ".$stmt->error;
-
-    die();
+    if($stmt->error) {
+        echo "<br>Error: ".$stmt->error;
+    } else {
+        echo "<br>Agregado correctamente";
+    }
 }
 
 ?>

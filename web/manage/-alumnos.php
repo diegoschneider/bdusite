@@ -320,7 +320,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 					</form>
 					<form method=GET id="form2">
 						<input type=hidden value="2" name="action">
-						<input type=hidden name="query" value="nombre">
+						<input type=hidden name="query" value="nomape">
 						<div class=campo>
 							<span>Nombre</span>
 							<input type=text name="nombre">
@@ -373,19 +373,49 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 						$temp .= "</tr>";
 						$ret = $temp.$ret;
 						echo $ret;
-					}
+					} else {
 
-					switch ($_GET['query']) {
-						case 'dni':
-						if(isset($_GET['dni'])) {
-							$sql = "SELECT * FROM alumnos WHERE nrodoc=?";
-							$stmt = $link->prepare($sql);
-							if(!$stmt) {
-								echo $link->error;
+						switch ($_GET['query']) {
+							case 'dni': {
+								if(isset($_GET['dni'])) {
+									$sql = "SELECT * FROM alumnos WHERE nrodoc=?";
+									$stmt = $link->prepare($sql);
+									if(!$stmt) {
+										echo $link->error;
+									}
+									$stmt->bind_param("i", $_GET['dni']);
+									$stmt->execute();
+								}
+								break;
 							}
-							$stmt->bind_param("i", $_GET['dni']);
-							$stmt->execute();
+							case 'nomape': {
+								$sql = "SELECT * FROM alumnos WHERE ";
+								
+								if(validInput($_GET['nombre']) && validInput($_GET['apellido'])) {
+									$sql .= "nombres LIKE CONCAT('%',?,'%') AND apellidos LIKE CONCAT('%',?,'%')";
+									$stmt = $link->prepare($sql);
+									$stmt->bind_param("ss", $_GET['nombre'], $_GET['apellido']);
+								} else if(validInput($_GET['apellido'])) {
+									$sql .= "apellidos LIKE CONCAT('%',?,'%')";
+									$stmt = $link->prepare($sql);
+									$stmt->bind_param("s", $_GET['apellido']);
+								} else if(validInput($_GET['nombre'])) {
+									$sql .= "nombres LIKE CONCAT('%',?,'%')";
+									$stmt = $link->prepare($sql);
+									$stmt->bind_param("s", $_GET['nombre']);
+								}
 
+								if(isset($stmt) && $stmt) {
+									$stmt->execute();
+								}
+
+							}
+							default:
+
+							break;
+						}
+
+						if(isset($stmt) && $stmt) {
 							$result = $stmt->get_result();
 							$ret = "";
 							while($row = $result->fetch_row()) {
@@ -404,13 +434,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 							$temp .= "</tr>";
 							$ret = $temp.$ret;
 							echo $ret;
-
 						}
-						break;
-
-						default:
-						# code...
-						break;
 					}
 
 					?>
