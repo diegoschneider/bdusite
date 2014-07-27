@@ -193,7 +193,7 @@ function style_manage_nav($nav) {
     $ret = "<div class=horizontalnav><ul>";
 
     foreach($nav as $key => $value) {
-        $ret .= "<li><a href=\"?action=$key\">$value</a></li>";
+        $ret .= "<li><a href=\"$key\">$value</a></li>";
     }
 
     $ret .= "</ul></div>";

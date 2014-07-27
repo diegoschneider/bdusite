@@ -29,8 +29,9 @@ $(document).ready(function() {
 	$('#logo').bind('click', function(event){ 
 
 		if(event.ctrlKey && event.altKey && event.shiftKey) {
-			alert("Que? Esperabas encontrar un huevo de pascua por hacer ésto?\nNo hay mucho que mostrar así que... Bueno, como mucho podemos mostrarte los créditos :D");
-			document.location = "/credits.html";
+			if(confirm("Que? Esperabas encontrar un huevo de pascua por hacer ésto?\nNo hay mucho que mostrar así que... Bueno, como mucho podemos mostrarte los créditos :D\n\nQuerés ver los créditos?")) {
+				document.location = "/credits.html";
+			}
 		}
 	});
 });

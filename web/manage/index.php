@@ -18,20 +18,12 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 			foreach ($dir as $value) {
 				if($value[0] == ".") continue;
 				if($value == "index.php") continue;
-				if($value[0] == "-") {
-					$name = substr($value, 1, -4);
-				} else {
-					$name = substr($value, 0, -4);
-				}
+				$name = $value;
 				$tables[$name] = "/manage/$value";
 			}
 
 			foreach ($tables as $key => $value) {
-				echo "<li><a ";
-				if($value[8] == "-") {
-					echo "class=unfinished ";
-				}
-				echo "href=$value>$key</a></li>";
+				echo "<li><a href=$value>$key</a></li>";
 			}
 		?>
 		</ul>

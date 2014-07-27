@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2014 at 01:22 AM
+-- Generation Time: Jul 27, 2014 at 07:49 PM
 -- Server version: 6.0.4
 -- PHP Version: 6.0.0-dev
 
@@ -22,6 +22,7 @@ USE `bdu`;
 -- Table structure for table `alumnos`
 -- 
 
+DROP TABLE IF EXISTS `alumnos`;
 CREATE TABLE `alumnos` (
   `nivelescolar` int(11) NOT NULL,
   `curso` varchar(7) DEFAULT NULL,
@@ -83,6 +84,8 @@ CREATE TABLE `alumnos` (
 -- Dumping data for table `alumnos`
 -- 
 
+INSERT INTO `alumnos` VALUES (1, NULL, 1, 1, 33333333, 1, 'Silvero', 'Franco', 1, '0101-01-01', 1, 2800, 1, 1, 15720, NULL, NULL, NULL, 1, 2804, '2804', '3489237890', NULL, '1', '1', '1', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '20-33333333-3', NULL, NULL, NULL, NULL);
+INSERT INTO `alumnos` VALUES (1, '010101', 1, 1, 39414147, 1, 'Schneider', 'Diego', 1, '1996-04-26', 1, 2804, 1, 1, 416, NULL, NULL, NULL, 1, 2804, '2804', '348951368', NULL, '0', '0', '0', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '20-39414147-7', 'diegoschneider.96@gmail.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,6 +93,7 @@ CREATE TABLE `alumnos` (
 -- Table structure for table `barrios`
 -- 
 
+DROP TABLE IF EXISTS `barrios`;
 CREATE TABLE `barrios` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -109,16 +113,18 @@ INSERT INTO `barrios` VALUES (2, 'Las Acacias');
 -- Table structure for table `calles`
 -- 
 
+DROP TABLE IF EXISTS `calles`;
 CREATE TABLE `calles` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `calles`
 -- 
 
+INSERT INTO `calles` VALUES (1, 'Fray Luis Beltrán');
 
 -- --------------------------------------------------------
 
@@ -126,6 +132,7 @@ CREATE TABLE `calles` (
 -- Table structure for table `cargo`
 -- 
 
+DROP TABLE IF EXISTS `cargo`;
 CREATE TABLE `cargo` (
   `doc` int(11) NOT NULL,
   `cargo` int(11) NOT NULL,
@@ -144,6 +151,7 @@ CREATE TABLE `cargo` (
 -- Table structure for table `cargos`
 -- 
 
+DROP TABLE IF EXISTS `cargos`;
 CREATE TABLE `cargos` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
@@ -161,6 +169,7 @@ CREATE TABLE `cargos` (
 -- Table structure for table `catedras`
 -- 
 
+DROP TABLE IF EXISTS `catedras`;
 CREATE TABLE `catedras` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `materia` int(11) NOT NULL,
@@ -186,6 +195,7 @@ CREATE TABLE `catedras` (
 -- Table structure for table `condactividad`
 -- 
 
+DROP TABLE IF EXISTS `condactividad`;
 CREATE TABLE `condactividad` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `actividad` varchar(30) NOT NULL,
@@ -204,7 +214,7 @@ INSERT INTO `condactividad` VALUES (5, 'Ama de Casa');
 INSERT INTO `condactividad` VALUES (6, 'Estudiante');
 INSERT INTO `condactividad` VALUES (7, 'Jubilado/Pensionado');
 INSERT INTO `condactividad` VALUES (8, 'Rentista');
-INSERT INTO `condactividad` VALUES (9, 'Discapasitado');
+INSERT INTO `condactividad` VALUES (9, 'Discapacitado');
 INSERT INTO `condactividad` VALUES (10, 'Otros');
 
 -- --------------------------------------------------------
@@ -213,16 +223,18 @@ INSERT INTO `condactividad` VALUES (10, 'Otros');
 -- Table structure for table `condinscripcion`
 -- 
 
+DROP TABLE IF EXISTS `condinscripcion`;
 CREATE TABLE `condinscripcion` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `condicion` varchar(40) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `condinscripcion`
 -- 
 
+INSERT INTO `condinscripcion` VALUES (1, 'default');
 
 -- --------------------------------------------------------
 
@@ -230,11 +242,12 @@ CREATE TABLE `condinscripcion` (
 -- Table structure for table `cursos`
 -- 
 
+DROP TABLE IF EXISTS `cursos`;
 CREATE TABLE `cursos` (
   `cod` varchar(7) NOT NULL,
   `año` varchar(10) NOT NULL,
   `division` varchar(15) NOT NULL,
-  `preceptora` int(11) NOT NULL,
+  `preceptora` int(11) DEFAULT NULL,
   `turno` int(11) NOT NULL,
   `especialidad` int(11) NOT NULL,
   PRIMARY KEY (`cod`),
@@ -247,6 +260,7 @@ CREATE TABLE `cursos` (
 -- Dumping data for table `cursos`
 -- 
 
+INSERT INTO `cursos` VALUES ('010101', '1', '1', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -254,6 +268,7 @@ CREATE TABLE `cursos` (
 -- Table structure for table `dia`
 -- 
 
+DROP TABLE IF EXISTS `dia`;
 CREATE TABLE `dia` (
   `cod` int(11) NOT NULL,
   `dia` varchar(10) NOT NULL,
@@ -278,6 +293,7 @@ INSERT INTO `dia` VALUES (7, 'Domingo');
 -- Table structure for table `errorlog`
 -- 
 
+DROP TABLE IF EXISTS `errorlog`;
 CREATE TABLE `errorlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `errno` int(11) NOT NULL,
@@ -299,6 +315,7 @@ CREATE TABLE `errorlog` (
 -- Table structure for table `escuelas`
 -- 
 
+DROP TABLE IF EXISTS `escuelas`;
 CREATE TABLE `escuelas` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(10) NOT NULL,
@@ -322,6 +339,7 @@ CREATE TABLE `escuelas` (
 -- Table structure for table `especialidades`
 -- 
 
+DROP TABLE IF EXISTS `especialidades`;
 CREATE TABLE `especialidades` (
   `cod` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
@@ -332,11 +350,11 @@ CREATE TABLE `especialidades` (
 -- Dumping data for table `especialidades`
 -- 
 
-INSERT INTO `especialidades` VALUES (1, 'Bàsico');
-INSERT INTO `especialidades` VALUES (2, 'Electromecànica');
-INSERT INTO `especialidades` VALUES (3, 'Quìmica');
-INSERT INTO `especialidades` VALUES (4, 'Electrònica');
-INSERT INTO `especialidades` VALUES (5, 'Informàtica');
+INSERT INTO `especialidades` VALUES (1, 'Básico');
+INSERT INTO `especialidades` VALUES (2, 'Electromecánica');
+INSERT INTO `especialidades` VALUES (3, 'Química');
+INSERT INTO `especialidades` VALUES (4, 'Electrónica');
+INSERT INTO `especialidades` VALUES (5, 'Informática');
 INSERT INTO `especialidades` VALUES (6, 'Adultos');
 
 -- --------------------------------------------------------
@@ -345,6 +363,7 @@ INSERT INTO `especialidades` VALUES (6, 'Adultos');
 -- Table structure for table `estadodocumento`
 -- 
 
+DROP TABLE IF EXISTS `estadodocumento`;
 CREATE TABLE `estadodocumento` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(15) NOT NULL,
@@ -366,6 +385,7 @@ INSERT INTO `estadodocumento` VALUES (4, 'No posee');
 -- Table structure for table `familiares`
 -- 
 
+DROP TABLE IF EXISTS `familiares`;
 CREATE TABLE `familiares` (
   `jefe` int(11) NOT NULL,
   `apellidos` varchar(30) NOT NULL,
@@ -413,6 +433,7 @@ CREATE TABLE `familiares` (
 -- Table structure for table `fichasalud`
 -- 
 
+DROP TABLE IF EXISTS `fichasalud`;
 CREATE TABLE `fichasalud` (
   `doc` int(11) NOT NULL,
   `obrasocial` int(11) NOT NULL,
@@ -453,6 +474,7 @@ CREATE TABLE `fichasalud` (
 -- Table structure for table `gremio`
 -- 
 
+DROP TABLE IF EXISTS `gremio`;
 CREATE TABLE `gremio` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
@@ -470,6 +492,7 @@ CREATE TABLE `gremio` (
 -- Table structure for table `instrecurrir`
 -- 
 
+DROP TABLE IF EXISTS `instrecurrir`;
 CREATE TABLE `instrecurrir` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
@@ -491,6 +514,7 @@ CREATE TABLE `instrecurrir` (
 -- Table structure for table `localidades`
 -- 
 
+DROP TABLE IF EXISTS `localidades`;
 CREATE TABLE `localidades` (
   `cp` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -505,6 +529,8 @@ CREATE TABLE `localidades` (
 -- Dumping data for table `localidades`
 -- 
 
+INSERT INTO `localidades` VALUES (2800, 'Zarate', 3487, 1);
+INSERT INTO `localidades` VALUES (2804, 'Campana', 3489, 1);
 
 -- --------------------------------------------------------
 
@@ -512,6 +538,7 @@ CREATE TABLE `localidades` (
 -- Table structure for table `materias`
 -- 
 
+DROP TABLE IF EXISTS `materias`;
 CREATE TABLE `materias` (
   `cod` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -529,6 +556,7 @@ CREATE TABLE `materias` (
 -- Table structure for table `medicos`
 -- 
 
+DROP TABLE IF EXISTS `medicos`;
 CREATE TABLE `medicos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `apellido` varchar(30) NOT NULL,
@@ -551,6 +579,7 @@ CREATE TABLE `medicos` (
 -- Table structure for table `nivelescolar`
 -- 
 
+DROP TABLE IF EXISTS `nivelescolar`;
 CREATE TABLE `nivelescolar` (
   `cod` int(11) NOT NULL,
   `nivel` varchar(15) NOT NULL,
@@ -570,6 +599,7 @@ INSERT INTO `nivelescolar` VALUES (2, 'Secundario');
 -- Table structure for table `nivelinstruccion`
 -- 
 
+DROP TABLE IF EXISTS `nivelinstruccion`;
 CREATE TABLE `nivelinstruccion` (
   `cod` int(11) NOT NULL,
   `nivel` varchar(30) NOT NULL,
@@ -581,8 +611,8 @@ CREATE TABLE `nivelinstruccion` (
 -- 
 
 INSERT INTO `nivelinstruccion` VALUES (1, 'Ninguno');
-INSERT INTO `nivelinstruccion` VALUES (2, 'Primario incompleto');
-INSERT INTO `nivelinstruccion` VALUES (3, 'Prima');
+INSERT INTO `nivelinstruccion` VALUES (2, 'Primario Incompleto');
+INSERT INTO `nivelinstruccion` VALUES (3, 'Primario Completo');
 INSERT INTO `nivelinstruccion` VALUES (4, 'Secundario incompleto');
 INSERT INTO `nivelinstruccion` VALUES (5, 'Secundario Completo');
 INSERT INTO `nivelinstruccion` VALUES (6, 'Terciario Incompleto');
@@ -598,6 +628,7 @@ INSERT INTO `nivelinstruccion` VALUES (11, 'Posgrado Completo');
 -- Table structure for table `paises`
 -- 
 
+DROP TABLE IF EXISTS `paises`;
 CREATE TABLE `paises` (
   `cod` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
@@ -609,6 +640,7 @@ CREATE TABLE `paises` (
 -- Dumping data for table `paises`
 -- 
 
+INSERT INTO `paises` VALUES (1, 'Argentina', 'Argentino/a');
 
 -- --------------------------------------------------------
 
@@ -616,6 +648,7 @@ CREATE TABLE `paises` (
 -- Table structure for table `personal`
 -- 
 
+DROP TABLE IF EXISTS `personal`;
 CREATE TABLE `personal` (
   `tipodoc` int(11) NOT NULL,
   `doc` int(11) NOT NULL,
@@ -660,16 +693,18 @@ CREATE TABLE `personal` (
 -- Table structure for table `provincia`
 -- 
 
+DROP TABLE IF EXISTS `provincia`;
 CREATE TABLE `provincia` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- 
 -- Dumping data for table `provincia`
 -- 
 
+INSERT INTO `provincia` VALUES (1, 'Buenos Aires');
 
 -- --------------------------------------------------------
 
@@ -677,6 +712,7 @@ CREATE TABLE `provincia` (
 -- Table structure for table `sexo`
 -- 
 
+DROP TABLE IF EXISTS `sexo`;
 CREATE TABLE `sexo` (
   `cod` int(11) NOT NULL,
   `sexo` varchar(15) NOT NULL,
@@ -697,6 +733,7 @@ INSERT INTO `sexo` VALUES (3, 'No especifica');
 -- Table structure for table `tipodocumento`
 -- 
 
+DROP TABLE IF EXISTS `tipodocumento`;
 CREATE TABLE `tipodocumento` (
   `cod` int(11) NOT NULL,
   `tipo` varchar(3) NOT NULL,
@@ -719,6 +756,7 @@ INSERT INTO `tipodocumento` VALUES (5, 'ET');
 -- Table structure for table `tipoescuela`
 -- 
 
+DROP TABLE IF EXISTS `tipoescuela`;
 CREATE TABLE `tipoescuela` (
   `cod` int(11) NOT NULL,
   `tipo` varchar(10) NOT NULL,
@@ -738,6 +776,7 @@ INSERT INTO `tipoescuela` VALUES (2, 'Privada');
 -- Table structure for table `titulo`
 -- 
 
+DROP TABLE IF EXISTS `titulo`;
 CREATE TABLE `titulo` (
   `doc` int(11) NOT NULL,
   `titulo` int(11) NOT NULL,
@@ -756,6 +795,7 @@ CREATE TABLE `titulo` (
 -- Table structure for table `titulos`
 -- 
 
+DROP TABLE IF EXISTS `titulos`;
 CREATE TABLE `titulos` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -773,6 +813,7 @@ CREATE TABLE `titulos` (
 -- Table structure for table `turnos`
 -- 
 
+DROP TABLE IF EXISTS `turnos`;
 CREATE TABLE `turnos` (
   `cod` int(11) NOT NULL,
   `nombre` varchar(12) NOT NULL,
@@ -793,6 +834,7 @@ INSERT INTO `turnos` VALUES (3, 'Vespertino');
 -- Table structure for table `users`
 -- 
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -814,6 +856,7 @@ INSERT INTO `users` VALUES (1, 'diego', 'diego', 0, 0);
 -- Table structure for table `vinculos`
 -- 
 
+DROP TABLE IF EXISTS `vinculos`;
 CREATE TABLE `vinculos` (
   `cod` int(11) NOT NULL,
   `vinculo` varchar(15) NOT NULL,
