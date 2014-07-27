@@ -8,18 +8,18 @@ require("./src/script/functions.php");
 </head>
 <body>
 
-<?php style_header(); ?>
+    <?php style_header(); ?>
 
-<div id="content">
+    <div id="content">
 
-    <?php if(!$_SESSION['user']->loggedin) { ?>
+        <?php if(!$_SESSION['user']->loggedin) { ?>
 
         <h1>Login - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
-
+        <p>Luego de 5 minutos de inactividad, la sesión se cerrará</p>
         <form id="login_container" class="container">
             <h2>Ingreso</h2>
-        
+            
             <div class=campo>
                 <span>Nombre de usuario: </span>
                 <input type=text id="user" />
@@ -35,7 +35,7 @@ require("./src/script/functions.php");
             <div class=error><span id="errors" onclick="writeerror(this);"></span></div>
         </form>
 
-    <?php } else { ?>
+        <?php } else { ?>
 
         <h1>Bienvenido - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
@@ -49,7 +49,7 @@ require("./src/script/functions.php");
             </div>
         </div>
 
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
 </body>
 </html>
