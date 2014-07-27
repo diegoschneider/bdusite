@@ -1,4 +1,5 @@
 <?php
+
 define("USER_ALREADYLOGGEDIN", 1000);
 define("USER_NOTLOGGEDIN",1001);
 define("USER_INEXISTENT",1002);
@@ -12,6 +13,7 @@ define("TABLE_INEXISTENT", 3000);
 define("DATA_INVALID", 3001);
 // $errordefs[errno] = "errstr";
 
+$errordefs[1] = "Indefinido/Completado";
 $errordefs[USER_ALREADYLOGGEDIN] = "Ya has iniciado sesión";
 $errordefs[USER_NOTLOGGEDIN] = "No has iniciado sesión";
 $errordefs[USER_INEXISTENT] = "Usuario inexistente";

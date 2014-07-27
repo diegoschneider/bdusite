@@ -1,9 +1,7 @@
 <?php
-require("./src/script/functions.php");
-if(isset($_SESSION['user'])) {
-	$_SESSION['user']->logout = true;
-}
-
+//require("./src/script/functions.php");
+session_start();
+session_destroy();
 header("location: /");
 
 ?>

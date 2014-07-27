@@ -3,10 +3,28 @@
  * Funciones básicas del sistema :3 *
  ***********************************/
 
- session_start();
- require("errhan.php");
+session_start();
+require("errhan.php");
+//Maximo tiempo de inactividad hasta que se cierre la sesión
+define("MAX_SESSION_TIME", 600);
 
- if(!isset($_SESSION['user']) || $_SESSION['user']->logout) {
+if (!isset($_SESSION['CREATED'])) {
+    $_SESSION['CREATED'] = time();
+} else if (time() - $_SESSION['CREATED'] > MAX_SESSION_TIME) {
+    // session started more than 30 minutes ago
+    session_regenerate_id(true);    // change session ID for the current session an invalidate old session ID
+    $_SESSION['CREATED'] = time();  // update creation time
+}
+
+if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > MAX_SESSION_TIME)) {
+    // last request was more than 30 minutes ago
+    session_unset();     // unset $_SESSION variable for the run-time 
+    session_destroy();   // destroy session data in storage
+    header("location: /");
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+
+if(!isset($_SESSION['user'])) {
     $_SESSION['user'] = new User;
 }
 
@@ -44,7 +62,6 @@ function db_connect($db = "BDU") {
 
  class User {
     var $loggedin;
-    var $logout;
     var $id;
     var $name;
     var $perm;
@@ -159,7 +176,7 @@ if($_SESSION['user']->loggedin) {
 function style_header() {
     $ret =
     "<div id=\"header\" class=horizontalnav>
-    <img src=\"/src/img/logo.jpg\" width=28>
+    <img src=\"/src/img/logo.jpg\" id=\"logo\" width=28>
     <ul>
     <li><a href=\"/\">Home</a></li>";
     if($_SESSION['user']->loggedin) {
