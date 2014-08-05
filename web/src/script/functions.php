@@ -233,7 +233,6 @@ function validInput($var) {
  * $campos -> Array(nombre, tipo, valor)
  */
 
- //insert("alumnos", Array("nivelescolar" => Array(tipo => "i", valor => $_POST['nivelescolar'])))
  function insert($link, $tabla, &$campos) {
     $type = "";
     $temp = array();
