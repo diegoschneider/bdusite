@@ -17,6 +17,7 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 			$dir = scandir($_SERVER['DOCUMENT_ROOT']."/manage");
 			foreach ($dir as $value) {
 				if($value[0] == ".") continue;
+				//if($value[0] == "-") continue;
 				if($value == "index.php") continue;
 				$name = $value;
 				$tables[$name] = "/manage/$value";

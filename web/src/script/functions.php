@@ -6,7 +6,7 @@
 session_start();
 require("errhan.php");
 //Maximo tiempo de inactividad hasta que se cierre la sesión
-define("MAX_SESSION_TIME", 600);
+define("MAX_SESSION_TIME", 99999999);
 
 if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();

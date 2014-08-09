@@ -1,0 +1,52 @@
+Usuarios:
+
+Definir permisos:
+	Niveles de 0 a 5:
+		0: Consulta
+		1: Consulta logueada
+		2: Ingreso e impresión
+		3: Modificacion (lógica)
+		4: Eliminar (logico)
+		5: Superusuario bien jelou (-w-)
+
+
+
+==================================
+Formularios
+
+Alumnos:
+	Cursos: Se ve como "1 1" - "7 5", Debe leerse como "Curso: X Division:"
+	email: Se escribe E-Mail :3
+	Nro de folio, libro matriz y legajo no es obligatorio
+	Nacionalidad, provincia, localidad es obligatorio
+	(ensanchar un poquito :3 )
+
+
+Cursos:
+
+
+Calles:
+	Se tienen que poder cargar calles
+
+
+===================================
+Datos:
+
+Barrios:
+	Cargar barrios
+
+Calles:
+	Cargar calles o hacer el formulario
+
+Provincias:
+	Cargar provincias argentinas
+
+Paises:
+	Cargar paises
+
+Localidades:
+	Cargar :3
+
+
+
+===================================

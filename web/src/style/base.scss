@@ -103,7 +103,8 @@ h1 {
     border-radius: 10px;
     padding: 8px;
     border-color: $bordes;
-    margin: 30px 5 0 0;
+    margin: 30px auto 0 auto;
+    width: 600px;
     .campo {
         border-bottom: solid 1px;
     }
