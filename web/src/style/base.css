@@ -22,7 +22,7 @@ body {
     text-align: center;
     padding: 4px 10px;
     text-decoration: none;
-    text-transform: capitalize; }
+    text-transform: uppercase; }
   .horizontalnav li a:hover, .horizontalnav li a:active {
     background-color: #aaaaaa; }
 
@@ -70,7 +70,7 @@ h1 {
   border-radius: 10px;
   padding: 8px;
   border-color: #ffaa00;
-  margin: 30px auto 0 auto; 
+  margin: 30px auto 0 auto;
   width: 600px; }
   .form .campo {
     border-bottom: solid 1px; }

@@ -2,7 +2,7 @@
 $link = db_connect();
 if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } 
 
-if(@validInput($_POST['curso'])) {
+if(@valid_input($_POST['curso'])) {
 	if(!$_SESSION['user']->loggedin || !isset($_SESSION['user'])) {
 		echo "[\"0\"]";
 		die();

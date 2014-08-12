@@ -3,12 +3,12 @@
  * Funciones básicas del sistema :3 *
  ***********************************/
 
-session_start();
-require("errhan.php");
+ session_start();
+ require("errhan.php");
 //Maximo tiempo de inactividad hasta que se cierre la sesión
-define("MAX_SESSION_TIME", 99999999);
+ define("MAX_SESSION_TIME", 99999999);
 
-if (!isset($_SESSION['CREATED'])) {
+ if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
 } else if (time() - $_SESSION['CREATED'] > MAX_SESSION_TIME) {
     // session started more than 30 minutes ago
@@ -200,6 +200,26 @@ function style_manage_nav($nav) {
     echo $ret;
 }
 
+function query_table($result) {
+    $ret = "";
+    while($row = $result->fetch_row()) {
+        $ret .= "<tr>";
+        foreach ($row as $key => $value) {
+            $ret .= "<td>$value</td>";
+        }
+        $ret .= "</tr>";
+
+    }
+    $temp = "<tr>";
+    $fields = $result->fetch_fields();
+    foreach ($fields as $key => $value) {
+        $temp .= "<th>{$value->name}</th>";
+    }
+    $temp .= "</tr>";
+    $ret = $temp.$ret;
+    echo $ret;
+}
+
 function form_select($link, $sql) {
     $result = $link->query($sql);
     $ret = "<option value=-1>Seleccione...</option>";
@@ -218,7 +238,7 @@ function refValues(&$arr) {
     return $refs;
 }
 
-function validInput($var) {
+function valid_input($var) {
     if(isset($var) && !is_null($var) && $var != '') {
         return true;
     }
@@ -238,28 +258,28 @@ function validInput($var) {
     $temp = array();
     $sql = "INSERT INTO $tabla (";
 
-    foreach ($campos as $key => $value) {
-        $sql .= $key.",";
-        $type .= $value['tipo'];
-        $temp[] = $value['valor'];
-    }
-    $sql .= ") VALUES (";
-    foreach ($campos as $value) {
-        $sql .= "?,";
-    }
-    $sql .= ")";
+        foreach ($campos as $key => $value) {
+            $sql .= $key.",";
+            $type .= $value['tipo'];
+            $temp[] = $value['valor'];
+        }
+        $sql .= ") VALUES (";
+        foreach ($campos as $value) {
+            $sql .= "?,";
+        }
+        $sql .= ")";
 
-    $sql = str_replace(",)", ")", $sql);
-    $stmt = $link->prepare($sql);
-    $refs = refValues($temp);
-    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
-    $stmt->execute();
+$sql = str_replace(",)", ")", $sql);
+$stmt = $link->prepare($sql);
+$refs = refValues($temp);
+call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+$stmt->execute();
 
-    if($stmt->error) {
-        echo "<br>Error: ".$stmt->error;
-    } else {
-        echo "<br>Agregado correctamente";
-    }
+if($stmt->error) {
+    echo "<br>Error: ".$stmt->error;
+} else {
+    echo "<br>Agregado correctamente";
+}
 }
 
 ?>

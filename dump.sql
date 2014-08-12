@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 11-08-2014 a las 21:49:09
+-- Tiempo de generación: 12-08-2014 a las 11:34:34
 -- Versión del servidor: 6.0.4
 -- Versión de PHP: 6.0.0-dev
 
@@ -82,6 +82,7 @@ CREATE TABLE `alumnos` (
 -- Volcar la base de datos para la tabla `alumnos`
 -- 
 
+INSERT INTO `alumnos` VALUES (2, '050605', 3, 1, 65, 1, 'iop', 'iop', 3, '0000-00-00', 591, 2812, 21, 387, 456, NULL, NULL, NULL, 8, 2812, '2801', '567845323123', NULL, '456', '465', '456', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '456786', 'dfsdfdsfsdf@sdfmsdf.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -712,7 +713,7 @@ CREATE TABLE `cargos` (
 
 CREATE TABLE `catedras` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
-  `materia` int(11) NOT NULL,
+  `materia` varchar(7) NOT NULL,
   `docente` int(11) NOT NULL,
   `dia` varchar(10) NOT NULL,
   `inicio` time NOT NULL,
@@ -907,7 +908,7 @@ CREATE TABLE `escuelas` (
   KEY `jurisdiccion_2` (`jurisdiccion`),
   KEY `nivel` (`nivel`),
   KEY `tipo` (`tipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
 
 -- 
 -- Volcar la base de datos para la tabla `escuelas`
@@ -1012,6 +1013,14 @@ INSERT INTO `escuelas` VALUES (97, 'E.P.B. N°27', 2804, 1, 1);
 INSERT INTO `escuelas` VALUES (98, 'E.P.B. N°28', 2804, 1, 1);
 INSERT INTO `escuelas` VALUES (99, 'E.P.B. N°29', 2804, 1, 1);
 INSERT INTO `escuelas` VALUES (100, 'E.P.B. N°30', 2804, 1, 1);
+INSERT INTO `escuelas` VALUES (101, 'E.P.B. Nº847', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (102, 'E.P.B. Nº1206', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (103, 'E.P.B. Nº2499', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (104, 'E.P.B. Nº2506', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (105, 'E.P.B. Nº3139', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (106, 'E.P.B. Nº3954', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (107, 'E.P.B. Nº5791', 2804, 1, 2);
+INSERT INTO `escuelas` VALUES (108, 'E.P.B. Nº7324', 2804, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1222,8 +1231,8 @@ INSERT INTO `localidades` VALUES (6700, 'Luján', 2323, 1);
 -- 
 
 CREATE TABLE `materias` (
-  `cod` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
+  `cod` varchar(7) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `año` varchar(10) NOT NULL,
   `especialidad` int(11) NOT NULL,
   PRIMARY KEY (`cod`),
@@ -1235,6 +1244,240 @@ CREATE TABLE `materias` (
 -- Volcar la base de datos para la tabla `materias`
 -- 
 
+INSERT INTO `materias` VALUES ('010101', 'Ciencias Sociales 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('010201', 'Biología 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('010301', 'Biología 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('010402', 'Literatura 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('010403', 'Literatura  4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('010404', 'Literatura 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('010405', 'Literatura 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('010502', 'Literatura 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('010503', 'Literatura  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('010504', 'Literatura 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('010505', 'Literatura 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('010602', 'Literatura 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('010603', 'Literatura  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('010604', 'Literatura 6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('010605', 'Literatura 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('010702', ' Prácticas Profesionalizantes  del Sector Electromecánico  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('010703', 'Prácticas Profesionalizantes del Sector Industria de Procesos 7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('010704', 'Prácticas Profesionalizantes  del Sector Electrónico 7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('010705', 'Prácticas Profesionalizantes del  Sector Informática 7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('020101', 'Ciencias Naturales 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('020201', 'Física Química 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('020301', 'Física Química 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('020402', 'Inglés 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('020403', 'Inglés 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('020404', 'Inglés 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('020405', 'Ingles 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('020502', 'Inglés 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('020503', 'Inglés 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('020504', 'Inglés 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('020505', 'Ingles 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('020602', 'Inglés 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('020603', 'Ingles  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('020604', 'Inglés 6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('020605', 'Ingles 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('020702', 'Emprendimientos Productivos  y Desarrollo Local  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('020703', 'Emprendimientos Productivos y Desarrollo  Local  7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('020704', 'Emprendimientos Productivos  y Desarrollo Local  7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('020705', 'Emprendimientos Productivos y Desarrollo Local  7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('030101', 'Inglés 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('030201', 'Inglés  2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('030301', 'Inglés 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('030402', 'Educación Física 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('030403', 'Educación Física 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('030404', 'Educación Física 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('030405', 'Educación Física 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('030502', 'Educación Física 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('030503', 'Educación Física 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('030504', 'Educación Física 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('030505', 'Educación Física 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('030602', 'Educación Física 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('030603', 'Educación Física 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('030605', 'Educación Física 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('030702', 'Electrónica Industrial  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('030703', 'Química Industrial  7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('030704', 'Sistemas de Control  7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('030705', 'Evaluación de Proyectos  7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('040101', 'Lengua 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('040201', 'Matemática 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('040301', 'Matemática 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('040402', 'Salud y Adolescencia 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('040403', 'Salud y Adolescencia 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('040404', 'Salud y Adolescencia 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('040405', 'Salud y Adolescencia 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('040502', 'Política y Ciudadanía 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('040503', 'Educación Física 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('040504', 'Política y Ciudadanía 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('040505', 'Política y Ciudadanía 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('040602', 'Filosofia 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('040603', 'Filosofía 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('040605', 'Filosofía 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('040702', 'Seguridad, Higiene y  Protección Ambiental  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('040703', 'Química Analítica 7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('040704', 'Sistemas de Comunicaciones  7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('040705', 'Modelos y Sistemas  7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('050101', 'Matemática 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('050201', 'Lengua 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('050301', 'Lengua 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('050402', 'Historia 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('050403', 'Historia  4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('050404', 'Historia 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('050405', 'Historia 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('050502', 'Historia 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('050503', 'Política y Ciudadanía 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('050504', 'Historia 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('050505', 'Historia 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('050602', 'Arte 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('050603', 'Arte  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('050604', 'Arte 6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('050605', 'Arte 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('050702', 'Máquinas Eléctricas 7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('050703', 'Organización y Gestión Industrial 7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('050704', 'Seguridad, Higiene y  Protección Ambiental  7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('050705', 'Base de Datos 7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('060101', 'Educación Física 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('060201', 'Educación Física 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('060301', 'Educación Física 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('060402', 'Geografía 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('060403', 'Geografía 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('060404', 'Geografía 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('060405', 'Geografía 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('060502', 'Geografía 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('060503', 'Historia  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('060504', 'Geografía 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('060505', 'Geografía  5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('060602', 'Matemática Aplicada 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('060603', 'Matemática Aplicada 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('060604', 'Matemática Aplicada 6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('060605', 'Matemática Aplicada 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('060702', 'Sistemas Mecánicos 7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('060703', 'Laboratorio de Análisis Microbiológicos 7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('060704', 'Proyecto y Diseño Electrónico 7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('060705', 'Proyecto, Diseño e implementación  de Sistemas Computacionales 7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('070101', 'Construcción Ciudadana 1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('070201', 'Educación Artística 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('070301', 'Educación Artística 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('070402', 'Matemática Ciclo Superior 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('070403', 'Matemática Ciclo Superior 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('070404', 'Matemática Ciclo Superior 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('070405', 'Matemática Ciclo Superior 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('070502', 'Análisis Matemático  5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('070503', 'Historia  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('070504', 'Análisis Matemático  5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('070505', 'Análisis Matemático 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('070602', 'Termodinámica y Máquinas  Térmicas  6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('070603', 'Química Orgánica y Biológica  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('070604', 'Sistemas de Comunicaciones  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('070605', 'Sistemas Digitales  6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('070702', 'Laboratorio de Metrología y  Control de Calidad  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('070703', 'Laboratorio de Industrias  7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('070704', 'Instalaciones Industriales 7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('070705', 'Instalación, Mantenimiento y  Reparación de Sistemas  Computacionales 7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('080101', 'Lenguaje Tecnológico  1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('080201', 'Geografía 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('080301', 'Geografía 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('080402', 'Física 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('080403', 'Química  4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('080404', 'Física  4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('080405', 'Física  4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('080502', ' Mecánica y Mecanismos 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('080503', 'Geografía 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('080504', 'Análisis de Modelos  Circuitales  5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('080505', 'Sistemas Digitales  5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('080602', 'Electrotecnia  6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('080603', 'Química Industrial 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('080604', 'Instalaciones y Maquinas  Eléctricas  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('080605', 'Sistemas Digitales  6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('080702', 'Mantenimiento y Montaje  Electromecánico  7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('080703', 'Laboratorio de Técnicas Analíticas Instrumentales 7º Año Química', '7', 3);
+INSERT INTO `materias` VALUES ('080704', 'Electrónica Aplicada  7º Año Electrónica', '7', 4);
+INSERT INTO `materias` VALUES ('080705', 'Instalación, Mantenimiento y  Reparación de Redes Informáticas 7º Año Informática', '7', 5);
+INSERT INTO `materias` VALUES ('090101', 'Procedimientos Técnicos  1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('090105', 'Teleinformática  1º Año Informática', '1', 5);
+INSERT INTO `materias` VALUES ('090201', 'Historia 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('090301', 'Historia 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('090402', 'Química 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('090403', 'Física 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('090404', 'Química 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('090405', 'Química 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('090502', 'Electrotecnia 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('090503', 'Análisis Matemático  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('090504', 'Lenguajes Electrónicos 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('090505', 'Teleinformática 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('090602', 'Sistemas Mecánicos  6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('090603', 'Química Analítica 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('090604', 'Sistemas Productivos  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('090605', 'Seguridad Informática 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('090702', 'Proyecto y Diseño  Electromecánico 7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('100101', 'Sistemas Tecnológicos  1º Año Básico', '1', 1);
+INSERT INTO `materias` VALUES ('100201', 'Construcción Ciudadana 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('100301', 'Construcción Ciudadana 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('100402', 'Conocimiento de los  Materiales 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('100403', 'Operaciones Unitarias y Tecnología de los  Materiales 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('100404', 'Fundamentos de los Modelos  Circuitales 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('100405', 'Tecnologías Electrónicas 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('100502', 'Resistencia y Ensayos de los  Materiales 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('100503', 'Química Orgánica  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('100504', 'Diseño Asistido y Simulación  Electrónica  5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('100505', 'Laboratorio de Programación 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('100602', 'Derechos del Trabajo 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('100603', 'Derechos del Trabajo 6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('100604', 'Derechos del Trabajo  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('100605', 'Derechos del Trabajo  6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('100702', 'Proyecto y Diseño  de Instalaciones Eléctricas 7º Año Electromecánica', '7', 2);
+INSERT INTO `materias` VALUES ('110201', 'Lenguaje Tecnológico 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('110301', 'Lenguaje Tecnológico 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('110402', 'Dibujo Tecnológico  4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('110403', 'Introducción a la Biología Celular 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('110404', 'Tecnología Electrónica 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('110405', 'Laboratorio de Programación  4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('110502', 'Maquinas Eléctricas y  Automatismos  5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('110503', 'Química General e  Inorgánica 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('110504', 'Aplicaciones de Electrónica  Analógica 5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('110505', 'Laboratorio de Hardware 5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('110602', 'Laboratorio de Mediciones  Eléctricas  6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('110603', 'Laboratorio de Procesos Industriales  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('110604', 'Lenguajes Electrónicos  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('110605', 'Laboratorio de  Programación  6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('120201', 'Procedimientos Técnicos 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('120301', 'Procedimientos Técnicos 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('120402', 'Maquinas Eléctricas y  Automatismos  4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('120403', 'Laboratorio de Operaciones Unitarias y  Tecnología de los Materiales  4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('120404', 'Aplicaciones de Electrónica  Analógica 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('120405', 'Laboratorio de Hardware 4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('120502', 'Diseño y Procesamiento  Mecánico 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('120503', 'Procesos Químicos y Control 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('120504', 'Aplicaciones de Electrónica  Digital  5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('120505', 'Laboratorio de Sistemas  Operativos  5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('120602', 'Maquinas Eléctricas y  Automatismos 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('120603', 'Laboratorio de Técnicas  Analíticas  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('120604', 'Aplicaciones de Electrónica  Analógica 6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('120605', 'Laboratorio de Hardware 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('130201', 'Sistemas Tecnológicos 2º Año Básico', '2', 1);
+INSERT INTO `materias` VALUES ('130301', 'Sistemas Tecnológicos 3º Año Básico', '3', 1);
+INSERT INTO `materias` VALUES ('130402', 'Diseño y Procesamiento  Mecánico 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('130403', 'Laboratorio de Ensayos Físicos 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('130404', 'Aplicaciones de Electrónica  Digital 4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('130405', 'Laboratorio de Sistemas Operativos  4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('130502', 'Instalaciones y Aplicaciones  de la Energía 5º Año Electromecánica', '5', 2);
+INSERT INTO `materias` VALUES ('130503', 'Laboratorio de Procesos  Industriales 5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('130504', 'Montaje de Proyectos  Electrónicos  5º Año Electrónica', '5', 4);
+INSERT INTO `materias` VALUES ('130505', 'Laboratorio de Aplicaciones  5º Año Informática', '5', 5);
+INSERT INTO `materias` VALUES ('130602', 'Diseño y Procesamiento  Mecánico  6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('130603', 'Laboratorio de Química Orgánica, Biológica y  Microbiológica  6º Año Química', '6', 3);
+INSERT INTO `materias` VALUES ('130604', 'Aplicaciones de Electrónica  Digital  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('130605', 'Laboratorio de Sistemas  Operativos  6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('140402', 'Instalaciones y Aplicaciones  de la Energía 4º Año Electromecánica', '4', 2);
+INSERT INTO `materias` VALUES ('140403', 'Laboratorio de Química 4º Año Química', '4', 3);
+INSERT INTO `materias` VALUES ('140404', 'Montaje de Proyectos  Electrónicos  4º Año Electrónica', '4', 4);
+INSERT INTO `materias` VALUES ('140405', 'Laboratorio de Aplicaciones  4º Año Informática', '4', 5);
+INSERT INTO `materias` VALUES ('140503', 'Laboratorio de Técnicas  Analíticas  5º Año Química', '5', 3);
+INSERT INTO `materias` VALUES ('140602', 'Instalaciones y Aplicaciones  de la Energía 6º Año Electromecánica', '6', 2);
+INSERT INTO `materias` VALUES ('140604', 'Montaje de Proyectos  Electrónicos  6º Año Electrónica', '6', 4);
+INSERT INTO `materias` VALUES ('140605', 'Laboratorio de Aplicaciones 6º Año Informática', '6', 5);
+INSERT INTO `materias` VALUES ('150503', 'Laboratorio. de Química  Orgánica  5º Año Química', '5', 3);
 
 -- --------------------------------------------------------
 
@@ -1622,9 +1865,9 @@ ALTER TABLE `cargo`
 -- Filtros para la tabla `catedras`
 -- 
 ALTER TABLE `catedras`
-  ADD CONSTRAINT `catedras_ibfk_4` FOREIGN KEY (`materia`) REFERENCES `materias` (`cod`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `catedras_ibfk_5` FOREIGN KEY (`docente`) REFERENCES `personal` (`doc`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `catedras_ibfk_6` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `catedras_ibfk_13` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `catedras_ibfk_11` FOREIGN KEY (`materia`) REFERENCES `materias` (`cod`),
+  ADD CONSTRAINT `catedras_ibfk_12` FOREIGN KEY (`docente`) REFERENCES `personal` (`doc`) ON UPDATE CASCADE;
 
 -- 
 -- Filtros para la tabla `cursos`
@@ -1672,8 +1915,7 @@ ALTER TABLE `localidades`
 -- Filtros para la tabla `materias`
 -- 
 ALTER TABLE `materias`
-  ADD CONSTRAINT `materias_ibfk_3` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`cod`),
-  ADD CONSTRAINT `materias_ibfk_2` FOREIGN KEY (`año`) REFERENCES `cursos` (`año`);
+  ADD CONSTRAINT `materias_ibfk_1` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`cod`);
 
 -- 
 -- Filtros para la tabla `medicos`
@@ -1699,3 +1941,47 @@ ALTER TABLE `personal`
 -- 
 ALTER TABLE `titulo`
   ADD CONSTRAINT `titulo_ibfk_1` FOREIGN KEY (`titulo`) REFERENCES `titulos` (`cod`) ON UPDATE CASCADE;
+-- 
+-- Base de datos: `chat`
+-- 
+CREATE DATABASE `chat` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `chat`;
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `c_mensajes`
+-- 
+
+CREATE TABLE `c_mensajes` (
+  `texto` text NOT NULL,
+  `time` bigint(25) NOT NULL,
+  `para` varchar(14) NOT NULL,
+  `de` varchar(14) NOT NULL,
+  `id` bigint(25) NOT NULL AUTO_INCREMENT,
+  `color` varchar(7) NOT NULL,
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+-- 
+-- Volcar la base de datos para la tabla `c_mensajes`
+-- 
+
+
+-- --------------------------------------------------------
+
+-- 
+-- Estructura de tabla para la tabla `c_usuarios`
+-- 
+
+CREATE TABLE `c_usuarios` (
+  `nombre` varchar(20) NOT NULL,
+  `cookie` int(12) NOT NULL,
+  `time` bigint(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Volcar la base de datos para la tabla `c_usuarios`
+-- 
+
+INSERT INTO `c_usuarios` VALUES ('Diego', 891951, 1407853767);
