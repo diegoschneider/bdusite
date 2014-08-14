@@ -32,6 +32,10 @@ if(@valid_input($_POST['curso'])) {
 <body>
 	<?php style_header(); ?>
 	<div id="content">
+		<?php
+		$nav["."]="Volver";
+		style_manage_nav($nav); 
+		?>
 		<div class="container form">
 			<form method=GET id="form1">
 				<input type=hidden name="query" value="dni">

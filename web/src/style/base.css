@@ -6,25 +6,27 @@ body {
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif; }
 
-.horizontalnav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; }
-.horizontalnav li {
-  float: left;
-  border: #ffaa00 solid;
-  border-width: 2px; }
-  .horizontalnav li a:link, .horizontalnav li a:visited {
-    display: block;
-    color: black;
-    font-weight: bold;
-    text-align: center;
-    padding: 4px 10px;
-    text-decoration: none;
-    text-transform: uppercase; }
-  .horizontalnav li a:hover, .horizontalnav li a:active {
-    background-color: #aaaaaa; }
+.horizontalnav {
+  margin-bottom: 5px; }
+  .horizontalnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; }
+  .horizontalnav li {
+    float: left;
+    border: #ffaa00 solid;
+    border-width: 2px; }
+    .horizontalnav li a:link, .horizontalnav li a:visited {
+      display: block;
+      color: black;
+      font-weight: bold;
+      text-align: center;
+      padding: 4px 10px;
+      text-decoration: none;
+      text-transform: uppercase; }
+    .horizontalnav li a:hover, .horizontalnav li a:active {
+      background-color: #aaaaaa; }
 
 #header {
   box-shadow: 0px 0px 10px;

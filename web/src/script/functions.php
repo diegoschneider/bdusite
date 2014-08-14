@@ -190,6 +190,10 @@ function style_header() {
 
 function style_manage_nav($nav) {
 
+    if($nav === true) {
+        $nav = Array("." => "Volver");
+    }
+    
     $ret = "<div class=horizontalnav><ul>";
 
     foreach($nav as $key => $value) {
@@ -253,33 +257,38 @@ function valid_input($var) {
  * $campos -> Array(nombre, tipo, valor)
  */
 
- function insert($link, $tabla, &$campos) {
+function insert($link, $tabla, &$campos) {
     $type = "";
     $temp = array();
-    $sql = "INSERT INTO $tabla (";
+    $sql = "INSERT INTO $tabla (";//) para corregir tabs Sublime Text 2
 
-        foreach ($campos as $key => $value) {
-            $sql .= $key.",";
-            $type .= $value['tipo'];
-            $temp[] = $value['valor'];
-        }
-        $sql .= ") VALUES (";
-        foreach ($campos as $value) {
-            $sql .= "?,";
-        }
-        $sql .= ")";
+    foreach ($campos as $key => $value) {
+        $sql .= $key.",";
+        $type .= $value['tipo'];
+        $temp[] = $value['valor'];
+    }
+    $sql .= ") VALUES (";
+    foreach ($campos as $value) {
+        $sql .= "?,";
+    }
+    //( para corregir tabs
+    $sql .= ")";
 
-$sql = str_replace(",)", ")", $sql);
-$stmt = $link->prepare($sql);
-$refs = refValues($temp);
-call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
-$stmt->execute();
+    $sql = str_replace(",)", ")", $sql);
+    $stmt = $link->prepare($sql);
+    $refs = refValues($temp);
+    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+    $stmt->execute();
 
-if($stmt->error) {
-    echo "<br>Error: ".$stmt->error;
-} else {
-    echo "<br>Agregado correctamente";
+    if($stmt->error) {
+        echo "<br>Error: ".$stmt->error;
+    } else {
+        echo "<br>Agregado correctamente";
+    }
 }
+
+function campo($tipo,$valor) {
+    return Array('tipo' => $tipo, 'valor' => $valor);
 }
 
 ?>

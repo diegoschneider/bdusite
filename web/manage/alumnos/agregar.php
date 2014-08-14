@@ -3,16 +3,15 @@ $link = db_connect();
 if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 <html>
 <head>
-	<?php style_head() ?>
+	<?php style_head(); ?>
+	<script src=check.js></script>
 </head>
 <body>
 	<?php style_header(); ?>
 	<div id="content">
 
 		<?php
-
-		$nav["."]="Volver";
-		style_manage_nav($nav);
+		style_manage_nav(true);
 		
 		if(isset($_POST['tabla'])) {
 			foreach ($_POST as $key => $value) {
@@ -25,20 +24,52 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			if(!$result->num_rows) {
 
 				$sql = "INSERT INTO alumnos(nivelescolar, curso, turno, tipodoc, nrodoc, estadodoc, apellidos, nombres, sexo, fecnac, nacionalidad, lugarnac, provnac, cuil, email, calle, callenro, torre, piso, dpto, barrio, localidad, cp, telefono, celular, nrolegajo, nrolibmat, nrofolio, escproc, condinscrip, hermanos, hermest, kmhogar, habitantes, habitaciones, librohogar,retira1, retira2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-				/*$campos = array();
-				$campos['nivelescolar'] = Array("tipo" => "i", "valor" => $_POST['nivelescolar']);
-				$campos['curso'] = Array('tipo' => 's', 'valor' => $_POST['curso']);
-				$campos['turno'] = Array('tipo' => 'i', 'valor' => $_POST['turno']);
-				$campos['tipodoc'] = Array('tipo' => 'i', 'valor' => $_POST['tipodoc']);
-				$campos['nrodoc'] = Array('tipo' => 'i', 'valor' => $_POST['nrodoc']);
-				$campos['']
+				$campos = array();
+				$campos['nivelescolar'] = campo("i", $_POST['nivelescolar']);
+				$campos['curso'] = campo('s', $_POST['curso']);
+				$campos['turno'] = campo('i', $_POST['turno']);
+				$campos['tipodoc'] = campo('i', $_POST['tipodoc']);
+				$campos['nrodoc'] = campo('i', $_POST['nrodoc']);
+				$campos['estadodoc'] = campo('i', $_POST['estadodoc']);
+				$campos['apellidos'] = campo('s', $_POST['apellidos']);
+				$campos['nombres'] = campo('s',$_POST['nombres']);
+				$campos['sexo'] = campo('i', $_POST['sexo']);
+				$campos['fecnac'] = campo('s', $_POST['fecnac']);
+				$campos['nacionalidad'] = campo('i', $_POST['nacionalidad']);
+				$campos['lugarnac'] = campo('i', $_POST['lugarnac']);
+				$campos['provnac'] = campo('i',$_POST['provnac']);
+				$campos['cuil'] = campo('s', $_POST['cuil']);
+				$campos['email'] = campo('s',$_POST['email']);
+				$campos['calle'] = campo('i',$_POST['calle']);
+				$campos['callenro'] = campo('i',$_POST['callenro']);
+				$campos['torre'] = campo('s',$_POST['torre']);
+				$campos['piso'] = campo('i',$_POST['piso']);
+				$campos['dpto'] = campo('s',$_POST['dpto']);
+				$campos['barrio'] = campo('i',$_POST['barrio']);
+				$campos['localidad'] = campo('i', $_POST['localidad']);
+				$campos['cp'] = campo('s',$_POST['cp']);
+				$campos['telefono'] = campo('s',$_POST['telefono']);
+				$campos['celular'] = campo('s',$_POST['celular']);
+				$campos['nrolegajo'] = campo('i',$_POST['nrolegajo']);
+				$campos['nrolibmat'] = campo('i',$_POST['nrolibmat']);
+				$campos['nrofolio'] = campo('i',$_POST['nrofolio']);
+				$campos['escproc'] = campo('i',$_POST['escproc']);
+				$campos['condinscrip'] = campo('i',$_POST['condinscrip']);
+				$campos['hermanos'] = campo('i',$_POST['hermest']);
+				$campos['kmhogar'] = campo('i',$_POST['kmhogar']);
+				$campos['habitantes'] = campo('i',$_POST['habitantes']);
+				$campos['habitaciones'] = campo('i',$_POST['habitaciones']);
+				$campos['librohogar'] = campo('i',$_POST['librohogar']);
+				$campos['retira1'] = campo('i',$_POST['retira1']);
+				$campos['retira2'] = campo('i',$_POST['retira2']);
 
-				insert();*/
-				$stmt = $link->prepare($sql);
+				insert($link, 'alumnos', $campos);
+				/*$stmt = $link->prepare($sql);
 				if(!$stmt) {
 					
 				} else {
 					$stmt->bind_param('isiiiissisiiissiisisiisssiiiiiiiiiiiii',$_POST['nivelescolar'],$_POST['curso'],$_POST['turno'],$_POST['tipodoc'],$_POST['nrodoc'],$_POST['estadodoc'],$_POST['apellidos'],$_POST['nombres'],$_POST['sexo'],$_POST['fecnac'],$_POST['nacionalidad'],$_POST['lugarnac'],$_POST['provnac'],$_POST['cuil'],$_POST['email'],$_POST['calle'],$_POST['callenro'],$_POST['torre'],$_POST['piso'],$_POST['dpto'],$_POST['barrio'],$_POST['localidad'],$_POST['cp'],$_POST['telefono'],$_POST['celular'],$_POST['nrolegajo'],$_POST['nrolibmat'],$_POST['nrofolio'],$_POST['escproc'],$_POST['condinscrip'],$_POST['hermanos'],$_POST['hermest'],$_POST['kmhogar'],$_POST['habitantes'],$_POST['habitaciones'],$_POST['librohogar'],$_POST['retira1'],$_POST['retira2']);
+
 
 					$stmt->execute();
 					echo $stmt->error;
@@ -57,6 +88,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					}
 				}
 				//move_uploaded_file($_FILES['firma']['tmp_name'], "firma/".)
+				*/
 			} else {
 				echo "Alumno existente";
 			}
@@ -69,7 +101,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$options[] = array();
 			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios");
 			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar");
-			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos");
+			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos ORDER BY año,division");
 			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
 			$options['tipodocumento'] = form_select($link, "SELECT cod,tipo FROM tipodocumento");
 			$options['estadodocumento'] = form_select($link, "SELECT cod,nombre FROM estadodocumento");
@@ -144,13 +176,13 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<span>Lugar de Nacimiento</span>
-				<select name="lugarnac">
+				<select name="lugarnac" required>
 					<?php echo $options['localidades']; ?>
 				</select>
 			</div>
 			<div class=campo>
 				<span>Provincia de Nacimiento</span>
-				<select name="provnac">
+				<select name="provnac" required>
 					<?php echo $options['provincia']; ?>
 				</select>
 			</div>
@@ -211,15 +243,15 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<span>N° de Legajo</span>
-				<input required type=text name="nrolegajo">
+				<input type=text name="nrolegajo">
 			</div>
 			<div class=campo>
 				<span>N° de Libro Matriz</span>
-				<input required type=text name="nrolibmat">
+				<input type=text name="nrolibmat">
 			</div>	
 			<div class=campo>
 				<span>N° de Folio</span>
-				<input required type=text name="nrofolio">
+				<input type=text name="nrofolio">
 			</div>
 			<h3>Servicio Educativo de Procedencia:</h3>
 			<div class=campo>

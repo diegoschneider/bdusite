@@ -17,7 +17,6 @@ Formularios
 Alumnos:
 	Cursos: Se ve como "1 1" - "7 5", Debe leerse como "Curso: X Division:"
 	email: Se escribe E-Mail :3
-	Nro de folio, libro matriz y legajo no es obligatorio
 	Nacionalidad, provincia, localidad es obligatorio
 	(ensanchar un poquito :3 )
 
