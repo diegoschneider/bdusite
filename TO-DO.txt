@@ -47,6 +47,8 @@ Paises:
 Localidades:
 	Cargar :3
 
-
+Materias:
+	Materias comunes a todas las especialidades (literatura, matematica) deben terminar el código en 00, para indicar que son comunes.
+	Corregir las materias cargadas.
 
 ===================================
