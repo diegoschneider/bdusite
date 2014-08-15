@@ -16,35 +16,19 @@ Formularios
 
 Alumnos:
 	Cursos: Se ve como "1 1" - "7 5", Debe leerse como "Curso: X Division:"
-	email: Se escribe E-Mail :3
-	Nacionalidad, provincia, localidad es obligatorio
 	(ensanchar un poquito :3 )
-
-
-Cursos:
-
 
 Calles:
 	Se tienen que poder cargar calles
 
-
 ===================================
 Datos:
-
-Barrios:
-	Cargar barrios
-
-Calles:
-	Cargar calles o hacer el formulario
 
 Provincias:
 	Cargar provincias argentinas
 
 Paises:
 	Cargar paises
-
-Localidades:
-	Cargar :3
 
 Materias:
 	Materias comunes a todas las especialidades (literatura, matematica) deben terminar el código en 00, para indicar que son comunes.

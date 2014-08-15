@@ -107,7 +107,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$options['estadodocumento'] = form_select($link, "SELECT cod,nombre FROM estadodocumento");
 			$options['sexo'] = form_select($link, "SELECT cod,sexo FROM sexo");
 			$options['localidades'] = form_select($link, "SELECT cp,nombre FROM localidades");
-			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia");
+			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia ORDER BY nombre");
 			$options['paises'] = form_select($link, "SELECT cod,nombre FROM paises");
 			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles");
 			$options['escuelas'] = form_select($link, "SELECT cod,nombre FROM escuelas");
@@ -175,15 +175,15 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				</select>
 			</div>
 			<div class=campo>
-				<span>Lugar de Nacimiento</span>
-				<select name="lugarnac" required>
-					<?php echo $options['localidades']; ?>
-				</select>
-			</div>
-			<div class=campo>
 				<span>Provincia de Nacimiento</span>
 				<select name="provnac" required>
 					<?php echo $options['provincia']; ?>
+				</select>
+			</div>
+			<div class=campo>
+				<span>Lugar de Nacimiento</span>
+				<select name="lugarnac" required>
+					<?php echo $options['localidades']; ?>
 				</select>
 			</div>
 			<div class=campo>
@@ -191,10 +191,22 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				<input required type=text name="cuil">
 			</div>
 			<div class=campo>
-				<span>email del alumno</span>
+				<span>E-Mail del alumno</span>
 				<input type=email name="email">
 			</div>
 			<h3>Domicilio:</h3>
+			<div class=campo>
+				<span>Localidad</span>
+				<select name="localidad" required>
+					<?php echo $options['localidades']; ?>
+				</select>
+			</div>
+			<div class=campo>
+				<span>Barrio</span>
+				<select name="barrio" required>
+					<?php echo $options['barrios']; ?>
+				</select>
+			</div>
 			<div class=campo>
 				<span>Calle</span>
 				<select name="calle" required>
@@ -216,18 +228,6 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			<div class=campo>
 				<span>Dpto</span>
 				<input type=text name="dpto">
-			</div>
-			<div class=campo>
-				<span>Barrio</span>
-				<select name="barrio" required>
-					<?php echo $options['barrios']; ?>
-				</select>
-			</div>
-			<div class=campo>
-				<span>Localidad</span>
-				<select name="localidad" required>
-					<?php echo $options['localidades']; ?>
-				</select>
 			</div>
 			<div class=campo>
 				<span>Codigo Postal</span>
