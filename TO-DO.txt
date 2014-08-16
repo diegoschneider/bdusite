@@ -13,19 +13,27 @@ Definir permisos:
 
 ==================================
 Formularios
+Enter como tabulador
 
 Alumnos:
 	Cursos: Se ve como "1 1" - "7 5", Debe leerse como "Curso: X Division:"
 	(ensanchar un poquito :3 )
+	Nivel escolar: Secundario pretederminado
+	Curso: Mostrar como "Año-Division Especialidad"
+	CUIL: Mostrar [Campo]- DNI -[Campo]
+	Localidad: Campana Predeterminado
+	Pais: Argentina predeterminado
+	Provincia: BS AS Predeterminado
+	Documento: DU Predeterminado
+	Telefono: Marcar como telefono fijo
+	E-Mail: No checkea el .com (?)
 
 Calles:
-	Se tienen que poder cargar calles
+	Se tienen que poder cargar calles (O sugerirlas)
+	Agregar campo: Ciudad
 
 ===================================
 Datos:
-
-Provincias:
-	Cargar provincias argentinas
 
 Paises:
 	Cargar paises
@@ -34,4 +42,19 @@ Materias:
 	Materias comunes a todas las especialidades (literatura, matematica) deben terminar el código en 00, para indicar que son comunes.
 	Corregir las materias cargadas.
 
+Calles:
+	Agregar: "Otra ciudad"
+
+
 ===================================
+
+Familiares:
+
+	Tabla vinculos:
+		ID
+		Documento Alumno -> Alumnos.nrodoc
+		Documento Familiar/Amigo/Persona -> Familiares.nrodoc
+		Vinculo -> Vinculos.vinculo
+		Retira (Si/No) [Tal vez innecesario]
+
+==================================

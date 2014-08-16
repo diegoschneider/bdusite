@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 12-08-2014 a las 11:34:34
+-- Tiempo de generación: 15-08-2014 a las 21:51:35
 -- Versión del servidor: 6.0.4
 -- Versión de PHP: 6.0.0-dev
 
@@ -45,9 +45,9 @@ CREATE TABLE `alumnos` (
   `cp` varchar(10) NOT NULL,
   `telefono` varchar(40) NOT NULL,
   `celular` varchar(40) DEFAULT NULL,
-  `nrolegajo` varchar(20) NOT NULL,
-  `nrolibmat` varchar(20) NOT NULL,
-  `nrofolio` varchar(15) NOT NULL,
+  `nrolegajo` varchar(20) DEFAULT NULL,
+  `nrolibmat` varchar(20) DEFAULT NULL,
+  `nrofolio` varchar(15) DEFAULT NULL,
   `escproc` int(11) DEFAULT NULL,
   `condinscrip` int(11) NOT NULL,
   `hermanos` int(11) DEFAULT NULL,
@@ -83,6 +83,9 @@ CREATE TABLE `alumnos` (
 -- 
 
 INSERT INTO `alumnos` VALUES (2, '050605', 3, 1, 65, 1, 'iop', 'iop', 3, '0000-00-00', 591, 2812, 21, 387, 456, NULL, NULL, NULL, 8, 2812, '2801', '567845323123', NULL, '456', '465', '456', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '456786', 'dfsdfdsfsdf@sdfmsdf.com', NULL, NULL, NULL);
+INSERT INTO `alumnos` VALUES (2, '010202', 1, 1, 32123412, 1, '321', '321', 1, '1966-02-20', 53, 1621, 8, 17, 321, 4, '4', '4', 46, 2806, '2806', '321', '15-303535', '0', '0', '0', 93, 1, 2, NULL, 0, 0, 0, 0, '321', 'fdsajkfhf.fdf@fdsaffa', NULL, 0, 0);
+INSERT INTO `alumnos` VALUES (2, NULL, 3, 1, 38702636, 1, 'Silvero', 'Franco', 1, '1995-05-29', 54, 2800, 1, 268, 15, NULL, NULL, '5', 10, 2804, '2804', '3489687304', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '20-38702636-4', 'franco1020-@outlook.com', NULL, NULL, NULL);
+INSERT INTO `alumnos` VALUES (2, NULL, 3, 1, 39414147, 1, 'Schneider', 'Diego', 1, '1996-04-26', 54, 2804, 1, 46, 416, NULL, NULL, NULL, 47, 2804, '2804', '5493489514368', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '20-3547654321-8', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,7 @@ INSERT INTO `barrios` VALUES (43, 'EL DESTINO');
 INSERT INTO `barrios` VALUES (44, 'LOS NOGALES');
 INSERT INTO `barrios` VALUES (45, 'GENERAL SAN MARTIN');
 INSERT INTO `barrios` VALUES (46, 'NO ES DE CAMPANA');
-INSERT INTO `barrios` VALUES (47, 'NUEVO DALMINE');
+INSERT INTO `barrios` VALUES (47, 'DALMINE NUEVO');
 INSERT INTO `barrios` VALUES (48, 'NO INDICADO');
 INSERT INTO `barrios` VALUES (49, 'LA LUCILA');
 INSERT INTO `barrios` VALUES (50, 'DIGNIDAD');
@@ -1163,7 +1166,7 @@ CREATE TABLE `gremio` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- Volcar la base de datos para la tabla `gremio`
@@ -1754,7 +1757,7 @@ CREATE TABLE `titulos` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`cod`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
 -- Volcar la base de datos para la tabla `titulos`
@@ -1865,9 +1868,9 @@ ALTER TABLE `cargo`
 -- Filtros para la tabla `catedras`
 -- 
 ALTER TABLE `catedras`
-  ADD CONSTRAINT `catedras_ibfk_13` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`) ON UPDATE CASCADE,
   ADD CONSTRAINT `catedras_ibfk_11` FOREIGN KEY (`materia`) REFERENCES `materias` (`cod`),
-  ADD CONSTRAINT `catedras_ibfk_12` FOREIGN KEY (`docente`) REFERENCES `personal` (`doc`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `catedras_ibfk_12` FOREIGN KEY (`docente`) REFERENCES `personal` (`doc`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `catedras_ibfk_13` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`) ON UPDATE CASCADE;
 
 -- 
 -- Filtros para la tabla `cursos`
@@ -1941,47 +1944,3 @@ ALTER TABLE `personal`
 -- 
 ALTER TABLE `titulo`
   ADD CONSTRAINT `titulo_ibfk_1` FOREIGN KEY (`titulo`) REFERENCES `titulos` (`cod`) ON UPDATE CASCADE;
--- 
--- Base de datos: `chat`
--- 
-CREATE DATABASE `chat` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `chat`;
-
--- --------------------------------------------------------
-
--- 
--- Estructura de tabla para la tabla `c_mensajes`
--- 
-
-CREATE TABLE `c_mensajes` (
-  `texto` text NOT NULL,
-  `time` bigint(25) NOT NULL,
-  `para` varchar(14) NOT NULL,
-  `de` varchar(14) NOT NULL,
-  `id` bigint(25) NOT NULL AUTO_INCREMENT,
-  `color` varchar(7) NOT NULL,
-  KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
--- 
--- Volcar la base de datos para la tabla `c_mensajes`
--- 
-
-
--- --------------------------------------------------------
-
--- 
--- Estructura de tabla para la tabla `c_usuarios`
--- 
-
-CREATE TABLE `c_usuarios` (
-  `nombre` varchar(20) NOT NULL,
-  `cookie` int(12) NOT NULL,
-  `time` bigint(25) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- 
--- Volcar la base de datos para la tabla `c_usuarios`
--- 
-
-INSERT INTO `c_usuarios` VALUES ('Diego', 891951, 1407853767);

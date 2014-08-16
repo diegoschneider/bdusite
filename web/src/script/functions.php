@@ -181,7 +181,8 @@ function style_header() {
     <li><a href=\"/\">Home</a></li>";
     if($_SESSION['user']->loggedin) {
         $ret .= "<li><a href=\"/manage\">administrar</a></li>
-        <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>";
+        <li class=\"logout\"><a href=\"/logout.php\">Cerrar Sesión</a></li>
+        <li class=\"logout\" target=_blank><a href=\"/ayuda.php\">Ayuda/Contacto</a></li>";
     }
     $ret .= "</ul>
     </div>";

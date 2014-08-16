@@ -99,7 +99,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			<input type=hidden name="tabla" value="alumnos">
 			<?php
 			$options[] = array();
-			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios");
+			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios ORDER BY nombre");
 			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar");
 			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos ORDER BY año,division");
 			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
@@ -241,6 +241,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				<span>Celular</span>
 				<input type=text name="celular">
 			</div>
+			<h3>------</h3>
 			<div class=campo>
 				<span>N° de Legajo</span>
 				<input type=text name="nrolegajo">

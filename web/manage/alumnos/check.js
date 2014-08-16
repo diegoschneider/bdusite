@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$('[name=nivelescolar]').focus();
+
 	//Caracteres permitidos para CUIL
 	cuilperm = "1234567890-";
 	//Caracteres permitidos para telefonos
@@ -44,7 +46,7 @@ $(document).ready(function() {
 		for (var i = cuil.length - 1; i >= 0; i--) {
 			if($.inArray(cuil[i],cuilperm)!=-1) continue;
 			event.preventDefault();
-			alert("CUIL inválido: "+i);
+			alert("CUIL inválido");
 			$('[name=cuil').focus();
 			return;
 		}
@@ -54,8 +56,8 @@ $(document).ready(function() {
 		for (var i = tel.length - 1; i >= 0; i--) {
 			if($.inArray(tel[i],telperm)!=-1) continue;
 			event.preventDefault();
-			alert("Teléfono inválido: "+i);
-			$('[name=telefono').val();
+			alert("Teléfono inválido");
+			$('[name=telefono').focus();
 			return;
 		}
 
@@ -64,13 +66,13 @@ $(document).ready(function() {
 		for (var i = cel.length - 1; i >= 0; i--) {
 			if($.inArray(cel[i],telperm)!=-1) continue;
 			event.preventDefault();
-			alert("Celular inválido: "+i);
-			$('[name=celular').val();
+			alert("Celular inválido");
+			$('[name=celular').focus();
 			return;
 		};
 
-		event.preventDefault();
-		alert("Se ve bien, por ahora (^w^)\nIgual, ésto es debug, así que no voy a cargar un joraca :3");
+		//event.preventDefault();
+		//alert("Se ve bien, por ahora (^w^)\nIgual, ésto es debug, así que no voy a cargar un joraca :3");
 
 	});
 
@@ -82,6 +84,7 @@ $(document).ready(function() {
 		} else {
 			$('[name=barrio]').prop("disabled",false);
 		}
+		$('[name=cp').val($('[name=localidad]').val());
 	});
 
 });
