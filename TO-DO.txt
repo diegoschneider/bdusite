@@ -12,12 +12,8 @@ Definir permisos:
 
 
 ==================================
-Formularios
-Enter como tabulador
-
 Alumnos:
-	Cursos: Se ve como "1 1" - "7 5", Debe leerse como "Curso: X Division:"
-	(ensanchar un poquito :3 )
+	Ensanchar un poco el formulario
 	Nivel escolar: Secundario pretederminado
 	Curso: Mostrar como "Año-Division Especialidad"
 	CUIL: Mostrar [Campo]- DNI -[Campo]

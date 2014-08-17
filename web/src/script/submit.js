@@ -1,12 +1,44 @@
 $(document).ready(function() {
 
-	var inputs = $("input, select").toArray();
-
-	inputs.forEach(function(obj) {
-		if(obj.required) {
-			$(obj.parentNode.children[0]).addClass("formrequired");
-		}
+	$(":input[required]").each(function(i) {
+		$(this.parentNode.children[0]).addClass("formrequired");
 	});
+
+	$(':input').keypress(function(e) { 
+    	// Si se apreta 'Enter'
+    	if (e.which == 13) {
+
+        	// Si no guardamos el tabOrder todavía
+        	if (!this.form.tabOrder) {
+           		this.form.tabOrder = $(':input:focusable');
+            }
+
+            // Si el objeto es un submit, no hacer nada, y permitir el Enter
+        	if(this.type === 'submit') {
+        		return;
+    		} else {
+    			e.preventDefault();
+    		}
+
+        	// Busca el siguiente elemento y le da foco
+        	for (var j = 0, jl = this.form.tabOrder.length; j < jl; j++) {
+        		if (this === this.form.tabOrder[j]) {
+        			if (j+1 < jl) {
+        				if(this.form.tabOrder[j+1].type === 'submit') {
+        					this.form.tabOrder[j+1].click();
+        					console.log(this.form.tabOrder[j+1].type);
+        				} else {
+        					this.form.tabOrder[j+1].focus();
+        					console.log(this.form.tabOrder[j+1].type);
+        				}
+        					
+        			}
+        		}
+        	}
+
+        }
+
+    });
 
 	$('#form').submit(function(event) {
 
