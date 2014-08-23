@@ -1,5 +1,5 @@
 <?php
-require("./src/script/functions.php");
+require_once("./src/script/functions.php");
 $ret = new stdClass;
 if(!isset($_POST['user']) || !isset($_POST['pass']) || $_POST['user'] == "" || $_POST['pass'] == "") {
 	$ret->errno = INVALID_REQUEST;

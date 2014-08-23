@@ -4,6 +4,7 @@ define("USER_ALREADYLOGGEDIN", 1000);
 define("USER_NOTLOGGEDIN",1001);
 define("USER_INEXISTENT",1002);
 define("USER_WRONGPASS",1003);
+define("USER_BLOCKED",1004);
 
 define("INVALID_REQUEST", 2000);
 define("MYSQL_CONNECTERROR", 2001);
@@ -18,6 +19,7 @@ $errordefs[USER_ALREADYLOGGEDIN] = "Ya has iniciado sesión";
 $errordefs[USER_NOTLOGGEDIN] = "No has iniciado sesión";
 $errordefs[USER_INEXISTENT] = "Usuario inexistente";
 $errordefs[USER_WRONGPASS] = "Contraseña incorrecta";
+$errordefs[USER_BLOCKED] = "Usuario bloqueado, contacte con el administrador";
 
 $errordefs[INVALID_REQUEST] = "Petición inválida";
 $errordefs[MYSQL_CONNECTERROR] = "Error al conectar a la base de datos";

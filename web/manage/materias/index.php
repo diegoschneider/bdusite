@@ -98,7 +98,9 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); }
 		especialidades.nombre AS \"Especialidad\"
 
 		FROM materias
-		LEFT JOIN especialidades ON materias.especialidad=especialidades.cod;";
+		LEFT JOIN especialidades ON materias.especialidad=especialidades.cod
+
+		ORDER BY materias.año, materias.especialidad, materias.cod;";
 		$result = $link->query($sql);
 		?>
 		<table border=1>

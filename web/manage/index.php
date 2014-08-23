@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 ?>
 
 <html>
@@ -10,17 +10,17 @@ require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 <?php style_header(); ?>
 <div id="content">
 	<?php //Start tables nav ?>
-	<div class=horizontalnav>
+	<div class="vertical nav">
 		<ul>
 		<?php 
 			$tables = array();
-			$dir = scandir($_SERVER['DOCUMENT_ROOT']."/manage");
+			$path = $_SERVER['DOCUMENT_ROOT']."/manage";
+			$dir = scandir($path);
 			foreach ($dir as $value) {
 				if($value[0] == ".") continue;
-				//if($value[0] == "-") continue;
-				if($value == "index.php") continue;
-				$name = $value;
-				$tables[$name] = "/manage/$value";
+				if(is_dir($path."/".$value)) {
+					$tables[$value] = "/manage/$value";
+				}
 			}
 
 			foreach ($tables as $key => $value) {

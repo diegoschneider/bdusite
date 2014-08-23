@@ -1,5 +1,5 @@
 <?php
-require("./src/script/functions.php");
+require_once("./src/script/functions.php");
 ?>
 
 <html>
@@ -16,7 +16,8 @@ require("./src/script/functions.php");
 
         <h1>Login - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
-        <p>Luego de 5 minutos de inactividad, la sesión se cerrará</p>
+        <p>Luego de <?php echo MAX_SESSION_TIME/60 ?> minutos de inactividad, la sesión se cerrará</p>
+        <p><?php echo "SERVER: REMOTE_ADDR: {$_SERVER['REMOTE_ADDR']}"; ?></p>
         <form id="login_container" class="container">
             <h2>Ingreso</h2>
             

@@ -6,12 +6,12 @@
  session_start();
  require("errhan.php");
 //Maximo tiempo de inactividad hasta que se cierre la sesión
- define("MAX_SESSION_TIME", 99999999);
+ define("MAX_SESSION_TIME", 900);
 
  if (!isset($_SESSION['CREATED'])) {
     $_SESSION['CREATED'] = time();
 } else if (time() - $_SESSION['CREATED'] > MAX_SESSION_TIME) {
-    // session started more than 30 minutes ago
+    // session started more than MAX_SESSION_TIME seconds ago
     session_regenerate_id(true);    // change session ID for the current session an invalidate old session ID
     $_SESSION['CREATED'] = time();  // update creation time
 }
@@ -56,6 +56,47 @@ function db_connect($db = "BDU") {
     }
 }
 
+/**
+ * Crea el mysqli_stmt para un formulario
+ *
+ * $campos -> Array(nombre, tipo, valor)
+ */
+
+function insert($link, $tabla, &$campos) {
+    $type = "";
+    $temp = array();
+    $sql = "INSERT INTO $tabla (";//) para corregir tabs Sublime Text 2
+
+    foreach ($campos as $key => $value) {
+        $sql .= $key.",";
+        $type .= $value['tipo'];
+        $temp[] = $value['valor'];
+    }
+    $sql .= ") VALUES (";
+    foreach ($campos as $value) {
+        $sql .= "?,";
+    }
+    //( para corregir tabs
+    $sql .= ")";
+
+$sql = str_replace(",)", ")", $sql);
+$stmt = $link->prepare($sql);
+$refs = refValues($temp);
+call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+$stmt->execute();
+
+if($stmt->error) {
+    echo "<br>Error: ".$stmt->error;
+} else {
+    echo "<br>Agregado correctamente";
+}
+}
+
+function campo($tipo,$valor) {
+    return Array('tipo' => $tipo, 'valor' => $valor);
+}
+
+
  /*************************
   * Funciones de usuarios *
   ************************/
@@ -83,40 +124,84 @@ function db_connect($db = "BDU") {
         $link = db_connect("BDU");
         if(!$link) { return MYSQL_CONNECTERROR;}
         
+        $ip = $_SERVER['REMOTE_ADDR'];
         //Preparamos la consulta
-        $query = $link->prepare("SELECT * FROM users WHERE username=?");
-        $query->bind_param("s",$user);
-        $query->execute();
-        
+        $stmt = $link->prepare("SELECT * FROM users WHERE username=?");
+        $stmt->bind_param("s",$user);
+        $stmt->execute();
         //Tomamos los resultados
-        if($result = $query->get_result()) {
-            if(!$result->num_rows) {
-                $link->close();
-                return USER_INEXISTENT;
-            }
-            
-            if($row = $result->fetch_array()) {
-                if($row['password'] == $pwd) {
-                    $this->loggedin = true;
-                    $this->name = $user;
-                    $this->id = $row['id'];
-                    $this->perm = $row['perm'];
-                    $success = 1;
+        $result = $stmt->get_result();
+
+        if(!$result->num_rows) {
+            $loginresult = USER_INEXISTENT;
+        } else if($row = $result->fetch_array()) {
+            $userid = $row['id'];
+            if($row['loginfails'] >= 5) {
+                $loginresult = USER_BLOCKED;
+            } else if($row['password'] == $pwd) {
+                $this->loggedin = true;
+                $this->name = $user;
+                $this->id = $row['id'];
+                $this->perm = $row['perm'];
+                $loginresult = 1;
+
+                $sql = "UPDATE users SET loginfails=0 WHERE id=?;";
+                $stmt = $link->prepare($sql);
+                $stmt->bind_param("i", $row['id']);
+                $stmt->execute();
+            } else {
+                $loginfails = $row['loginfails']+1;
+                $sql = "UPDATE users SET loginfails=? WHERE id=?";
+                $stmt = $link->prepare($sql);
+                $stmt->bind_param("ii", $loginfails, $row['id']);
+                $stmt->execute();
+                if($loginfails >= 5) {
+                    $loginresult = USER_BLOCKED;
                 } else {
-                    $link->close();
-                    return USER_WRONGPASS;
+                    $loginresult = USER_WRONGPASS;
                 }
             }
         }
+
+        switch ($loginresult) {
+            case USER_INEXISTENT: {
+                $userid = null;
+                $success = false;
+                $newloginfails = 0;
+                break;
+            }
+            case USER_BLOCKED: {
+                $newloginfails = 5;
+                $success = false;
+                break;
+            }
+            case USER_WRONGPASS: {
+                $newloginfails = $loginfails;
+                $success = false;
+                break;
+            }
+            case 1: {
+                $newloginfails = 0;
+                $success = true;
+                break;
+            }
+        }
+        $sql = "UPDATE users SET loginfails=? WHERE id=?";
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param("ii",$newloginfails, $userid);
+        $stmt->execute();
+
+        $sql = "INSERT INTO logins(ip,userid,success, newloginfails) VALUES(?,?,?,?)";
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param("siii", $ip, $userid, $success, $newloginfails);
+        $stmt->execute();
+        
         $link->close();
-        return $success;
+        return $loginresult;
     }
 
     /**
      * Refrescar información del usuario
-     *
-     * TO-DO
-     * Arreglar esto con mysqli->prepare
      */
 
     function refresh() {
@@ -125,17 +210,21 @@ function db_connect($db = "BDU") {
         $link = db_connect();
         if(!$link) { return MYSQL_CONNECTERROR; }
         $id = $_SESSION['user']->id;
-        $query = "SELECT * FROM users WHERE id=\"{$id}\"";
-        $link->real_query($query);
-        if($result = $link->store_result()) {
-            if($row = $result->fetch_array()) {
-                $this->name = $row['username'];
-                $this->perm = $row['perm'];
-                $success = true;
-            }
+        $sql = "SELECT * FROM users WHERE id=?;";
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param("i",$id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($row = $result->fetch_array()) {
+            $this->name = $row['username'];
+            $this->perm = $row['perm'];
+            $success = true;
         }
         $link->close();
-        if(!$success) session_destroy();
+        if(!$success) {
+            session_unset();
+            session_destroy();
+        }
         return $success;
     }
 
@@ -176,7 +265,7 @@ if($_SESSION['user']->loggedin) {
 
 function style_header() {
     $ret =
-    "<div id=\"header\" class=horizontalnav>
+    "<div id=\"header\" class=\"horizontal nav\">
     <img src=\"/src/img/logo.jpg\" id=\"logo\" width=28>
     <ul>
     <li><a href=\"/\">Home</a></li>";
@@ -196,7 +285,7 @@ function style_manage_nav($nav) {
         $nav = Array("." => "Volver");
     }
     
-    $ret = "<div class=horizontalnav><ul>";
+    $ret = "<div class=\"horizontal nav\"><ul>";
 
     foreach($nav as $key => $value) {
         $ret .= "<li><a href=\"$key\">$value</a></li>";
@@ -249,48 +338,6 @@ function valid_input($var) {
         return true;
     }
     return false;
-}
-
-
- /**
- * [Ordenar]
- * Crea el mysqli_stmt para un formulario
- *
- * $campos -> Array(nombre, tipo, valor)
- */
-
-function insert($link, $tabla, &$campos) {
-    $type = "";
-    $temp = array();
-    $sql = "INSERT INTO $tabla (";//) para corregir tabs Sublime Text 2
-
-    foreach ($campos as $key => $value) {
-        $sql .= $key.",";
-        $type .= $value['tipo'];
-        $temp[] = $value['valor'];
-    }
-    $sql .= ") VALUES (";
-    foreach ($campos as $value) {
-        $sql .= "?,";
-    }
-    //( para corregir tabs
-    $sql .= ")";
-
-    $sql = str_replace(",)", ")", $sql);
-    $stmt = $link->prepare($sql);
-    $refs = refValues($temp);
-    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
-    $stmt->execute();
-
-    if($stmt->error) {
-        echo "<br>Error: ".$stmt->error;
-    } else {
-        echo "<br>Agregado correctamente";
-    }
-}
-
-function campo($tipo,$valor) {
-    return Array('tipo' => $tipo, 'valor' => $valor);
 }
 
 ?>

@@ -27,7 +27,7 @@ if(@valid_input($_POST['curso'])) {
 <html>
 <head>
 	<?php style_head() ?>
-	<script src="/src/script/consulta_alumnos.js"></script>
+	<script src="/src/script/consulta.js"></script>
 </head>
 <body>
 	<?php style_header(); ?>

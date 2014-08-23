@@ -15,7 +15,7 @@ body {
     font-family: $font-stack;
 }
 
-.horizontalnav {
+.nav {
 
     margin-bottom: 5px;
     ul {
@@ -26,7 +26,6 @@ body {
     }
 
     li {
-        float: left;
         border: $bordes solid;
         border-width: 2px;
 
@@ -46,6 +45,16 @@ body {
         }
     }
 
+}
+
+.horizontal.nav {
+    li {
+        float: left;
+    }
+}
+
+.vertical.nav {
+    display: inline-block;
 }
 
 #header {
