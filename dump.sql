@@ -2,23 +2,24 @@
 -- version 2.10.3
 -- http://www.phpmyadmin.net
 -- 
--- Servidor: localhost
--- Tiempo de generación: 15-08-2014 a las 21:51:35
--- Versión del servidor: 6.0.4
--- Versión de PHP: 6.0.0-dev
+-- Host: 127.0.0.1
+-- Generation Time: Aug 25, 2014 at 05:47 PM
+-- Server version: 6.0.4
+-- PHP Version: 6.0.0-dev
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 -- 
--- Base de datos: `bdu`
+-- Database: `bdu`
 -- 
+DROP DATABASE `bdu`;
 CREATE DATABASE `bdu` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `bdu`;
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `alumnos`
+-- Table structure for table `alumnos`
 -- 
 
 CREATE TABLE `alumnos` (
@@ -79,18 +80,16 @@ CREATE TABLE `alumnos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `alumnos`
+-- Dumping data for table `alumnos`
 -- 
 
 INSERT INTO `alumnos` VALUES (2, '050605', 3, 1, 65, 1, 'iop', 'iop', 3, '0000-00-00', 591, 2812, 21, 387, 456, NULL, NULL, NULL, 8, 2812, '2801', '567845323123', NULL, '456', '465', '456', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '456786', 'dfsdfdsfsdf@sdfmsdf.com', NULL, NULL, NULL);
-INSERT INTO `alumnos` VALUES (2, '010202', 1, 1, 32123412, 1, '321', '321', 1, '1966-02-20', 53, 1621, 8, 17, 321, 4, '4', '4', 46, 2806, '2806', '321', '15-303535', '0', '0', '0', 93, 1, 2, NULL, 0, 0, 0, 0, '321', 'fdsajkfhf.fdf@fdsaffa', NULL, 0, 0);
-INSERT INTO `alumnos` VALUES (2, NULL, 3, 1, 38702636, 1, 'Silvero', 'Franco', 1, '1995-05-29', 54, 2800, 1, 268, 15, NULL, NULL, '5', 10, 2804, '2804', '3489687304', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '20-38702636-4', 'franco1020-@outlook.com', NULL, NULL, NULL);
-INSERT INTO `alumnos` VALUES (2, NULL, 3, 1, 39414147, 1, 'Schneider', 'Diego', 1, '1996-04-26', 54, 2804, 1, 46, 416, NULL, NULL, NULL, 47, 2804, '2804', '5493489514368', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '20-3547654321-8', NULL, NULL, NULL, NULL);
+INSERT INTO `alumnos` VALUES (1, '010101', 1, 1, 34893283, 1, 'Pepito', 'Juanes', 1, '1996-04-26', 0, 2804, 1, 46, 414, NULL, NULL, NULL, 47, 2804, '2804', '12312312312', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, '20-12312313-3', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `barrios`
+-- Table structure for table `barrios`
 -- 
 
 CREATE TABLE `barrios` (
@@ -100,7 +99,7 @@ CREATE TABLE `barrios` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 -- 
--- Volcar la base de datos para la tabla `barrios`
+-- Dumping data for table `barrios`
 -- 
 
 INSERT INTO `barrios` VALUES (1, '9 DE JULIO');
@@ -149,7 +148,7 @@ INSERT INTO `barrios` VALUES (43, 'EL DESTINO');
 INSERT INTO `barrios` VALUES (44, 'LOS NOGALES');
 INSERT INTO `barrios` VALUES (45, 'GENERAL SAN MARTIN');
 INSERT INTO `barrios` VALUES (46, 'NO ES DE CAMPANA');
-INSERT INTO `barrios` VALUES (47, 'DALMINE NUEVO');
+INSERT INTO `barrios` VALUES (47, 'NUEVO DALMINE');
 INSERT INTO `barrios` VALUES (48, 'NO INDICADO');
 INSERT INTO `barrios` VALUES (49, 'LA LUCILA');
 INSERT INTO `barrios` VALUES (50, 'DIGNIDAD');
@@ -157,7 +156,7 @@ INSERT INTO `barrios` VALUES (50, 'DIGNIDAD');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `calles`
+-- Table structure for table `calles`
 -- 
 
 CREATE TABLE `calles` (
@@ -167,7 +166,7 @@ CREATE TABLE `calles` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=503 ;
 
 -- 
--- Volcar la base de datos para la tabla `calles`
+-- Dumping data for table `calles`
 -- 
 
 INSERT INTO `calles` VALUES (1, '2 DE ABRIL');
@@ -676,7 +675,7 @@ INSERT INTO `calles` VALUES (502, 'ZAVALLO ANTENOR F.\r\n');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `cargo`
+-- Table structure for table `cargo`
 -- 
 
 CREATE TABLE `cargo` (
@@ -687,14 +686,14 @@ CREATE TABLE `cargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `cargo`
+-- Dumping data for table `cargo`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `cargos`
+-- Table structure for table `cargos`
 -- 
 
 CREATE TABLE `cargos` (
@@ -704,14 +703,14 @@ CREATE TABLE `cargos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `cargos`
+-- Dumping data for table `cargos`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `catedras`
+-- Table structure for table `catedras`
 -- 
 
 CREATE TABLE `catedras` (
@@ -729,14 +728,14 @@ CREATE TABLE `catedras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `catedras`
+-- Dumping data for table `catedras`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `condactividad`
+-- Table structure for table `condactividad`
 -- 
 
 CREATE TABLE `condactividad` (
@@ -746,7 +745,7 @@ CREATE TABLE `condactividad` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 -- 
--- Volcar la base de datos para la tabla `condactividad`
+-- Dumping data for table `condactividad`
 -- 
 
 INSERT INTO `condactividad` VALUES (1, 'Trabajo Permanente');
@@ -763,7 +762,7 @@ INSERT INTO `condactividad` VALUES (10, 'Otros');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `condinscripcion`
+-- Table structure for table `condinscripcion`
 -- 
 
 CREATE TABLE `condinscripcion` (
@@ -773,7 +772,7 @@ CREATE TABLE `condinscripcion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- 
--- Volcar la base de datos para la tabla `condinscripcion`
+-- Dumping data for table `condinscripcion`
 -- 
 
 INSERT INTO `condinscripcion` VALUES (1, 'Repitente');
@@ -786,7 +785,7 @@ INSERT INTO `condinscripcion` VALUES (6, 'Proveniente del ciclo lectivo anterior
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `cursos`
+-- Table structure for table `cursos`
 -- 
 
 CREATE TABLE `cursos` (
@@ -804,7 +803,7 @@ CREATE TABLE `cursos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `cursos`
+-- Dumping data for table `cursos`
 -- 
 
 INSERT INTO `cursos` VALUES ('010101', '1', '1', NULL, 1, 1);
@@ -853,7 +852,7 @@ INSERT INTO `cursos` VALUES ('050705', '7', '5', NULL, 3, 5);
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `dia`
+-- Table structure for table `dia`
 -- 
 
 CREATE TABLE `dia` (
@@ -863,7 +862,7 @@ CREATE TABLE `dia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `dia`
+-- Dumping data for table `dia`
 -- 
 
 INSERT INTO `dia` VALUES (1, 'Lunes');
@@ -877,7 +876,7 @@ INSERT INTO `dia` VALUES (7, 'Domingo');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `errorlog`
+-- Table structure for table `errorlog`
 -- 
 
 CREATE TABLE `errorlog` (
@@ -891,14 +890,14 @@ CREATE TABLE `errorlog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `errorlog`
+-- Dumping data for table `errorlog`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `escuelas`
+-- Table structure for table `escuelas`
 -- 
 
 CREATE TABLE `escuelas` (
@@ -914,7 +913,7 @@ CREATE TABLE `escuelas` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=109 ;
 
 -- 
--- Volcar la base de datos para la tabla `escuelas`
+-- Dumping data for table `escuelas`
 -- 
 
 INSERT INTO `escuelas` VALUES (1, 'E.E.S. N° 1', 2804, 2, 1);
@@ -1028,7 +1027,7 @@ INSERT INTO `escuelas` VALUES (108, 'E.P.B. Nº7324', 2804, 1, 2);
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `especialidades`
+-- Table structure for table `especialidades`
 -- 
 
 CREATE TABLE `especialidades` (
@@ -1038,7 +1037,7 @@ CREATE TABLE `especialidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `especialidades`
+-- Dumping data for table `especialidades`
 -- 
 
 INSERT INTO `especialidades` VALUES (1, 'Básico');
@@ -1051,7 +1050,7 @@ INSERT INTO `especialidades` VALUES (6, 'Adultos');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `estadodocumento`
+-- Table structure for table `estadodocumento`
 -- 
 
 CREATE TABLE `estadodocumento` (
@@ -1061,7 +1060,7 @@ CREATE TABLE `estadodocumento` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
--- Volcar la base de datos para la tabla `estadodocumento`
+-- Dumping data for table `estadodocumento`
 -- 
 
 INSERT INTO `estadodocumento` VALUES (1, 'Bueno');
@@ -1072,7 +1071,7 @@ INSERT INTO `estadodocumento` VALUES (4, 'No posee');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `familiares`
+-- Table structure for table `familiares`
 -- 
 
 CREATE TABLE `familiares` (
@@ -1112,14 +1111,14 @@ CREATE TABLE `familiares` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `familiares`
+-- Dumping data for table `familiares`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `fichasalud`
+-- Table structure for table `fichasalud`
 -- 
 
 CREATE TABLE `fichasalud` (
@@ -1152,14 +1151,14 @@ CREATE TABLE `fichasalud` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `fichasalud`
+-- Dumping data for table `fichasalud`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `gremio`
+-- Table structure for table `gremio`
 -- 
 
 CREATE TABLE `gremio` (
@@ -1169,7 +1168,7 @@ CREATE TABLE `gremio` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
--- Volcar la base de datos para la tabla `gremio`
+-- Dumping data for table `gremio`
 -- 
 
 INSERT INTO `gremio` VALUES (1, 'SUTEBA');
@@ -1180,7 +1179,7 @@ INSERT INTO `gremio` VALUES (4, '');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `instrecurrir`
+-- Table structure for table `instrecurrir`
 -- 
 
 CREATE TABLE `instrecurrir` (
@@ -1194,14 +1193,14 @@ CREATE TABLE `instrecurrir` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `instrecurrir`
+-- Dumping data for table `instrecurrir`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `localidades`
+-- Table structure for table `localidades`
 -- 
 
 CREATE TABLE `localidades` (
@@ -1215,7 +1214,7 @@ CREATE TABLE `localidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `localidades`
+-- Dumping data for table `localidades`
 -- 
 
 INSERT INTO `localidades` VALUES (1621, 'Benavídez', 3327, 1);
@@ -1230,7 +1229,35 @@ INSERT INTO `localidades` VALUES (6700, 'Luján', 2323, 1);
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `materias`
+-- Table structure for table `logins`
+-- 
+
+CREATE TABLE `logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(45) COLLATE utf8_bin NOT NULL,
+  `userid` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `success` tinyint(1) NOT NULL,
+  `newloginfails` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ip` (`ip`),
+  KEY `userid` (`userid`(191))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+
+-- 
+-- Dumping data for table `logins`
+-- 
+
+INSERT INTO `logins` VALUES (1, 0x3132372e302e302e31, 0x31, 1, 0);
+INSERT INTO `logins` VALUES (2, 0x3132372e302e302e31, 0x31, 1, 0);
+INSERT INTO `logins` VALUES (3, 0x3132372e302e302e31, 0x31, 1, 0);
+INSERT INTO `logins` VALUES (4, 0x3132372e302e302e31, 0x31, 0, 1);
+INSERT INTO `logins` VALUES (5, 0x3132372e302e302e31, 0x31, 0, 2);
+INSERT INTO `logins` VALUES (6, 0x3132372e302e302e31, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+-- 
+-- Table structure for table `materias`
 -- 
 
 CREATE TABLE `materias` (
@@ -1244,7 +1271,7 @@ CREATE TABLE `materias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `materias`
+-- Dumping data for table `materias`
 -- 
 
 INSERT INTO `materias` VALUES ('010101', 'Ciencias Sociales 1º Año Básico', '1', 1);
@@ -1485,7 +1512,7 @@ INSERT INTO `materias` VALUES ('150503', 'Laboratorio. de Química  Orgánica  5
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `medicos`
+-- Table structure for table `medicos`
 -- 
 
 CREATE TABLE `medicos` (
@@ -1500,14 +1527,14 @@ CREATE TABLE `medicos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `medicos`
+-- Dumping data for table `medicos`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `nivelescolar`
+-- Table structure for table `nivelescolar`
 -- 
 
 CREATE TABLE `nivelescolar` (
@@ -1517,7 +1544,7 @@ CREATE TABLE `nivelescolar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `nivelescolar`
+-- Dumping data for table `nivelescolar`
 -- 
 
 INSERT INTO `nivelescolar` VALUES (1, 'Primario');
@@ -1526,7 +1553,7 @@ INSERT INTO `nivelescolar` VALUES (2, 'Secundario');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `nivelinstruccion`
+-- Table structure for table `nivelinstruccion`
 -- 
 
 CREATE TABLE `nivelinstruccion` (
@@ -1536,7 +1563,7 @@ CREATE TABLE `nivelinstruccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `nivelinstruccion`
+-- Dumping data for table `nivelinstruccion`
 -- 
 
 INSERT INTO `nivelinstruccion` VALUES (1, 'Ninguno');
@@ -1555,7 +1582,7 @@ INSERT INTO `nivelinstruccion` VALUES (99, 'Sin datos');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `paises`
+-- Table structure for table `paises`
 -- 
 
 CREATE TABLE `paises` (
@@ -1566,7 +1593,7 @@ CREATE TABLE `paises` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `paises`
+-- Dumping data for table `paises`
 -- 
 
 INSERT INTO `paises` VALUES (0, 'Otros', '');
@@ -1586,7 +1613,7 @@ INSERT INTO `paises` VALUES (598, 'Uruguay', 'Uruguayo/a');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `personal`
+-- Table structure for table `personal`
 -- 
 
 CREATE TABLE `personal` (
@@ -1623,14 +1650,14 @@ CREATE TABLE `personal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `personal`
+-- Dumping data for table `personal`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `provincia`
+-- Table structure for table `provincia`
 -- 
 
 CREATE TABLE `provincia` (
@@ -1640,7 +1667,7 @@ CREATE TABLE `provincia` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 -- 
--- Volcar la base de datos para la tabla `provincia`
+-- Dumping data for table `provincia`
 -- 
 
 INSERT INTO `provincia` VALUES (1, 'Buenos Aires');
@@ -1671,7 +1698,7 @@ INSERT INTO `provincia` VALUES (24, 'Tierra Del Fuego');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `sexo`
+-- Table structure for table `sexo`
 -- 
 
 CREATE TABLE `sexo` (
@@ -1681,7 +1708,7 @@ CREATE TABLE `sexo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `sexo`
+-- Dumping data for table `sexo`
 -- 
 
 INSERT INTO `sexo` VALUES (1, 'Masculino');
@@ -1691,7 +1718,7 @@ INSERT INTO `sexo` VALUES (3, 'No especifica');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `tipodocumento`
+-- Table structure for table `tipodocumento`
 -- 
 
 CREATE TABLE `tipodocumento` (
@@ -1701,7 +1728,7 @@ CREATE TABLE `tipodocumento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `tipodocumento`
+-- Dumping data for table `tipodocumento`
 -- 
 
 INSERT INTO `tipodocumento` VALUES (1, 'DU');
@@ -1713,7 +1740,7 @@ INSERT INTO `tipodocumento` VALUES (5, 'ET');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `tipoescuela`
+-- Table structure for table `tipoescuela`
 -- 
 
 CREATE TABLE `tipoescuela` (
@@ -1723,7 +1750,7 @@ CREATE TABLE `tipoescuela` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `tipoescuela`
+-- Dumping data for table `tipoescuela`
 -- 
 
 INSERT INTO `tipoescuela` VALUES (1, 'Estatal');
@@ -1732,7 +1759,7 @@ INSERT INTO `tipoescuela` VALUES (2, 'Privada');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `titulo`
+-- Table structure for table `titulo`
 -- 
 
 CREATE TABLE `titulo` (
@@ -1743,14 +1770,14 @@ CREATE TABLE `titulo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `titulo`
+-- Dumping data for table `titulo`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `titulos`
+-- Table structure for table `titulos`
 -- 
 
 CREATE TABLE `titulos` (
@@ -1760,14 +1787,14 @@ CREATE TABLE `titulos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- 
--- Volcar la base de datos para la tabla `titulos`
+-- Dumping data for table `titulos`
 -- 
 
 
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `turnos`
+-- Table structure for table `turnos`
 -- 
 
 CREATE TABLE `turnos` (
@@ -1777,7 +1804,7 @@ CREATE TABLE `turnos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `turnos`
+-- Dumping data for table `turnos`
 -- 
 
 INSERT INTO `turnos` VALUES (1, 'Mañana');
@@ -1787,7 +1814,7 @@ INSERT INTO `turnos` VALUES (3, 'Vespertino');
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 -- 
 
 CREATE TABLE `users` (
@@ -1800,10 +1827,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- 
--- Volcar la base de datos para la tabla `users`
+-- Dumping data for table `users`
 -- 
 
-INSERT INTO `users` VALUES (1, 'diego', 'diego', 0, 0);
+INSERT INTO `users` VALUES (1, 'diego', 'diego', 0, 2);
 INSERT INTO `users` VALUES (2, 'ariel', 'ariel', 0, 0);
 INSERT INTO `users` VALUES (4, 'aaron', 'aaron', 0, 0);
 INSERT INTO `users` VALUES (5, 'sebastian', 'sebastian', 0, 0);
@@ -1814,7 +1841,7 @@ INSERT INTO `users` VALUES (8, 'alan', 'alan', 0, 0);
 -- --------------------------------------------------------
 
 -- 
--- Estructura de tabla para la tabla `vinculos`
+-- Table structure for table `vinculos`
 -- 
 
 CREATE TABLE `vinculos` (
@@ -1824,7 +1851,7 @@ CREATE TABLE `vinculos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 
--- Volcar la base de datos para la tabla `vinculos`
+-- Dumping data for table `vinculos`
 -- 
 
 INSERT INTO `vinculos` VALUES (1, 'Padre');
@@ -1836,11 +1863,11 @@ INSERT INTO `vinculos` VALUES (6, 'Tio/a');
 INSERT INTO `vinculos` VALUES (7, 'Primo/a');
 
 -- 
--- Filtros para las tablas descargadas (dump)
+-- Constraints for dumped tables
 -- 
 
 -- 
--- Filtros para la tabla `alumnos`
+-- Constraints for table `alumnos`
 -- 
 ALTER TABLE `alumnos`
   ADD CONSTRAINT `alumnos_ibfk_51` FOREIGN KEY (`nivelescolar`) REFERENCES `nivelescolar` (`cod`) ON UPDATE CASCADE,
@@ -1859,13 +1886,13 @@ ALTER TABLE `alumnos`
   ADD CONSTRAINT `alumnos_ibfk_64` FOREIGN KEY (`condinscrip`) REFERENCES `condinscripcion` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `cargo`
+-- Constraints for table `cargo`
 -- 
 ALTER TABLE `cargo`
   ADD CONSTRAINT `cargo_ibfk_1` FOREIGN KEY (`cargo`) REFERENCES `cargos` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `catedras`
+-- Constraints for table `catedras`
 -- 
 ALTER TABLE `catedras`
   ADD CONSTRAINT `catedras_ibfk_11` FOREIGN KEY (`materia`) REFERENCES `materias` (`cod`),
@@ -1873,7 +1900,7 @@ ALTER TABLE `catedras`
   ADD CONSTRAINT `catedras_ibfk_13` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `cursos`
+-- Constraints for table `cursos`
 -- 
 ALTER TABLE `cursos`
   ADD CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`preceptora`) REFERENCES `personal` (`doc`) ON UPDATE CASCADE,
@@ -1881,7 +1908,7 @@ ALTER TABLE `cursos`
   ADD CONSTRAINT `cursos_ibfk_3` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `escuelas`
+-- Constraints for table `escuelas`
 -- 
 ALTER TABLE `escuelas`
   ADD CONSTRAINT `escuelas_ibfk_1` FOREIGN KEY (`jurisdiccion`) REFERENCES `localidades` (`cp`) ON UPDATE CASCADE,
@@ -1889,7 +1916,7 @@ ALTER TABLE `escuelas`
   ADD CONSTRAINT `escuelas_ibfk_3` FOREIGN KEY (`tipo`) REFERENCES `tipoescuela` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `familiares`
+-- Constraints for table `familiares`
 -- 
 ALTER TABLE `familiares`
   ADD CONSTRAINT `familiares_ibfk_10` FOREIGN KEY (`condact`) REFERENCES `condactividad` (`cod`) ON UPDATE CASCADE,
@@ -1903,31 +1930,31 @@ ALTER TABLE `familiares`
   ADD CONSTRAINT `familiares_ibfk_9` FOREIGN KEY (`nacionalidad`) REFERENCES `paises` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `instrecurrir`
+-- Constraints for table `instrecurrir`
 -- 
 ALTER TABLE `instrecurrir`
   ADD CONSTRAINT `instrecurrir_ibfk_1` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `localidades`
+-- Constraints for table `localidades`
 -- 
 ALTER TABLE `localidades`
   ADD CONSTRAINT `localidades_ibfk_1` FOREIGN KEY (`provincia`) REFERENCES `provincia` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `materias`
+-- Constraints for table `materias`
 -- 
 ALTER TABLE `materias`
   ADD CONSTRAINT `materias_ibfk_1` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`cod`);
 
 -- 
--- Filtros para la tabla `medicos`
+-- Constraints for table `medicos`
 -- 
 ALTER TABLE `medicos`
   ADD CONSTRAINT `medicos_ibfk_1` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `personal`
+-- Constraints for table `personal`
 -- 
 ALTER TABLE `personal`
   ADD CONSTRAINT `personal_ibfk_10` FOREIGN KEY (`nacionalidad`) REFERENCES `paises` (`cod`) ON UPDATE CASCADE,
@@ -1940,7 +1967,7 @@ ALTER TABLE `personal`
   ADD CONSTRAINT `personal_ibfk_9` FOREIGN KEY (`estadodoc`) REFERENCES `estadodocumento` (`cod`) ON UPDATE CASCADE;
 
 -- 
--- Filtros para la tabla `titulo`
+-- Constraints for table `titulo`
 -- 
 ALTER TABLE `titulo`
   ADD CONSTRAINT `titulo_ibfk_1` FOREIGN KEY (`titulo`) REFERENCES `titulos` (`cod`) ON UPDATE CASCADE;
