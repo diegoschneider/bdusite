@@ -171,15 +171,15 @@ if(@valid_input($_POST['curso'])) {
 						case 'nomape': {
 							$sql .= " WHERE ";
 
-							if(validInput($_GET['nombre']) && validInput($_GET['apellido'])) {
+							if(valid_input($_GET['nombre']) && validInput($_GET['apellido'])) {
 								$sql .= "nombres LIKE CONCAT('%',?,'%') AND apellidos LIKE CONCAT('%',?,'%');";
 								$stmt = $link->prepare($sql);
 								$stmt->bind_param("ss", $_GET['nombre'], $_GET['apellido']);
-							} else if(validInput($_GET['apellido'])) {
+							} else if(valid_input($_GET['apellido'])) {
 								$sql .= "apellidos LIKE CONCAT('%',?,'%');";
 								$stmt = $link->prepare($sql);
 								$stmt->bind_param("s", $_GET['apellido']);
-							} else if(validInput($_GET['nombre'])) {
+							} else if(valid_input($_GET['nombre'])) {
 								$sql .= "nombres LIKE CONCAT('%',?,'%');";
 								$stmt = $link->prepare($sql);
 								$stmt->bind_param("s", $_GET['nombre']);
