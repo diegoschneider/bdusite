@@ -12,12 +12,12 @@ require_once("./src/script/functions.php");
 
     <div id="content">
 
-        <?php if(!$_SESSION['user']->loggedin) { ?>
-
         <h1>Login - Proyecto BDU</h1>
         <h2>Base de Datos Unificada</h2>
         <p>Luego de <?php echo MAX_SESSION_TIME/60 ?> minutos de inactividad, la sesión se cerrará</p>
-        <p><?php echo "SERVER: REMOTE_ADDR: {$_SERVER['REMOTE_ADDR']}"; ?></p>
+
+        <?php if(!$_SESSION['user']->loggedin) { ?>
+
         <form id="login_container" class="container">
             <h2>Ingreso</h2>
             
