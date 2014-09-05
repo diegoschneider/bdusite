@@ -14,15 +14,10 @@ Definir permisos:
 ==================================
 Alumnos:
 	Ensanchar un poco el formulario
-	Nivel escolar: Secundario pretederminado
 	Curso: Mostrar como "Año-Division Especialidad"
 	CUIL: Mostrar [Campo]- DNI -[Campo]
-	Localidad: Campana Predeterminado
-	Pais: Argentina predeterminado
-	Provincia: BS AS Predeterminado
-	Documento: DU Predeterminado
 	Telefono: Marcar como telefono fijo
-	E-Mail: No checkea el .com (?)
+	
 
 Calles:
 	Se tienen que poder cargar calles (O sugerirlas)
