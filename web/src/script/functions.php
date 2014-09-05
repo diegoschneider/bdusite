@@ -253,8 +253,8 @@ if($_SESSION['user']->loggedin) {
     "<title>BDU</title>
     <meta charset=UTF-8>
     <link rel=stylesheet href=/src/style/base.css>
-    <script src='//code.jquery.com/jquery-1.11.1.min.js'></script>
-    <script src='//code.jquery.com/ui/1.11.1/jquery-ui.js'></script>
+    <script src='/src/jquery-1.11.1.min.js'></script>
+    <script src='/src/jquery-ui.min.js'></script>
     <script src='/src/script/submit.js'></script>";
     if(!$_SESSION['user']->loggedin) {
         $ret.=
