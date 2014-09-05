@@ -43,7 +43,6 @@ require_once("./src/script/functions.php");
 
             <div class=campo>
                 <span>Has iniciado sesión como <?php echo $_SESSION['user']->name; ?></span>
-                <a href="/logout.php"><input type=button value="Logout"></a>
             </div>
         </div>
 
