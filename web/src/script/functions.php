@@ -266,7 +266,7 @@ if($_SESSION['user']->loggedin) {
 function style_header() {
     $ret =
     "<div id=\"header\" class=\"horizontal nav\">
-    <img src=\"/src/img/logo.jpg\" id=\"logo\" width=28>
+    <img src=\"/src/img/logo.jpg\" id=\"logo\" width=26 height=26>
     <ul>
     <li><a href=\"/\">Home</a></li>";
     if($_SESSION['user']->loggedin) {

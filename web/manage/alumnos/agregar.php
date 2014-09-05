@@ -234,8 +234,8 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				<input required type=text name="cp">
 			</div>
 			<div class=campo>
-				<span>Telefono</span>
-				<input required type=text name="telefono">
+				<span>Telefono fijo</span>
+				<input type=text name="telefono">
 			</div>
 			<div class=campo>
 				<span>Celular</span>
