@@ -315,11 +315,24 @@ function query_table($result) {
     echo $ret;
 }
 
-function form_select($link, $sql) {
+function form_select($link, $sql, $default = null) {
     $result = $link->query($sql);
-    $ret = "<option value=-1>Seleccione...</option>";
+    $options = array();
+    $ret = array();
     while($row = $result->fetch_row()) {
-        $ret .= "<option value={$row[0]}>{$row[1]}</option>";
+        $options[$row[0]] = "<option value={$row[0]}>{$row[1]}</option>";
+    }
+    if(is_null($default)) {
+        $ret = "<option value=-1>Seleccione...</option>";
+        foreach ($options as $key => $value) {
+            $ret .= $options[$key];
+        }
+    } else {
+        $ret = $options[$default];
+        foreach ($options as $key => $value) {
+            if($key == $default) continue;
+            $ret .= $options[$key];
+        }
     }
     return $ret;
 }

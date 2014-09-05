@@ -100,15 +100,15 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			<?php
 			$options[] = array();
 			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios ORDER BY nombre");
-			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar");
+			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar", 2);
 			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos ORDER BY año,division");
 			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
-			$options['tipodocumento'] = form_select($link, "SELECT cod,tipo FROM tipodocumento");
+			$options['tipodocumento'] = form_select($link, "SELECT cod,tipo FROM tipodocumento",1);
 			$options['estadodocumento'] = form_select($link, "SELECT cod,nombre FROM estadodocumento");
 			$options['sexo'] = form_select($link, "SELECT cod,sexo FROM sexo");
-			$options['localidades'] = form_select($link, "SELECT cp,nombre FROM localidades");
-			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia ORDER BY nombre");
-			$options['paises'] = form_select($link, "SELECT cod,nombre FROM paises");
+			$options['localidades'] = form_select($link, "SELECT cp,nombre FROM localidades",2804);
+			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia ORDER BY nombre",1);
+			$options['paises'] = form_select($link, "SELECT cod,nombre FROM paises",54);
 			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles");
 			$options['escuelas'] = form_select($link, "SELECT cod,nombre FROM escuelas");
 			$options['condinscripcion'] = form_select($link, "SELECT cod,condicion FROM condinscripcion");
@@ -188,7 +188,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<span>Cuil del alumno</span>
-				<input required type=text name="cuil">
+				<input type=text name="cuil">
 			</div>
 			<div class=campo>
 				<span>E-Mail del alumno</span>
