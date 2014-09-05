@@ -99,7 +99,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			<input type=hidden name="tabla" value="alumnos">
 			<?php
 			$options[] = array();
-			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios ORDER BY nombre");
+			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios ORDER BY nombre",48);
 			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar", 2);
 			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos ORDER BY año,division");
 			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
@@ -182,7 +182,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<span>Lugar de Nacimiento</span>
-				<select name="lugarnac" required>
+				<select name="lugarnac">
 					<?php echo $options['localidades']; ?>
 				</select>
 			</div>
