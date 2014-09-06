@@ -13,12 +13,14 @@ Definir permisos:
 
 ==================================
 Formularios:
+(Cambiar Home por Inicio)
 
 Alumnos:
 	Ensanchar un poco el formulario
 	Curso: Mostrar como "Año-Division Especialidad"
 	CUIL: Mostrar [Campo]- DNI -[Campo]
-	Telefono: Marcar como telefono fijo
+	(Quitar parte familiares)
+
 
 Calles:
 	Se tienen que poder cargar calles (O sugerirlas)
