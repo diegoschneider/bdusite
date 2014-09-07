@@ -9,8 +9,6 @@ Definir permisos:
 		4: Eliminar (logico)
 		5: Superusuario bien jelou (-w-)
 
-
-
 ==================================
 Formularios:
 (Cambiar Home por Inicio)
