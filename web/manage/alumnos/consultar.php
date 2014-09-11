@@ -80,8 +80,6 @@ if(@valid_input($_POST['curso'])) {
 				</div>
 				<input type=submit value="Consultar">
 			</form>
-
-			<a href="?queryall="><input type=button value="Ver todo"></a>
 		</div>
 		<?php if(isset($_GET['query'])) { ?>
 		<h3>Lista de alumnos</h3>
