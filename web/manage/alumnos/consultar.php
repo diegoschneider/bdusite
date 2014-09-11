@@ -199,7 +199,6 @@ if(@valid_input($_POST['curso'])) {
 					echo $ret;
 				}
 			}
-		}
 		?>
 	</table>
 	<?php } ?>
