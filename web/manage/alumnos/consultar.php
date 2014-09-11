@@ -83,7 +83,7 @@ if(@valid_input($_POST['curso'])) {
 
 			<a href="?queryall="><input type=button value="Ver todo"></a>
 		</div>
-		<?php if(isset($_GET['queryall']) ||isset($_GET['query'])) { ?>
+		<?php if(isset($_GET['query'])) { ?>
 		<h3>Lista de alumnos</h3>
 		<table border="1" id="result">
 
@@ -133,96 +133,76 @@ if(@valid_input($_POST['curso'])) {
 			LEFT JOIN barrios ON alumnos.barrio=barrios.cod
 			LEFT JOIN condinscripcion ON alumnos.condinscrip=condinscripcion.cod ";
 
-			if(isset($_GET['queryall'])) {
-				$result = $link->query($sql);
-
-				$ret = "";
-				while($row = $result->fetch_row()) {
-					$ret .= "<tr>";
-					foreach ($row as $key => $value) {
-						$ret .= "<td>$value</td>";
-					}
-					$ret .= "</tr>";
-
-				}
-				$temp = "<tr>";
-				$fields = $result->fetch_fields();
-				foreach ($fields as $key => $value) {
-					$temp .= "<th>{$value->name}</th>";
-				}
-				$temp .= "</tr>";
-				$ret = $temp.$ret;
-				echo $ret;
-			} else {
-				if(isset($_GET['query'])) {
-					switch ($_GET['query']) {
-						case 'dni': {
-							if(isset($_GET['dni'])) {
-								$sql .= "WHERE nrodoc=?;";
-								$stmt = $link->prepare($sql);
-								if(!$stmt) {
-									echo $link->error;
-								}
-								$stmt->bind_param("i", $_GET['dni']);
-								$stmt->execute();
+			
+			if(isset($_GET['query'])) {
+				switch ($_GET['query']) {
+					case 'dni': {
+						if(isset($_GET['dni'])) {
+							$sql .= "WHERE nrodoc=?;";
+							$stmt = $link->prepare($sql);
+							if(!$stmt) {
+								echo $link->error;
 							}
-							break;
+							$stmt->bind_param("i", $_GET['dni']);
+							$stmt->execute();
 						}
-						case 'nomape': {
-							$sql .= " WHERE ";
-
-							if(valid_input($_GET['nombre']) && valid_input($_GET['apellido'])) {
-								$sql .= "nombres LIKE CONCAT('%',?,'%') AND apellidos LIKE CONCAT('%',?,'%');";
-								$stmt = $link->prepare($sql);
-								$stmt->bind_param("ss", $_GET['nombre'], $_GET['apellido']);
-							} else if(valid_input($_GET['apellido'])) {
-								$sql .= "apellidos LIKE CONCAT('%',?,'%');";
-								$stmt = $link->prepare($sql);
-								$stmt->bind_param("s", $_GET['apellido']);
-							} else if(valid_input($_GET['nombre'])) {
-								$sql .= "nombres LIKE CONCAT('%',?,'%');";
-								$stmt = $link->prepare($sql);
-								$stmt->bind_param("s", $_GET['nombre']);
-							}
-
-							if(isset($stmt) && $stmt) {
-								$stmt->execute();
-							}
-							break;
-						}
-						case 'curso':{
-							echo "Curso: ".$_GET['curso']."<br>División: ".$_GET['division'];
-						}
-						default:
-
 						break;
 					}
+					case 'nomape': {
+						$sql .= " WHERE ";
 
-					if(isset($stmt) && $stmt) {
-						$result = $stmt->get_result();
-						$ret = "";
-						while($row = $result->fetch_row()) {
-							$ret .= "<tr>";
-							foreach ($row as $key => $value) {
-								$ret .= "<td>$value</td>";
-							}
-							$ret .= "</tr>";
+						if(valid_input($_GET['nombre']) && valid_input($_GET['apellido'])) {
+							$sql .= "nombres LIKE CONCAT('%',?,'%') AND apellidos LIKE CONCAT('%',?,'%');";
+							$stmt = $link->prepare($sql);
+							$stmt->bind_param("ss", $_GET['nombre'], $_GET['apellido']);
+						} else if(valid_input($_GET['apellido'])) {
+							$sql .= "apellidos LIKE CONCAT('%',?,'%');";
+							$stmt = $link->prepare($sql);
+							$stmt->bind_param("s", $_GET['apellido']);
+						} else if(valid_input($_GET['nombre'])) {
+							$sql .= "nombres LIKE CONCAT('%',?,'%');";
+							$stmt = $link->prepare($sql);
+							$stmt->bind_param("s", $_GET['nombre']);
+						}
 
+						if(isset($stmt) && $stmt) {
+							$stmt->execute();
 						}
-						$temp = "<tr>";
-						$fields = $result->fetch_fields();
-						foreach ($fields as $key => $value) {
-							$temp .= "<th>{$value->name}</th>";
-						}
-						$temp .= "</tr>";
-						$ret = $temp.$ret;
-						echo $ret;
+						break;
 					}
+					case 'curso':{
+						echo "Curso: ".$_GET['curso']."<br>División: ".$_GET['division'];
+					}
+					default:
+
+					break;
+				}
+
+				if(isset($stmt) && $stmt) {
+					$result = $stmt->get_result();
+					$ret = "";
+					while($row = $result->fetch_row()) {
+						$ret .= "<tr>";
+						foreach ($row as $key => $value) {
+							$ret .= "<td>$value</td>";
+						}
+						$ret .= "</tr>";
+
+					}
+					$temp = "<tr>";
+					$fields = $result->fetch_fields();
+					foreach ($fields as $key => $value) {
+						$temp .= "<th>{$value->name}</th>";
+					}
+					$temp .= "</tr>";
+					$ret = $temp.$ret;
+					echo $ret;
 				}
 			}
-			?>
-		</table>
-		<?php } ?>
-	</div>
+		}
+		?>
+	</table>
+	<?php } ?>
+</div>
 </body>
 </html>
