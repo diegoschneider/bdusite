@@ -135,7 +135,7 @@ h1 {
     h2 {
         width: 90;        
     }
-   .error {
+    .error {
         overflow: auto;
         span {
             overflow: hidden;
@@ -146,18 +146,22 @@ h1 {
 
 .campo {
     overflow: auto;
-    span {
-        float: left;
+    .label {
+        span {
+            float: left;
+        }
     }
-    input, select {
-        float: right;
+    .input {
+        /*input, select, span { */
+            float: right;
+            /*}*/
+        }
     }
-}
 
-#result {
-    td, th {
-        white-space: nowrap;
+    #result {
+        td, th {
+            white-space: nowrap;
+        }
     }
-}
 
 

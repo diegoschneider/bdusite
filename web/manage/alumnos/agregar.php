@@ -116,216 +116,378 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			?>
 			<h3>Nivel</h3>
 			<div class=campo>
-				<span>Nivel Escolar</span>
-				<select name="nivelescolar" required>
-					<?php echo $options['nivelescolar']; ?>
-				</select>
+				<div class=label>
+					<span>Nivel Escolar</span>
+				</div>
+				<div class=input>
+					<select name="nivelescolar" required>
+						<?php echo $options['nivelescolar']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Curso</span>	
-				<select name="curso">
-					<?php echo $options['cursos']; ?>
-				</select>
+				<div class=label>
+					<span>Curso</span>	
+				</div>
+				<div class=input>
+					<select name="curso">
+						<?php echo $options['cursos']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Turno</span> 
-				<select name="turno" required>
-					<?php echo $options['turnos']; ?>
-				</select>
+				<div class=label>
+					<span>Turno</span> 
+				</div>
+				<div class=input>
+					<select name="turno" required>
+						<?php echo $options['turnos']; ?>
+					</select>
+				</div>
 			</div>
 			<h3>Datos Personales:</h3>
 			<div class=campo>
-				<span>Tipo de documento</span>
-				<select name="tipodoc" required>
-					<?php echo $options['tipodocumento']; ?>
-				</select>
+				<div class=label>
+					<span>Tipo de documento</span>
+				</div>
+				<div class=input>
+					<select name="tipodoc" required>
+						<?php echo $options['tipodocumento']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>N° de Documento</span>
-				<input required type=text name="nrodoc">
+				<div class=label>
+					<span>N° de Documento</span>
+				</div>
+				<div class=input>
+					<input required type=text name="nrodoc">
+				</div>
 			</div>			
-			<div class=campo> 
-				<span>Estado de Documento</span>
-				<select name="estadodoc" required>
-					<?php echo $options['estadodocumento']; ?>
-				</select>
+			<div class=campo>
+				<div class=label> 
+					<span>Estado de Documento</span>
+				</div>
+				<div class=input>
+					<select name="estadodoc" required>
+						<?php echo $options['estadodocumento']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Apellidos</span>
-				<input required type=text name="apellidos">
+				<div class=label>
+					<span>Apellidos</span>
+				</div>
+				<div class=input>
+					<input required type=text name="apellidos">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Nombres</span>
-				<input required type=text name="nombres">
+				<div class=label>
+					<span>Nombres</span>
+				</div>
+				<div class=input>
+					<input required type=text name="nombres">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Sexo</span>
-				<select name="sexo" required>
-					<?php echo $options['sexo']; ?>
-				</select>
+				<div class=label>
+					<span>Sexo</span>
+				</div>
+				<div class=input>
+					<select name="sexo" required>
+						<?php echo $options['sexo']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Fecha De Nacimiento</span>
-				<input required type=date name="fecnac">
+				<div class=label>
+					<span>Fecha De Nacimiento</span>
+				</div>
+				<div class=input>
+					<input required type=date name="fecnac">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Nacionalidad</span>
-				<select name="nacionalidad" required>
-					<?php echo $options['paises']; ?>
-				</select>
+				<div class=label>
+					<span>Nacionalidad</span>
+				</div>
+				<div class=input>
+					<select name="nacionalidad" required>
+						<?php echo $options['paises']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Provincia de Nacimiento</span>
-				<select name="provnac" required>
-					<?php echo $options['provincia']; ?>
-				</select>
+				<div class=label>
+					<span>Provincia de Nacimiento</span>
+				</div>
+				<div class=input>
+					<select name="provnac" required>
+						<?php echo $options['provincia']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Lugar de Nacimiento</span>
-				<select name="lugarnac">
-					<?php echo $options['localidades']; ?>
-				</select>
+				<div class=label>
+					<span>Lugar de Nacimiento</span>
+				</div>
+				<div class=input>
+					<select name="lugarnac">
+						<?php echo $options['localidades']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Cuil del alumno</span>
-				<input type=text name="cuil">
+				<div class=label>
+					<span>Cuil del alumno</span>
+				</div>
+				<div class=input>
+					<input type=text id="cuil1" size=2 maxlength=2>
+					<span id="cuil">--</span>
+					<input type=text id="cuil2" size=1 maxlength=1>
+					<input type=hidden name="cuil">
+				</div>
 			</div>
 			<div class=campo>
-				<span>E-Mail del alumno</span>
-				<input type=email name="email">
+				<div class=label>
+					<span>E-Mail del alumno</span>
+				</div>
+				<div class=input>
+					<input type=email name="email">
+				</div>
 			</div>
 			<h3>Domicilio:</h3>
 			<div class=campo>
-				<span>Localidad</span>
-				<select name="localidad" required>
-					<?php echo $options['localidades']; ?>
-				</select>
+				<div class=label>
+					<span>Localidad</span>
+				</div>
+				<div class=input>
+					<select name="localidad" required>
+						<?php echo $options['localidades']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Barrio</span>
-				<select name="barrio" required>
-					<?php echo $options['barrios']; ?>
-				</select>
+				<div class=label>
+					<span>Barrio</span>
+				</div>
+				<div class=input>
+					<select name="barrio" required>
+						<?php echo $options['barrios']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Calle</span>
-				<select name="calle" required>
-					<?php echo $options['calles']; ?>
-				</select>
+				<div class=label>
+					<span>Calle</span>
+				</div>
+				<div class=input>
+					<select name="calle" required>
+						<?php echo $options['calles']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Numero</span>
-				<input required type=text name="callenro">
+				<div class=label>
+					<span>Numero</span>
+				</div>
+				<div class=input>
+					<input required type=text name="callenro">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Torre</span>
-				<input type=text name="torre">
+				<div class=label>
+					<span>Torre</span>
+				</div>
+				<div class=input>
+					<input type=text name="torre">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Piso</span>
-				<input type=text name="piso">
+				<div class=label>
+					<span>Piso</span>
+				</div>
+				<div class=input>
+					<input type=text name="piso">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Dpto</span>
-				<input type=text name="dpto">
+				<div class=label>
+					<span>Dpto</span>
+				</div>
+				<div class=input>
+					<input type=text name="dpto">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Codigo Postal</span>
-				<input required type=text name="cp">
+				<div class=label>
+					<span>Codigo Postal</span>
+				</div>
+				<div class=input>
+					<input required type=text name="cp">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Telefono fijo</span>
-				<input type=text name="telefono">
+				<div class=label>
+					<span>Telefono fijo</span>
+				</div>
+				<div class=input>
+					<input type=text name="telefono">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Celular</span>
-				<input type=text name="celular">
+				<div class=label>
+					<span>Celular</span>
+				</div>
+				<div class=input>
+					<input type=text name="celular">
+				</div>
 			</div>
 			<h3>------</h3>
 			<div class=campo>
-				<span>N° de Legajo</span>
-				<input type=text name="nrolegajo">
+				<div class=label>
+					<span>N° de Legajo</span>
+				</div>
+				<div class=input>
+					<input type=text name="nrolegajo">
+				</div>
 			</div>
 			<div class=campo>
-				<span>N° de Libro Matriz</span>
-				<input type=text name="nrolibmat">
+				<div class=label>
+					<span>N° de Libro Matriz</span>
+				</div>
+				<div class=input>
+					<input type=text name="nrolibmat">
+				</div>
 			</div>	
 			<div class=campo>
-				<span>N° de Folio</span>
-				<input type=text name="nrofolio">
+				<div class=label>
+					<span>N° de Folio</span>
+				</div>
+				<div class=input>
+					<input type=text name="nrofolio">
+				</div>
 			</div>
 			<h3>Servicio Educativo de Procedencia:</h3>
 			<div class=campo>
-				<span>Escuela de Procedencia</span>
-				<select name="escproc">
-					<?php echo $options['escuelas']; ?>
-				</select>
+				<div class=label>
+					<span>Escuela de Procedencia</span>
+				</div>
+				<div class=input>
+					<select name="escproc">
+						<?php echo $options['escuelas']; ?>
+					</select>
+				</div>
 			</div>
 			<div class=campo>
-				<span>Condicion del Alumno</span>
-				<select name="condinscrip" required>
-					<?php echo $options['condinscripcion']; ?>
-				</select>
+				<div class=label>
+					<span>Condicion del Alumno</span>
+				</div>
+				<div class=input>
+					<select name="condinscrip" required>
+						<?php echo $options['condinscripcion']; ?>
+					</select>
+				</div>
 			</div>
 			<h3>Otros datos:</h3>
 			<div class=campo>
-				<span>¿Cuantos Hermanos Tiene?</span>
-				<input type=text name="hermanos">
+				<div class=label>
+					<span>¿Cuantos Hermanos Tiene?</span>
+				</div>
+				<div class=input>
+					<input type=text name="hermanos">
+				</div>
 			</div>
 			<div class=campo>
-				<span>¿Cuantos en este Establecimiento?</span>
-				<input type=text name="hermest">
+				<div class=label>
+					<span>¿Cuantos en este Establecimiento?</span>
+				</div>
+				<div class=input>
+					<input type=text name="hermest">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Distancia del Domicilio a la Escuela</span>
-				<input type=text name="kmhogar">
+				<div class=label>
+					<span>Distancia del Domicilio a la Escuela</span>
+				</div>
+				<div class=input>
+					<input type=text name="kmhogar">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Cantidad de habitantes en el hogar</span>
-				<input type=text name="habitantes">
+				<div class=label>
+					<span>Cantidad de habitantes en el hogar</span>
+				</div>
+				<div class=input>
+					<input type=text name="habitantes">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Cantidad de habitaciones en el hogar(exceptuando cocina y baño)</span>
-				<input type=text name="habitaciones">
+				<div class=label>
+					<span>Cantidad de habitaciones en el hogar(exceptuando cocina y baño)</span>
+				</div>
+				<div class=input>
+					<input type=text name="habitaciones">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Cantidad de libros en el hogar</span>
-				<input type=text name="librohogar">
+				<div class=label>
+					<span>Cantidad de libros en el hogar</span>
+				</div>
+				<div class=input>
+					<input type=text name="librohogar">
+				</div>
 			</div>
 
 			<h3>Familiares/tutores</h3>
 			<div class=campo>
-				<span>Nombre del padre del alumno</span>
-				<input type=text name="padre">
+			</div>
+			<div class=input>
+				<div class=label>
+					<span>Nombre del padre del alumno</span>
+					<input type=text name="padre">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Nombre de la madre del alumno</span>
-				<input type=text name="madre">
+				<div class=label>
+					<span>Nombre de la madre del alumno</span>
+					<input type=text name="madre">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Nombre del tutor del alumno</span>
-				<input type=text name="tutor">
+				<div class=label>
+					<span>Nombre del tutor del alumno</span>
+					<input type=text name="tutor">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Persona autorizada a retirar al alunmo</span>
-				<input type=text name="retira1">
+				<div class=label>
+					<span>Persona autorizada a retirar al alunmo</span>
+					<input type=text name="retira1">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Otra persona autorizada a retirar al alunmo</span>
-				<input type=text name="retira2">
+				<div class=label>
+					<span>Otra persona autorizada a retirar al alunmo</span>
+					<input type=text name="retira2">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Firma del padre, madre o tutor</span>
-				<input type="file" name="firma">
+				<div class=label>
+					<span>Firma del padre, madre o tutor</span>
+					<input type="file" name="firma">
+				</div>
 			</div>
 			<div class=campo>
-				<span>Foto del alumno</span>
-				<input type="file" name="foto">
-			</div>
+				<div class=label>
+					<span>Foto del alumno</span>
+					<input type="file" name="foto">
+				</div>
 
-			<input type=submit value="Enviar">
-		</form>
+				<input type=submit value="Enviar">
+			</form>
 
-	</div>
-</body>
-</html>
+		</div>
+	</body>
+	</html>

@@ -2,8 +2,6 @@ $(document).ready(function() {
 
 	$('[name=nivelescolar]').focus();
 
-	//Caracteres permitidos para CUIL
-	cuilperm = "1234567890-";
 	//Caracteres permitidos para telefonos
 	telperm = "1234567890-+ ";
 
@@ -42,13 +40,14 @@ $(document).ready(function() {
 		}
 
 		//Cuil
-		cuil = $('[name=cuil').val();
-		for (var i = cuil.length - 1; i >= 0; i--) {
-			if($.inArray(cuil[i],cuilperm)!=-1) continue;
+		cuil1 = $('input#cuil1').val();
+		cuil2 = $('input#cuil2').val();
+		if(isNaN(cuil1) || isNaN(cuil2)) {
 			event.preventDefault();
 			alert("CUIL inválido");
-			$('[name=cuil').focus();
-			return;
+			$('input#cuil1').focus();
+		} else {
+			$('[name=cuil]').val(cuil1+"-"+nrodoc+"-"+cuil2);
 		}
 
 		//Teléfono
@@ -85,6 +84,10 @@ $(document).ready(function() {
 			$('[name=barrio]').prop("disabled",false);
 		}
 		$('[name=cp').val($('[name=localidad]').val());
+	});
+
+	$('[name=nrodoc]').focusout(function() {
+		$('span#cuil').html("-"+$('[name=nrodoc]').val()+"-");
 	});
 
 });
