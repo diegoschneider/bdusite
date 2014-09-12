@@ -44,7 +44,7 @@ CREATE TABLE `alumnos` (
   `barrio` int(11) NOT NULL,
   `localidad` int(11) NOT NULL,
   `cp` varchar(10) NOT NULL,
-  `telefono` varchar(40) NOT NULL,
+  `telefono` varchar(40) DEFAULT NULL,
   `celular` varchar(40) DEFAULT NULL,
   `nrolegajo` varchar(20) DEFAULT NULL,
   `nrolibmat` varchar(20) DEFAULT NULL,
@@ -419,7 +419,7 @@ CREATE TABLE `logins` (
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`),
   KEY `userid` (`userid`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -682,4 +682,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-08  3:41:07
+-- Dump completed on 2014-09-12 20:54:09
