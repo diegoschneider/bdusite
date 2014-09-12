@@ -99,10 +99,12 @@ h1 {
 
 .campo {
   overflow: auto; }
-  .campo span {
+  .campo .label span {
     float: left; }
-  .campo input, .campo select {
-    float: right; }
+  .campo .input {
+    /*input, select, span { */
+    float: right;
+    /*}*/ }
 
 #result td, #result th {
   white-space: nowrap; }

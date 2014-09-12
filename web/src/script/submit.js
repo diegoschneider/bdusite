@@ -1,8 +1,6 @@
 $(document).ready(function() {
 
-	$(":input[required]").each(function(i) {
-		$(this.parentNode.children[0]).addClass("formrequired");
-	});
+	$(":input[required]").closest(".campo").children(".label").addClass("formrequired");
 
 	$(':input').keypress(function(e) { 
     	// Si se apreta 'Enter'
