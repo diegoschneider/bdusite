@@ -409,7 +409,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<div class=label>
-					<span>Distancia del Domicilio a la Escuela</span>
+					<span>Distancia del Domicilio a la Escuela (en km)</span>
 				</div>
 				<div class=input>
 					<input type=text name="kmhogar">
@@ -440,54 +440,9 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				</div>
 			</div>
 
-			<h3>Familiares/tutores</h3>
-			<div class=campo>
-			</div>
-			<div class=input>
-				<div class=label>
-					<span>Nombre del padre del alumno</span>
-					<input type=text name="padre">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Nombre de la madre del alumno</span>
-					<input type=text name="madre">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Nombre del tutor del alumno</span>
-					<input type=text name="tutor">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Persona autorizada a retirar al alunmo</span>
-					<input type=text name="retira1">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Otra persona autorizada a retirar al alunmo</span>
-					<input type=text name="retira2">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Firma del padre, madre o tutor</span>
-					<input type="file" name="firma">
-				</div>
-			</div>
-			<div class=campo>
-				<div class=label>
-					<span>Foto del alumno</span>
-					<input type="file" name="foto">
-				</div>
+			<input type=submit value="Enviar">
+		</form>
 
-				<input type=submit value="Enviar">
-			</form>
-
-		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>
