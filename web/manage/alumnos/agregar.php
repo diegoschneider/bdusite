@@ -61,35 +61,8 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 				$campos['habitantes'] = campo('i',$_POST['habitantes']);
 				$campos['habitaciones'] = campo('i',$_POST['habitaciones']);
 				$campos['librohogar'] = campo('i',$_POST['librohogar']);
-				$campos['retira1'] = campo('i',$_POST['retira1']);
-				$campos['retira2'] = campo('i',$_POST['retira2']);
-
+				
 				insert($link, 'alumnos', $campos);
-				/*$stmt = $link->prepare($sql);
-				if(!$stmt) {
-					
-				} else {
-					$stmt->bind_param('isiiiissisiiissiisisiisssiiiiiiiiiiiii',$_POST['nivelescolar'],$_POST['curso'],$_POST['turno'],$_POST['tipodoc'],$_POST['nrodoc'],$_POST['estadodoc'],$_POST['apellidos'],$_POST['nombres'],$_POST['sexo'],$_POST['fecnac'],$_POST['nacionalidad'],$_POST['lugarnac'],$_POST['provnac'],$_POST['cuil'],$_POST['email'],$_POST['calle'],$_POST['callenro'],$_POST['torre'],$_POST['piso'],$_POST['dpto'],$_POST['barrio'],$_POST['localidad'],$_POST['cp'],$_POST['telefono'],$_POST['celular'],$_POST['nrolegajo'],$_POST['nrolibmat'],$_POST['nrofolio'],$_POST['escproc'],$_POST['condinscrip'],$_POST['hermanos'],$_POST['hermest'],$_POST['kmhogar'],$_POST['habitantes'],$_POST['habitaciones'],$_POST['librohogar'],$_POST['retira1'],$_POST['retira2']);
-
-
-					$stmt->execute();
-					echo $stmt->error;
-					if(!$stmt->affected_rows) {
-						echo "Error al cargar los datos";
-					} else {
-						if(sizeof($_FILES["foto"]["name"]) > 1) {
-							if(!$_FILES["foto"]["error"]) {
-								$temp = explode(".", $_FILES["foto"]["name"]);
-								$extension = end($temp);
-								$path = $_SERVER['DOCUMENT_ROOT']."/fotos/".$_POST['nrodoc'].".".$extension;
-								echo "Save!<br>Stored in: " . $path;
-								move_uploaded_file($_FILES['foto']['tmp_name'], $path);
-							}
-						} 
-					}
-				}
-				//move_uploaded_file($_FILES['firma']['tmp_name'], "firma/".)
-				*/
 			} else {
 				echo "Alumno existente";
 			}
@@ -148,8 +121,8 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					<span>Division</span>
 				</div>
 				<div class=input>
-					<select id="division">
-						<option value="-1">Seleccione...</option>
+					<select id="division" disabled>
+						<option value="-1">Seleccione un curso...</option>
 					</select>
 				</div>
 				<input type=hidden name="curso">
