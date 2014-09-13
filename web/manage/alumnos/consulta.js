@@ -1,8 +1,9 @@
 $(document).ready(function() {
+
 	$("select#curso").change(function() {
 		var cur = $("select#curso").val();
 		if(cur == "-1") {
-			$("select#division").html("<option value=\"-1\">Seleccione un año</option>");
+			$().html("<option value=\"-1\">Seleccione un año</option>");
 			$("select#division").prop("disabled", "disabled");
 			return;
 		}
@@ -22,7 +23,21 @@ $(document).ready(function() {
 				document.location = "/";
 			}
 		});
+	});
 
+	$("form").submit(function(event) {
+		var curso = $("select#curso").val();
+		var division = $("select#division").val();
+		$.post("consultar.php",{cur: curso, div: division}, function(result) {
+			try {
+				response = JSON.parse(result);
+				response = parseInt(response);
+				event.preventDefault();
+				alert(response);
+				//$("input[name=curso]").val(response);
+
+			}
+		});
 	});
 
 });
