@@ -5,6 +5,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 <head>
 	<?php style_head(); ?>
 	<script src=check.js></script>
+	<script src=consulta.js></script>
 </head>
 <body>
 	<?php style_header(); ?>
