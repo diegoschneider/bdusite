@@ -20,7 +20,7 @@ $(document).ready(function() {
 				return;
 			}
 			catch (e) {
-				document.location = "/";
+				alert("Error Desconocido");
 			}
 		});
 	});
@@ -35,7 +35,9 @@ $(document).ready(function() {
 				event.preventDefault();
 				alert(response);
 				//$("input[name=curso]").val(response);
-
+			}
+			catch(e) {
+				alert("Error Desconocido");
 			}
 		});
 	});
