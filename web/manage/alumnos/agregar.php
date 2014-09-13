@@ -127,13 +127,31 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			</div>
 			<div class=campo>
 				<div class=label>
-					<span>Curso</span>	
+					<span>Curso</span>
 				</div>
 				<div class=input>
-					<select name="curso">
-						<?php echo $options['cursos']; ?>
+					<select id="curso">
+						<option value="-1">Seleccione...</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
 					</select>
 				</div>
+			</div>
+			<div class=campo>
+				<div class=label>
+					<span>Division</span>
+				</div>
+				<div class=input>
+					<select id="division">
+						<option value="-1">Seleccione...</option>
+					</select>
+				</div>
+				<input type=hidden name="curso">
 			</div>
 			<div class=campo>
 				<div class=label>

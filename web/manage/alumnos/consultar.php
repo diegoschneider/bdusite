@@ -12,12 +12,27 @@ if(@valid_input($_POST['curso'])) {
 	if($stmt) {
 		$stmt->bind_param("i",$_POST['curso']);
 		$stmt->execute();
-		echo $stmt->error;
 		$result = $stmt->get_result();
 		$ret = array();
 		while($row = $result->fetch_row()) {
 			$ret[] = $row[0];
 		}
+		echo json_encode($ret);
+		die();
+	}
+} else if(@valid_input($_POST['cur']) && @valid_input($_POST['div'])) {
+	if(!$_SESSION['user']->loggedin || !isset($_SESSION['user'])) {
+		echo "[\"0\"]";
+		die();
+	}
+	$sql = "SELECT cod FROM cursos WHERE año=? AND division=?";
+	$stmt = $link->prepare($sql);
+	if($stmt) {
+		$stmt->bind_param("ii",$_POST['cur'],$_POST['div']);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_row();
+		$ret = $row[0];
 		echo json_encode($ret);
 		die();
 
