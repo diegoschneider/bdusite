@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$("select#curso").change(function() {
 		var cur = $("select#curso").val();
 		if(cur == "-1") {
-			$().html("<option value=\"-1\">Seleccione un año</option>");
+			$("select#division").html("<option value=\"-1\">Seleccione un año</option>");
 			$("select#division").prop("disabled", "disabled");
 			return;
 		}
