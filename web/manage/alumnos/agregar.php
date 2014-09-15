@@ -75,7 +75,6 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$options[] = array();
 			$options['barrios'] = form_select($link, "SELECT cod,nombre FROM barrios ORDER BY nombre",48);
 			$options['nivelescolar'] = form_select($link, "SELECT cod,nivel FROM nivelescolar", 2);
-			$options['cursos'] = form_select($link, "SELECT cod,concat(año,' ',division) FROM cursos ORDER BY año,division");
 			$options['turnos'] = form_select($link, "SELECT cod,nombre FROM turnos");
 			$options['tipodocumento'] = form_select($link, "SELECT cod,tipo FROM tipodocumento",1);
 			$options['estadodocumento'] = form_select($link, "SELECT cod,nombre FROM estadodocumento");
@@ -83,10 +82,9 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$options['localidades'] = form_select($link, "SELECT cp,nombre FROM localidades",2804);
 			$options['provincia'] = form_select($link, "SELECT cod,nombre FROM provincia ORDER BY nombre",1);
 			$options['paises'] = form_select($link, "SELECT cod,nombre FROM paises",54);
-			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles");
+			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles",372);
 			$options['escuelas'] = form_select($link, "SELECT cod,nombre FROM escuelas");
 			$options['condinscripcion'] = form_select($link, "SELECT cod,condicion FROM condinscripcion");
-
 			?>
 			<h3>Nivel</h3>
 			<div class=campo>
