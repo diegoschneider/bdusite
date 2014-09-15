@@ -87,9 +87,14 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$options['calles'] = form_select($link, "SELECT cod,nombre FROM calles",372);
 			$options['escuelas'] = form_select($link, "SELECT cod,nombre FROM escuelas");
 			$options['condinscripcion'] = form_select($link, "SELECT cod,condicion FROM condinscripcion");
+
+			$tooltip[] = array();
+			$tooltip['nivelescolar'] = "\"Nivel escolar del alumno.\nPrimario: El alumno aún no ingresó a la escuela, egresó de 6to de primaria.\nSecundario: Se encuentra entre 1ero y 7mo grado de secundaria\"";
+			$tooltip['curso'] = "\"El curso en el que está el alumno.\n(Al elegir un curso, se cargarán las divisiones)\"";
+
 			?>
 			<h3>Nivel</h3>
-			<div class=campo>
+			<div class=campo title=<?php echo $tooltip['nivelescolar'];?>>
 				<div class=label>
 					<span>Nivel Escolar</span>
 				</div>
@@ -99,7 +104,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					</select>
 				</div>
 			</div>
-			<div class=campo>
+			<div class=campo title=<?php echo $tooltip['curso'];?>>
 				<div class=label>
 					<span>Curso</span>
 				</div>
