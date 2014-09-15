@@ -12,7 +12,7 @@ $(document).ready(function() {
 				response = JSON.parse(result);
 				var options;
 				options = "<option value=\"-1\">Seleccione...</option>";
-				for (var i = response.length-1; i >= 0; i--) {
+				for(var i=0; i < response.length; i++) {
 					options += "<option value="+response[i]+">"+response[i]+"</option>";
 				}
 				$("select#division").html(options);
@@ -31,13 +31,11 @@ $(document).ready(function() {
 		$.post("consultar.php",{cur: curso, div: division}, function(result) {
 			try {
 				response = JSON.parse(result);
-				response = parseInt(response);
-				event.preventDefault();
-				alert(response);
-				//$("input[name=curso]").val(response);
+				$("input[name=curso]").val(response);
 			}
 			catch(e) {
 				alert("Error Desconocido");
+				event.preventDefault();
 			}
 		});
 	});

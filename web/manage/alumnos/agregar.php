@@ -125,8 +125,8 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 						<option value="-1">Seleccione un curso...</option>
 					</select>
 				</div>
-				<input type=hidden name="curso">
 			</div>
+			<input type=hidden name="curso">
 			<div class=campo>
 				<div class=label>
 					<span>Turno</span> 
@@ -317,7 +317,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					<span>Codigo Postal</span>
 				</div>
 				<div class=input>
-					<input required type=text name="cp">
+					<input required type=text name="cp" value="2804">
 				</div>
 			</div>
 			<div class=campo>

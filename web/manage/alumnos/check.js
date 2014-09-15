@@ -8,7 +8,7 @@ $(document).ready(function() {
 	$('#form').submit(function(event) {
 
 		//Nro de documento
-		nrodoc = $('[name=nrodoc]').val()
+		nrodoc = $('[name=nrodoc]').val();
 		nrodoc = nrodoc.split(".").join("");
 		nrodoc = nrodoc.split(",").join("");
 		nrodoc = parseInt(nrodoc);
@@ -25,17 +25,17 @@ $(document).ready(function() {
 		max.setFullYear(hoy.getFullYear()-65);
 		min = new Date();
 		min.setFullYear(hoy.getFullYear()-10);
-		nac = new Date($("[name='fecnac']").val());
+		nac = new Date($("[name=fecnac]").val());
 
 		if(nac > min) {
 			event.preventDefault();
 			alert("Error, el alumno es demasiado joven");
-			$("[name='fecnac']").focus();
+			$("[name=fecnac]").focus();
 			return;
 		} else if(nac < max) {
 			event.preventDefault();
 			alert("Error, me parece que a esa edad ya estaría jubilado (si no muerto D: )");
-			$("[name='fecnac']").focus();
+			$("[name=fecnac]").focus();
 			return;
 		}
 
@@ -46,33 +46,31 @@ $(document).ready(function() {
 			event.preventDefault();
 			alert("CUIL inválido");
 			$('input#cuil1').focus();
-		} else {
+		} else if(cuil1 != "" && cuil2 != ""){
 			$('[name=cuil]').val(cuil1+"-"+nrodoc+"-"+cuil2);
+		} else {
+			$('[name=cuil]').val("");
 		}
 
 		//Teléfono
-		tel = $('[name=telefono').val();
+		tel = $('[name=telefono]').val();
 		for (var i = tel.length - 1; i >= 0; i--) {
 			if($.inArray(tel[i],telperm)!=-1) continue;
 			event.preventDefault();
 			alert("Teléfono inválido");
-			$('[name=telefono').focus();
+			$('[name=telefono]').focus();
 			return;
 		}
 
 		//Celular
-		cel = $('[name=celular').val();
+		cel = $('[name=celular]').val();
 		for (var i = cel.length - 1; i >= 0; i--) {
 			if($.inArray(cel[i],telperm)!=-1) continue;
 			event.preventDefault();
 			alert("Celular inválido");
-			$('[name=celular').focus();
+			$('[name=celular]').focus();
 			return;
 		};
-
-		//event.preventDefault();
-		//alert("Se ve bien, por ahora (^w^)\nIgual, ésto es debug, así que no voy a cargar un joraca :3");
-
 	});
 
 	//Solo pedir barrio si es de campana
@@ -83,7 +81,7 @@ $(document).ready(function() {
 		} else {
 			$('[name=barrio]').prop("disabled",false);
 		}
-		$('[name=cp').val($('[name=localidad]').val());
+		$('[name=cp]').val($('[name=localidad]').val());
 	});
 
 	$('[name=nrodoc]').focusout(function() {
