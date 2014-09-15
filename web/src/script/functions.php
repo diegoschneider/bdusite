@@ -96,6 +96,24 @@ function campo($tipo,$valor) {
     return Array('tipo' => $tipo, 'valor' => $valor);
 }
 
+function get_codcur($cur, $div) {
+    $link = db_connect();
+    $sql = "SELECT cod FROM cursos WHERE año=? AND division=?";
+    $stmt = $link->prepare($sql);
+    if($stmt) {
+        $stmt->bind_param("ii",$cur,$div);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows) {        
+            $row = $result->fetch_row();
+            $ret = $row[0];
+        } else {
+            $ret = null;
+        }
+        return $ret;
+    }
+}
+
 
  /*************************
   * Funciones de usuarios *

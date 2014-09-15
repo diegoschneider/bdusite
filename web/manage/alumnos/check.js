@@ -71,6 +71,7 @@ $(document).ready(function() {
 			$('[name=celular]').focus();
 			return;
 		};
+
 	});
 
 	//Solo pedir barrio si es de campana

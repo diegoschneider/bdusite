@@ -21,28 +21,26 @@ if(@valid_input($_POST['curso'])) {
 		die();
 	}
 } else if(@valid_input($_POST['cur']) && @valid_input($_POST['div'])) {
+	
 	if(!$_SESSION['user']->loggedin || !isset($_SESSION['user'])) {
 		echo "[\"0\"]";
 		die();
 	}
-	$sql = "SELECT cod FROM cursos WHERE año=? AND division=?";
-	$stmt = $link->prepare($sql);
-	if($stmt) {
-		$stmt->bind_param("ii",$_POST['cur'],$_POST['div']);
-		$stmt->execute();
-		$result = $stmt->get_result();
-		$row = $result->fetch_row();
-		$ret = $row[0];
-		echo json_encode($ret);
-		die();
 
-	}
+	$ret = get_codcur($_POST['cur'],$_POST['div']);
+	echo json_encode($ret);
+	die();
+
+} else if(isset($_POST['cur']) || isset($_POST['div'])) {
+	//En caso de haberse enviado una mala petición al ir hacia atrás.
+	echo "Bad Request :c";
+	die();
 }
 ?>
 <html>
 <head>
 	<?php style_head() ?>
-	<script src="/src/script/consulta.js"></script>
+	<script src="consulta.js"></script>
 </head>
 <body>
 	<?php style_header(); ?>
@@ -173,11 +171,10 @@ if(@valid_input($_POST['curso'])) {
 						if(isset($_GET['dni'])) {
 							$sql .= "WHERE nrodoc=?;";
 							$stmt = $link->prepare($sql);
-							if(!$stmt) {
-								echo $link->error;
-							}
 							$stmt->bind_param("i", $_GET['dni']);
-							$stmt->execute();
+							if(isset($stmt) && $stmt) {
+								$stmt->execute();
+							}
 						}
 						break;
 					}
@@ -204,11 +201,15 @@ if(@valid_input($_POST['curso'])) {
 						break;
 					}
 					case 'curso':{
-						echo "Curso: ".$_GET['curso']."<br>División: ".$_GET['division'];
+						$codcur = get_codcur($_GET['curso'],$_GET['division']);
+						$sql .= "WHERE curso=?;";
+						$stmt = $link->prepare($sql);
+						$stmt->bind_param("s",$codcur);
+						if(isset($stmt) && $stmt) {
+							$stmt->execute();
+						}
+						break;
 					}
-					default:
-
-					break;
 				}
 
 				if(isset($stmt) && $stmt) {

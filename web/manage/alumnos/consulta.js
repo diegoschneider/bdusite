@@ -20,22 +20,7 @@ $(document).ready(function() {
 				return;
 			}
 			catch (e) {
-				alert("Error Desconocido");
-			}
-		});
-	});
-
-	$("form").submit(function(event) {
-		var curso = $("select#curso").val();
-		var division = $("select#division").val();
-		$.post("consultar.php",{cur: curso, div: division}, function(result) {
-			try {
-				response = JSON.parse(result);
-				$("input[name=curso]").val(response);
-			}
-			catch(e) {
-				alert("Error Desconocido");
-				event.preventDefault();
+				alert("Error Desconocido: "+result);
 			}
 		});
 	});

@@ -24,10 +24,12 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 			$result = $link->query("SELECT nrodoc from alumnos WHERE nrodoc={$_POST['nrodoc']}");
 			if(!$result->num_rows) {
 
+				$codcur = get_codcur($_POST['cur'],$_POST['div']);
+
 				$sql = "INSERT INTO alumnos(nivelescolar, curso, turno, tipodoc, nrodoc, estadodoc, apellidos, nombres, sexo, fecnac, nacionalidad, lugarnac, provnac, cuil, email, calle, callenro, torre, piso, dpto, barrio, localidad, cp, telefono, celular, nrolegajo, nrolibmat, nrofolio, escproc, condinscrip, hermanos, hermest, kmhogar, habitantes, habitaciones, librohogar,retira1, retira2) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				$campos = array();
 				$campos['nivelescolar'] = campo("i", $_POST['nivelescolar']);
-				$campos['curso'] = campo('s', $_POST['curso']);
+				$campos['curso'] = campo('s', $codcur);
 				$campos['turno'] = campo('i', $_POST['turno']);
 				$campos['tipodoc'] = campo('i', $_POST['tipodoc']);
 				$campos['nrodoc'] = campo('i', $_POST['nrodoc']);
@@ -102,7 +104,7 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					<span>Curso</span>
 				</div>
 				<div class=input>
-					<select id="curso">
+					<select id="curso" name="cur">
 						<option value="-1">Seleccione...</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -119,12 +121,11 @@ if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 					<span>Division</span>
 				</div>
 				<div class=input>
-					<select id="division" disabled>
+					<select id="division" name="div" disabled>
 						<option value="-1">Seleccione un curso...</option>
 					</select>
 				</div>
 			</div>
-			<input type=hidden name="curso">
 			<div class=campo>
 				<div class=label>
 					<span>Turno</span> 
