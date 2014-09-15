@@ -22,13 +22,21 @@ require_once("./src/script/functions.php");
             <h2>Ingreso</h2>
             
             <div class=campo>
-                <span>Nombre de usuario: </span>
-                <input type=text id="user" />
+                <div class=label>
+                    <span>Nombre de usuario: </span>
+                </div>
+                <div class=input>
+                    <input type=text id="user" />
+                </div>
             </div>
             
             <div class=campo>
-                <span>Contraseña: </span>
-                <input type=password id="pass" />
+                <div class=label>
+                    <span>Contraseña: </span>
+                </div>
+                <div class=input>
+                    <input type=password id="pass" />
+                </div>
             </div>
 
             <input type=submit value=Ingresar>

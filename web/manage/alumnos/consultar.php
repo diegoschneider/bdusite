@@ -55,43 +55,63 @@ if(@valid_input($_POST['curso'])) {
 			<form method=GET id="form1">
 				<input type=hidden name="query" value="dni">
 				<div class=campo>
-					<span>DNI</span>
-					<input type=text name="dni">
+					<div class=label>
+						<span>DNI</span>
+					</div>
+					<div class=input>
+						<input type=text name="dni">
+					</div>
 				</div>
 				<input type=submit value="Consultar">
 			</form>
 			<form method=GET id="form2">
 				<input type=hidden name="query" value="nomape">
 				<div class=campo>
-					<span>Nombre</span>
-					<input type=text name="nombre">
+					<div class=label>
+						<span>Nombre</span>
+					</div>
+					<div class=input>
+						<input type=text name="nombre">
+					</div>
 				</div>
 				<div class=campo>
-					<span>Apellido</span>
-					<input type=text name="apellido">
+					<div class=label>
+						<span>Apellido</span>
+					</div>
+					<div class=input>
+						<input type=text name="apellido">
+					</div>
 				</div>
 				<input type=submit value="Consultar">
 			</form>
 			<form method=GET id="form3">
 				<input type=hidden name="query" value="curso">
 				<div class=campo>
-					<span>Año</span>
-					<select name="curso" id="curso">
-						<option value="-1">Seleccione...</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-					</select>
+					<div class=label>
+						<span>Año</span>
+					</div>
+					<div class=input>
+						<select name="curso" id="curso">
+							<option value="-1">Seleccione...</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+						</select>
+					</div>
 				</div>
 				<div class=campo>
-					<span>Division</span>
-					<select name="division" id="division" disabled>
-						<option value="-1">Seleccione un año</option>
-					</select>
+					<div class=label>
+						<span>Division</span>
+					</div>
+					<div class=input>
+						<select name="division" id="division" disabled>
+							<option value="-1">Seleccione un año</option>
+						</select>
+					</div>
 				</div>
 				<input type=submit value="Consultar">
 			</form>
@@ -212,9 +232,9 @@ if(@valid_input($_POST['curso'])) {
 					echo $ret;
 				}
 			}
-		?>
-	</table>
-	<?php } ?>
-</div>
+			?>
+		</table>
+		<?php } ?>
+	</div>
 </body>
 </html>
