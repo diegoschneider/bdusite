@@ -13,6 +13,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 	<div class="vertical nav">
 		<ul>
 		<?php 
+			/*
 			$tables = array();
 			$path = $_SERVER['DOCUMENT_ROOT']."/manage";
 			$dir = scandir($path);
@@ -26,7 +27,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 			foreach ($tables as $key => $value) {
 				echo "<li><a href=$value>$key</a></li>";
 			}
+			*/
 		?>
+			<li><a href="alumnos">Alumnos</a></li>
 		</ul>
 	</div>
 
