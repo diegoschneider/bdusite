@@ -6,10 +6,7 @@ $(document).ready(function() {
     	// Si se apreta 'Enter'
     	if (e.which == 13) {
 
-        	// Si no guardamos el tabOrder todavía
-        	if (!this.form.tabOrder) {
-           		this.form.tabOrder = $(':input:focusable');
-            }
+        	this.form.tabOrder = $('select:not([disabled]), input:not([type=hidden]):not([disabled])');
 
             // Si el objeto es un submit, no hacer nada, y permitir el Enter
         	if(this.type === 'submit') {
@@ -24,10 +21,8 @@ $(document).ready(function() {
         			if (j+1 < jl) {
         				if(this.form.tabOrder[j+1].type === 'submit') {
         					this.form.tabOrder[j+1].click();
-        					console.log(this.form.tabOrder[j+1].type);
         				} else {
         					this.form.tabOrder[j+1].focus();
-        					console.log(this.form.tabOrder[j+1].type);
         				}
         					
         			}

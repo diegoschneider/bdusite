@@ -272,8 +272,8 @@ if($_SESSION['user']->loggedin) {
     <meta charset=UTF-8>
     <link rel=stylesheet href=/src/style/base.css>
     <script src='/src/jquery-1.11.1.min.js'></script>
-    <script src='/src/jquery-ui.min.js'></script>
     <script src='/src/script/submit.js'></script>";
+    //<script src='/src/jquery-ui.min.js'></script>
     if(!$_SESSION['user']->loggedin) {
         $ret.=
         "<script src=/src/script/login.js></script>";
