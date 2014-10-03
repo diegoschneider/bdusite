@@ -56,6 +56,53 @@ function db_connect($db = "BDU") {
     }
 }
 
+class InsertQuery {
+    var $fields;
+    var $table;
+    var $result;
+
+    function addfield($name, $type,$value) {
+        $this->fields[$name] = Array($type,$value);
+    }
+
+    function execute() {
+        $type = ""; //Here we save the field types
+        $temp = array(); //Here we save the values
+        $sql = "INSERT INTO ".$this->table." (";
+
+        foreach ($this->fields as $key => $value) {
+            $sql .= $key.",";
+            $type .= $value[0];
+            $temp[] = $value[1];
+        }
+        $sql .= ") VALUES (";
+        foreach($this->fields as $value) {
+            $sql .= "?,";
+        }
+        $sql .= ")";
+        $sql = str_replace(",)", ")", $sql);
+        
+        $link = db_connect();
+        $stmt = $link->prepare($sql);
+        $refs = refValues($temp);
+        call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+        $stmt->execute();
+
+        if($stmt->error) {
+            $this->result = $stmt->error;
+        } else {
+            $this->result = true;
+        }
+    }
+
+    function __construct($table) {
+        $this->fields = array();
+        $this->table = $table;
+
+        return $this;
+    }
+}
+
 /**
  * Crea el mysqli_stmt para un formulario
  *
