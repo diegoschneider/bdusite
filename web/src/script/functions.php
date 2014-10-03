@@ -79,17 +79,17 @@ function insert($link, $tabla, &$campos) {
     //( para corregir tabs
     $sql .= ")";
 
-$sql = str_replace(",)", ")", $sql);
-$stmt = $link->prepare($sql);
-$refs = refValues($temp);
-call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
-$stmt->execute();
+    $sql = str_replace(",)", ")", $sql);
+    $stmt = $link->prepare($sql);
+    $refs = refValues($temp);
+    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+    $stmt->execute();
 
-if($stmt->error) {
-    echo "<br>Error: ".$stmt->error;
-} else {
-    echo "<br>Agregado correctamente";
-}
+    if($stmt->error) {
+        echo "<br>Error: ".$stmt->error;
+    } else {
+        echo "<br>Agregado correctamente";
+    }
 }
 
 function campo($tipo,$valor) {
@@ -112,6 +112,18 @@ function get_codcur($cur, $div) {
         }
         return $ret;
     }
+}
+
+
+function get_contact_messages() {
+    $link = db_connect();
+    $sql = "SELECT solved FROM a_contacto WHERE solved = 0";
+    $stmt = $link->prepare($sql);
+    if($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    } else return false;
 }
 
 
