@@ -48,7 +48,7 @@ body {
     border-width: 0 0 0 2px; }
 
 #content {
-  padding: 33px 0 0 5px; }
+  padding: 33 5 0 5; }
 
 h1 {
   margin-top: 0; }
@@ -102,9 +102,26 @@ h1 {
   .campo .label span {
     float: left; }
   .campo .input {
-    /*input, select, span { */
-    float: right;
-    /*}*/ }
+    float: right; }
+  .campo #result td, .campo #result th {
+    white-space: nowrap; }
 
-#result td, #result th {
-  white-space: nowrap; }
+.msg {
+  padding: 5px;
+  border-style: solid;
+  overflow: auto;
+  margin-bottom: 20px; }
+  .msg .topbar {
+    overflow: auto; }
+    .msg .topbar .info {
+      float: left; }
+      .msg .topbar .info span {
+        display: block; }
+    .msg .topbar .actions {
+      float: right;
+      padding: 0 5; }
+  .msg .message {
+    clear: both;
+    margin-top: 5px;
+    padding: 5px;
+    border-style: solid; }
