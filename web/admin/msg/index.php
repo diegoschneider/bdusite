@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 <html>
 <head>
 	<?php style_head(); ?>
-	<link rel=stylesheet href="/src/style/msg.css">
+	<script src="msg.js"></script>
 </head>
 <body>
 	<?php style_header(); ?>
@@ -24,7 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 						<span><b>Asunto:</b> <?php echo $msg['subject'];?></span>
 					</div>
 					<div class=actions>
-						<input type=button value="Borrar mensaje">
+						<input type=button value="Borrar mensaje" <?php echo 'id="'.$msg['id'].'"' ?>>
 					</div>
 				</div>
 				<div class=message>

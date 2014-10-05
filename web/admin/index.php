@@ -11,7 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php");
 	<div id="content">
 		<h1>Panel de administrador</h1>
 		<?php
-		echo "<a href=msg.php>";
+		echo "<a href=msg>";
 		$mensajes = get_contact_messages_number();
 		if($mensajes == 1) {
 			echo "Hay 1 mensaje nuevo";

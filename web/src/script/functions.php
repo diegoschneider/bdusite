@@ -183,7 +183,7 @@ function get_contact_messages_number() {
 function get_contact_messages() {
     $ret = array();
     $link = db_connect();
-    $sql = "SELECT cont.timestamp, cont.subject, cont.message, users.username
+    $sql = "SELECT cont.id, cont.timestamp, cont.subject, cont.message, users.username
     FROM a_contacto cont
     LEFT JOIN users ON cont.userid=users.id
     WHERE solved = 0";
