@@ -56,6 +56,11 @@ function db_connect($db = "BDU") {
     }
 }
 
+ /**
+ * MySQL insert query helper class
+ *
+ */
+
 class InsertQuery {
     var $fields;
     var $table;
@@ -106,7 +111,7 @@ class InsertQuery {
 /**
  * Crea el mysqli_stmt para un formulario
  *
- * $campos -> Array(nombre, tipo, valor)
+ * Guardado por compatibilidad, temporalmente
  */
 
 function insert($link, $tabla, &$campos) {
@@ -138,7 +143,9 @@ function insert($link, $tabla, &$campos) {
         echo "<br>Agregado correctamente";
     }
 }
-
+/**
+* Guardado por compatibilidad
+*/
 function campo($tipo,$valor) {
     return Array('tipo' => $tipo, 'valor' => $valor);
 }
@@ -162,7 +169,7 @@ function get_codcur($cur, $div) {
 }
 
 
-function get_contact_messages() {
+function get_contact_messages_number() {
     $link = db_connect();
     $sql = "SELECT solved FROM a_contacto WHERE solved = 0";
     $stmt = $link->prepare($sql);
@@ -173,6 +180,32 @@ function get_contact_messages() {
     } else return false;
 }
 
+function get_contact_messages() {
+    $ret = array();
+    $link = db_connect();
+    $sql = "SELECT cont.timestamp, cont.subject, cont.message, users.username
+    FROM a_contacto cont
+    LEFT JOIN users ON cont.userid=users.id
+    WHERE solved = 0";
+    $stmt = $link->prepare($sql);
+    if($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else return false;
+}
+
+/**
+* 
+*
+*/
+
+function get_username($ids) {
+    $link = db_connect();
+    $sql = "SELECT user FROM users WHERE id=?";
+    $stmt = $link->prepare($sql);
+
+}
 
  /*************************
   * Funciones de usuarios *

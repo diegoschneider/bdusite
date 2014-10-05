@@ -1,5 +1,5 @@
 <?php
-require_once("./src/script/functions.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php"); 
 ?>
 
 <html>
@@ -57,12 +57,14 @@ require_once("./src/script/functions.php");
                     <?php 
                     if($_SESSION['user']->perm > 0) { 
                         echo "<br><span>Tienes permisos administrativos</span>";
-                        $mensajes = get_contact_messages();
+                        echo "<br><a href=/admin>";
+                        $mensajes = get_contact_messages_number();
                         if($mensajes == 1) {
-                            echo "<br>Hay 1 mensaje nuevo";
+                            echo "Hay 1 mensaje nuevo";
                         } else {
-                            echo "<br>Hay ".$mensajes." mensajes nuevos";
+                            echo "Hay ".$mensajes." mensajes nuevos";
                         }
+                        echo "</a>";
                     }
                     ?>
                 </div>
