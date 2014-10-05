@@ -79,7 +79,7 @@ body {
 }
 
 #content {
-    padding: 33px 0 0 5px;
+    padding: 33 5 0 5;
 }
 
 h1 {
@@ -162,3 +162,30 @@ h1 {
     }
 }
 
+.msg {
+    padding: 5px;
+    border-style: solid;
+    overflow: auto;
+    margin-bottom: 20px;
+    .topbar {
+        overflow: auto;
+        .info {
+            float: left;
+            span {
+                display: block;
+            }
+        }
+
+        .actions {
+            float: right;
+            padding: 0 5;
+        }
+    }
+    
+    .message {
+        clear:both;
+        margin-top: 5px;
+        padding: 5px;
+        border-style: solid;
+    }
+}

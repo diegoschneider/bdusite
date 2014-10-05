@@ -1,4 +1,4 @@
-<?php require($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php"); 
+<?php require_once($_SERVER['DOCUMENT_ROOT']."/src/script/functions.php"); 
 $link = db_connect();
 if(!$link) { echo_error(MYSQL_CONNECTERROR); die(); } ?>
 <html>
