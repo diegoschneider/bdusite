@@ -16,6 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `a_contacto`
+--
+
+DROP TABLE IF EXISTS `a_contacto`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `a_contacto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `userid` int(11) DEFAULT NULL,
+  `subject` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `message` varchar(500) COLLATE utf8_bin NOT NULL,
+  `solved` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `timestamp` (`timestamp`),
+  KEY `userid` (`userid`),
+  CONSTRAINT `a_contacto_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `a_contacto`
+--
+
+LOCK TABLES `a_contacto` WRITE;
+/*!40000 ALTER TABLE `a_contacto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `a_contacto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `alumnos`
 --
 
@@ -77,19 +107,7 @@ CREATE TABLE `alumnos` (
   KEY `localidad` (`localidad`),
   KEY `escproc` (`escproc`),
   KEY `condinscrip` (`condinscrip`),
-  CONSTRAINT `alumnos_ibfk_14` FOREIGN KEY (`condinscrip`) REFERENCES `condinscripcion` (`cod`),
-  CONSTRAINT `alumnos_ibfk_10` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`),
-  CONSTRAINT `alumnos_ibfk_11` FOREIGN KEY (`barrio`) REFERENCES `barrios` (`cod`),
-  CONSTRAINT `alumnos_ibfk_12` FOREIGN KEY (`localidad`) REFERENCES `localidades` (`cp`),
-  CONSTRAINT `alumnos_ibfk_13` FOREIGN KEY (`escproc`) REFERENCES `escuelas` (`cod`),
-  CONSTRAINT `alumnos_ibfk_2` FOREIGN KEY (`nivelescolar`) REFERENCES `nivelescolar` (`cod`),
-  CONSTRAINT `alumnos_ibfk_3` FOREIGN KEY (`turno`) REFERENCES `turnos` (`cod`),
-  CONSTRAINT `alumnos_ibfk_4` FOREIGN KEY (`tipodoc`) REFERENCES `tipodocumento` (`cod`),
-  CONSTRAINT `alumnos_ibfk_5` FOREIGN KEY (`estadodoc`) REFERENCES `estadodocumento` (`cod`),
-  CONSTRAINT `alumnos_ibfk_6` FOREIGN KEY (`sexo`) REFERENCES `sexo` (`cod`),
-  CONSTRAINT `alumnos_ibfk_7` FOREIGN KEY (`nacionalidad`) REFERENCES `paises` (`cod`),
-  CONSTRAINT `alumnos_ibfk_8` FOREIGN KEY (`lugarnac`) REFERENCES `localidades` (`cp`),
-  CONSTRAINT `alumnos_ibfk_9` FOREIGN KEY (`provnac`) REFERENCES `provincia` (`cod`)
+  CONSTRAINT `alumnos_ibfk_1` FOREIGN KEY (`turno`) REFERENCES `turnos` (`cod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -99,6 +117,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `alumnos` WRITE;
 /*!40000 ALTER TABLE `alumnos` DISABLE KEYS */;
+INSERT INTO `alumnos` VALUES (2,'050705',3,1,39414147,1,'Schneider','Diego',1,'1996-04-26',54,2804,1,46,416,NULL,NULL,NULL,47,2804,'2804','3489438732','3489514368',NULL,NULL,NULL,86,2,1,NULL,1,5,6,30,'20-39414147-4','diegoschneider.96@gmail.com',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `alumnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,9 +180,7 @@ CREATE TABLE `cargo` (
   `doc` int(11) NOT NULL,
   `cargo` int(11) NOT NULL,
   PRIMARY KEY (`doc`,`cargo`),
-  KEY `cargo` (`cargo`),
-  CONSTRAINT `cargo_ibfk_2` FOREIGN KEY (`cargo`) REFERENCES `cargos` (`cod`),
-  CONSTRAINT `cargo_ibfk_1` FOREIGN KEY (`doc`) REFERENCES `personal` (`doc`)
+  KEY `cargo` (`cargo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -217,10 +234,7 @@ CREATE TABLE `catedras` (
   PRIMARY KEY (`cod`),
   KEY `materia` (`materia`),
   KEY `docente` (`docente`),
-  KEY `curso` (`curso`),
-  CONSTRAINT `catedras_ibfk_3` FOREIGN KEY (`curso`) REFERENCES `cursos` (`cod`),
-  CONSTRAINT `catedras_ibfk_1` FOREIGN KEY (`materia`) REFERENCES `materias` (`cod`),
-  CONSTRAINT `catedras_ibfk_2` FOREIGN KEY (`docente`) REFERENCES `personal` (`doc`)
+  KEY `curso` (`curso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -299,10 +313,7 @@ CREATE TABLE `cursos` (
   KEY `preceptora` (`preceptora`),
   KEY `turno` (`turno`),
   KEY `especialidad` (`especialidad`),
-  KEY `año` (`año`),
-  CONSTRAINT `cursos_ibfk_3` FOREIGN KEY (`especialidad`) REFERENCES `especialidades` (`cod`),
-  CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`preceptora`) REFERENCES `personal` (`doc`),
-  CONSTRAINT `cursos_ibfk_2` FOREIGN KEY (`turno`) REFERENCES `turnos` (`cod`)
+  KEY `año` (`año`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -356,10 +367,7 @@ CREATE TABLE `escuelas` (
   PRIMARY KEY (`cod`),
   KEY `jurisdiccion_2` (`jurisdiccion`),
   KEY `nivel` (`nivel`),
-  KEY `tipo` (`tipo`),
-  CONSTRAINT `escuelas_ibfk_3` FOREIGN KEY (`tipo`) REFERENCES `tipoescuela` (`cod`),
-  CONSTRAINT `escuelas_ibfk_1` FOREIGN KEY (`jurisdiccion`) REFERENCES `localidades` (`cp`),
-  CONSTRAINT `escuelas_ibfk_2` FOREIGN KEY (`nivel`) REFERENCES `nivelescolar` (`cod`)
+  KEY `tipo` (`tipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -461,16 +469,7 @@ CREATE TABLE `familiares` (
   KEY `estadodoc` (`estadodoc`),
   KEY `barrio` (`barrio`),
   KEY `localidad` (`localidad`),
-  KEY `vinculo` (`vinculo`),
-  CONSTRAINT `familiares_ibfk_9` FOREIGN KEY (`vinculo`) REFERENCES `vinculos` (`cod`),
-  CONSTRAINT `familiares_ibfk_1` FOREIGN KEY (`nacionalidad`) REFERENCES `paises` (`cod`),
-  CONSTRAINT `familiares_ibfk_2` FOREIGN KEY (`condact`) REFERENCES `condactividad` (`cod`),
-  CONSTRAINT `familiares_ibfk_3` FOREIGN KEY (`nivelinstru`) REFERENCES `nivelinstruccion` (`cod`),
-  CONSTRAINT `familiares_ibfk_4` FOREIGN KEY (`tipodoc`) REFERENCES `tipodocumento` (`cod`),
-  CONSTRAINT `familiares_ibfk_5` FOREIGN KEY (`estadodoc`) REFERENCES `estadodocumento` (`cod`),
-  CONSTRAINT `familiares_ibfk_6` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`),
-  CONSTRAINT `familiares_ibfk_7` FOREIGN KEY (`barrio`) REFERENCES `barrios` (`cod`),
-  CONSTRAINT `familiares_ibfk_8` FOREIGN KEY (`localidad`) REFERENCES `localidades` (`cp`)
+  KEY `vinculo` (`vinculo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -516,10 +515,7 @@ CREATE TABLE `fichasalud` (
   KEY `vacunacion` (`vacunacion`),
   KEY `recurrir` (`recurrir`),
   KEY `medico` (`medico`),
-  KEY `famdoc` (`famdoc`),
-  CONSTRAINT `fichasalud_ibfk_3` FOREIGN KEY (`famdoc`) REFERENCES `familiares` (`doc`),
-  CONSTRAINT `fichasalud_ibfk_1` FOREIGN KEY (`recurrir`) REFERENCES `instrecurrir` (`id`),
-  CONSTRAINT `fichasalud_ibfk_2` FOREIGN KEY (`medico`) REFERENCES `medicos` (`ID`)
+  KEY `famdoc` (`famdoc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -570,8 +566,7 @@ CREATE TABLE `instrecurrir` (
   `callenro` int(11) NOT NULL,
   `telefono` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `calle` (`calle`),
-  CONSTRAINT `instrecurrir_ibfk_1` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`)
+  KEY `calle` (`calle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -598,8 +593,7 @@ CREATE TABLE `localidades` (
   `provincia` int(11) NOT NULL,
   PRIMARY KEY (`cp`),
   KEY `nombre` (`nombre`),
-  KEY `provincia` (`provincia`),
-  CONSTRAINT `localidades_ibfk_1` FOREIGN KEY (`provincia`) REFERENCES `provincia` (`cod`)
+  KEY `provincia` (`provincia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -630,7 +624,7 @@ CREATE TABLE `logins` (
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`),
   KEY `userid` (`userid`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -639,7 +633,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `logins` WRITE;
 /*!40000 ALTER TABLE `logins` DISABLE KEYS */;
-INSERT INTO `logins` VALUES (1,'127.0.0.1','1',1,0,'2014-09-12 19:52:11'),(2,'127.0.0.1','1',1,0,'2014-09-15 04:01:54'),(3,'127.0.0.1','1',1,0,'2014-09-15 05:18:26');
+INSERT INTO `logins` VALUES (1,'127.0.0.1','1',1,0,'2014-09-12 19:52:11'),(2,'127.0.0.1','1',1,0,'2014-09-15 04:01:54'),(3,'127.0.0.1','1',1,0,'2014-09-15 05:18:26'),(4,'127.0.0.1','1',1,0,'2014-09-15 09:40:57'),(5,'127.0.0.1',NULL,0,0,'2014-09-24 18:47:12'),(6,'127.0.0.1','1',0,1,'2014-09-24 18:47:23'),(7,'127.0.0.1','1',1,0,'2014-09-24 18:47:27'),(8,'192.168.2.111','1',1,0,'2014-09-29 02:20:43'),(9,'192.168.2.111','1',0,1,'2014-09-29 02:23:52'),(10,'192.168.2.111',NULL,0,0,'2014-09-29 02:23:55'),(11,'192.168.2.111','1',1,0,'2014-09-29 02:24:11'),(12,'127.0.0.1','2',1,0,'2014-10-03 18:55:00'),(13,'127.0.0.1','1',1,0,'2014-10-03 18:58:14'),(14,'127.0.0.1','1',1,0,'2014-10-03 19:36:45'),(15,'127.0.0.1','2',1,0,'2014-10-03 19:37:03'),(16,'127.0.0.1','1',1,0,'2014-10-03 19:37:09'),(17,'127.0.0.1','1',1,0,'2014-10-03 20:20:01');
 /*!40000 ALTER TABLE `logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -809,15 +803,7 @@ CREATE TABLE `personal` (
   KEY `localidad` (`localidad`),
   KEY `barrio` (`barrio`),
   KEY `sexo` (`sexo`),
-  KEY `gremio` (`gremio`),
-  CONSTRAINT `personal_ibfk_8` FOREIGN KEY (`gremio`) REFERENCES `gremio` (`cod`),
-  CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`tipodoc`) REFERENCES `tipodocumento` (`cod`),
-  CONSTRAINT `personal_ibfk_2` FOREIGN KEY (`estadodoc`) REFERENCES `estadodocumento` (`cod`),
-  CONSTRAINT `personal_ibfk_3` FOREIGN KEY (`nacionalidad`) REFERENCES `paises` (`cod`),
-  CONSTRAINT `personal_ibfk_4` FOREIGN KEY (`localidad`) REFERENCES `localidades` (`cp`),
-  CONSTRAINT `personal_ibfk_5` FOREIGN KEY (`barrio`) REFERENCES `barrios` (`cod`),
-  CONSTRAINT `personal_ibfk_6` FOREIGN KEY (`calle`) REFERENCES `calles` (`cod`),
-  CONSTRAINT `personal_ibfk_7` FOREIGN KEY (`sexo`) REFERENCES `sexo` (`cod`)
+  KEY `gremio` (`gremio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -937,8 +923,7 @@ CREATE TABLE `titulo` (
   `doc` int(11) NOT NULL,
   `titulo` int(11) NOT NULL,
   PRIMARY KEY (`doc`,`titulo`),
-  KEY `titulo` (`titulo`),
-  CONSTRAINT `titulo_ibfk_1` FOREIGN KEY (`titulo`) REFERENCES `titulos` (`cod`)
+  KEY `titulo` (`titulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -1012,7 +997,7 @@ CREATE TABLE `users` (
   `perm` int(11) NOT NULL DEFAULT '0',
   `loginfails` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1021,7 +1006,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'diego','diego',0,0),(2,'ariel','ariel',0,0),(4,'aaron','aaron',0,0),(5,'sebastian','sebastian',0,0),(6,'pupeishon','pupeishon',0,0),(7,'braian','braian',0,0),(8,'alan','alan',0,0),(9,'fede','fede',0,0),(10,'franco','franco',0,0);
+INSERT INTO `users` VALUES (1,'diego','diego',1,0),(2,'usuario','usuario',0,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1058,4 +1043,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-15  8:53:18
+-- Dump completed on 2014-10-03 20:34:40

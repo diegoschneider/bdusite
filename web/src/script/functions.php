@@ -56,10 +56,62 @@ function db_connect($db = "BDU") {
     }
 }
 
+ /**
+ * MySQL insert query helper class
+ *
+ */
+
+class InsertQuery {
+    var $fields;
+    var $table;
+    var $result;
+
+    function addfield($name, $type,$value) {
+        $this->fields[$name] = Array($type,$value);
+    }
+
+    function execute() {
+        $type = ""; //Here we save the field types
+        $temp = array(); //Here we save the values
+        $sql = "INSERT INTO ".$this->table." (";
+
+        foreach ($this->fields as $key => $value) {
+            $sql .= $key.",";
+            $type .= $value[0];
+            $temp[] = $value[1];
+        }
+        $sql .= ") VALUES (";
+        foreach($this->fields as $value) {
+            $sql .= "?,";
+        }
+        $sql .= ")";
+        $sql = str_replace(",)", ")", $sql);
+        
+        $link = db_connect();
+        $stmt = $link->prepare($sql);
+        $refs = refValues($temp);
+        call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+        $stmt->execute();
+
+        if($stmt->error) {
+            $this->result = $stmt->error;
+        } else {
+            $this->result = true;
+        }
+    }
+
+    function __construct($table) {
+        $this->fields = array();
+        $this->table = $table;
+
+        return $this;
+    }
+}
+
 /**
  * Crea el mysqli_stmt para un formulario
  *
- * $campos -> Array(nombre, tipo, valor)
+ * Guardado por compatibilidad, temporalmente
  */
 
 function insert($link, $tabla, &$campos) {
@@ -79,19 +131,21 @@ function insert($link, $tabla, &$campos) {
     //( para corregir tabs
     $sql .= ")";
 
-$sql = str_replace(",)", ")", $sql);
-$stmt = $link->prepare($sql);
-$refs = refValues($temp);
-call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
-$stmt->execute();
+    $sql = str_replace(",)", ")", $sql);
+    $stmt = $link->prepare($sql);
+    $refs = refValues($temp);
+    call_user_func_array(array($stmt, 'bind_param'), array_merge(array($type), $refs));
+    $stmt->execute();
 
-if($stmt->error) {
-    echo "<br>Error: ".$stmt->error;
-} else {
-    echo "<br>Agregado correctamente";
+    if($stmt->error) {
+        echo "<br>Error: ".$stmt->error;
+    } else {
+        echo "<br>Agregado correctamente";
+    }
 }
-}
-
+/**
+* Guardado por compatibilidad
+*/
 function campo($tipo,$valor) {
     return Array('tipo' => $tipo, 'valor' => $valor);
 }
@@ -114,6 +168,44 @@ function get_codcur($cur, $div) {
     }
 }
 
+
+function get_contact_messages_number() {
+    $link = db_connect();
+    $sql = "SELECT solved FROM a_contacto WHERE solved = 0";
+    $stmt = $link->prepare($sql);
+    if($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows;
+    } else return false;
+}
+
+function get_contact_messages() {
+    $ret = array();
+    $link = db_connect();
+    $sql = "SELECT cont.id, cont.timestamp, cont.subject, cont.message, users.username
+    FROM a_contacto cont
+    LEFT JOIN users ON cont.userid=users.id
+    WHERE solved = 0";
+    $stmt = $link->prepare($sql);
+    if($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } else return false;
+}
+
+/**
+* 
+*
+*/
+
+function get_username($ids) {
+    $link = db_connect();
+    $sql = "SELECT user FROM users WHERE id=?";
+    $stmt = $link->prepare($sql);
+
+}
 
  /*************************
   * Funciones de usuarios *
