@@ -1,0 +1,43 @@
+﻿Recuperación de emergencia
+0- LEE TODO! (
+1- Instalar AppServ 2.6.0
+	Server Name debe ser el nombre del equipo ("bduserver", "testserver", etc.)
+	Admin email debe ser el email que se usará para contacto. Por ej: bdu@tecnica1campana.edu.ar admin@bduserver
+	Crear una contraseña para MySQL
+	Habilitar innoDB en las opciones de MySQL
+
+2- Instalar git
+3- Abrir Git Bash:
+	git clone http://github.com/diegoschneider/bdusite
+
+4- Mover la carpeta C:\AppServ\www\phpMyAdmin a C:\AppServ\
+5- Renombrar C:\AppServ\phpMyAdmin a C:\AppServ\phpmyadmin
+6- Renombrar C:\AppServ\www a C:\AppServ\www.bak
+7- Copiar la carpeta %USERPROFILE%\bdusite\web a C:\AppServ
+8- Renombrar C:\AppServ\web a C:\AppServ\www
+9- Editar el archivo C:\AppServ\Apache2.2\conf\httpd.conf:
+	Agregar el alias para phpmyadmin.
+	Agregarlo luego del alias de icons (Buscar "Alias /icon" y ponerlo luego de esas líneas)
+	Copiar y pegar textualmente:
+
+		Alias /phpmyadmin "C:/AppServ/phpmyadmin/"
+		<Directory "C:/AppServ/phpmyadmin/">
+			Options Indexes MultiViews
+			AllowOverride None
+			Order allow,deny
+			Allow from all
+		</Directory>
+
+10- Editar el archivo C:\Windows\php.ini
+	Buscar las líneas y reemplazar los valores
+		mysqli.default_user = root
+		mysqli.default_pw = [[[CONTRASEÑA DE MYSQL]]]
+
+11- Editar el archivo C:\AppServ\phpmyadmin\config.inc.php
+	Hay que cambiar 'localhost' por '127.0.0.1', ya que localhost conecta por IPv6, y MySQL escucha por IPv4
+	Quedaría:
+		$cfg['Servers'][$i]['host']          = '127.0.0.1'; // MySQL hostname or IP address
+12- Inicio -> Programas -> AppServ -> Control server by service -> Click derecho "Apache Restart" -> Ejecutar como administrador
+13- Iniciar sesión en phpmyadmin
+14- Bases de datos -> Crear base de datos -> crear la base de datos BDU
+15- Importar->Seleccionar el archivo de backup (caso de no haber, usar el backup inicial [%USERPROFILE%\bdusite\dump_tot.sql] )
