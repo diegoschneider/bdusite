@@ -58,7 +58,10 @@ function db_connect($db = "BDU") {
 
  /**
  * MySQL insert query helper class
- *
+ * 
+ * La idea es usar ésta clase para sacarse de encima
+ * la función insert() y orientar todo a objetos en
+ * vez de funciones.
  */
 
 class InsertQuery {
@@ -117,7 +120,7 @@ class InsertQuery {
 function insert($link, $tabla, &$campos) {
     $type = "";
     $temp = array();
-    $sql = "INSERT INTO $tabla (";//) para corregir tabs Sublime Text 2
+    $sql = "INSERT INTO $tabla (";
 
     foreach ($campos as $key => $value) {
         $sql .= $key.",";
@@ -128,7 +131,7 @@ function insert($link, $tabla, &$campos) {
     foreach ($campos as $value) {
         $sql .= "?,";
     }
-    //( para corregir tabs
+    
     $sql .= ")";
 
     $sql = str_replace(",)", ")", $sql);
@@ -150,6 +153,12 @@ function campo($tipo,$valor) {
     return Array('tipo' => $tipo, 'valor' => $valor);
 }
 
+/**
+ * Devuelve el código de curso
+ * @param int $cur Curso
+ * @param int $div Division
+ * @return int Código del curso. Null si no existe
+ */
 function get_codcur($cur, $div) {
     $link = db_connect();
     $sql = "SELECT cod FROM cursos WHERE año=? AND division=?";
@@ -168,7 +177,10 @@ function get_codcur($cur, $div) {
     }
 }
 
-
+/**
+ * Devuelve la cantidad de mensajes de contacto sin resolver
+ * @return boolean Cantidad de mensajes
+ */
 function get_contact_messages_number() {
     $link = db_connect();
     $sql = "SELECT solved FROM a_contacto WHERE solved = 0";
@@ -177,11 +189,12 @@ function get_contact_messages_number() {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->num_rows;
-    } else return false;
+    } else {
+        return false;
+    }
 }
 
 function get_contact_messages() {
-    $ret = array();
     $link = db_connect();
     $sql = "SELECT cont.id, cont.timestamp, cont.subject, cont.message, users.username
     FROM a_contacto cont
@@ -192,20 +205,25 @@ function get_contact_messages() {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
-    } else return false;
+    } else {
+        return false;
+    }
 }
 
 /**
-* 
-*
-*/
-
+ * [Incompleta] [TO-DO]
+ * Devuelve el nombre de usuario
+ * @param int $ids ID del usuario
+ * @return string Nombre del usuario
+ */
+/*
 function get_username($ids) {
     $link = db_connect();
     $sql = "SELECT user FROM users WHERE id=?";
     $stmt = $link->prepare($sql);
 
 }
+*/
 
  /*************************
   * Funciones de usuarios *
@@ -440,7 +458,9 @@ function form_select($link, $sql, $default = null) {
     } else {
         $ret = $options[$default];
         foreach ($options as $key => $value) {
-            if($key == $default) continue;
+            if($key == $default) {
+                continue;
+            }
             $ret .= $options[$key];
         }
     }
@@ -462,5 +482,3 @@ function valid_input($var) {
     }
     return false;
 }
-
-?>

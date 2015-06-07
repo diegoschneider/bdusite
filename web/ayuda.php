@@ -40,7 +40,7 @@
 			</div>
 			<div class=campo>
 				<div class=input>
-					<textarea name=message rows=10 style="width: 700px; max-width=700px;"></textarea>
+					<textarea name=message rows=10 style="width: 700px; max-width: 700px;"></textarea>
 				</div>
 			</div>
 			<input type=submit value="Enviar">
